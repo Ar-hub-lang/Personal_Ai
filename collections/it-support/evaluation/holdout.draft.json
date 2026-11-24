@@ -1,0 +1,99 @@
+{
+  "collection": "IT Support",
+  "split": "holdout",
+  "status": "draft",
+  "page_numbering": "One-based PDF file pages",
+  "review_note": "Verify every answer and source page from the supplied guides. Confirm missing facts across the whole collection. Draft cases are not benchmark inputs.",
+  "cases": [
+    {
+      "id": "IT-H01",
+      "category": "VPN",
+      "question": "I replaced my laptop. Which VPN setup steps must I repeat before I can work remotely?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H02",
+      "category": "VPN",
+      "question": "My VPN disconnects every time the laptop wakes from sleep. What recovery steps does the guide give?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H03",
+      "category": "Password reset",
+      "question": "How should a remote employee restore access if the new password works on the web but the laptop still rejects it?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H04",
+      "category": "Password reset",
+      "question": "What is the documented escalation path when a self-service password reset returns an error?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H05",
+      "category": "Printer",
+      "question": "My laptop can see the printer, but the guide's test page will not print. Which steps should I follow?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H06",
+      "category": "Printer",
+      "question": "What was the total print volume from all office printers last calendar quarter?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H07",
+      "category": "Wi-Fi",
+      "question": "My managed phone fails to join the staff network while my laptop connects. Which device-specific setup does the guide describe?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H08",
+      "category": "Wi-Fi",
+      "question": "Where does the company publish a real-time map of Wi-Fi access point utilization?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H09",
+      "category": "Software installation",
+      "question": "After an approved app is installed, how should I verify that the company license is active?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-H10",
+      "category": "Software installation",
+      "question": "How do I remove an approved application when the normal uninstall option is unavailable?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    }
+  ]
+}

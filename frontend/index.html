@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal AI</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="brand"><span class="brand-mark" aria-hidden="true">✦</span> Personal AI</span>
+      <span id="connection" class="connection" role="status">Checking connection…</span>
+    </div>
+  </header>
+
+  <main>
+    <nav class="modes" aria-label="Assistant mode">
+      <button id="chat-mode" type="button" aria-pressed="true" aria-controls="chat">Chat</button>
+      <button id="voice-mode" type="button" aria-pressed="false" aria-controls="voice">Voice</button>
+    </nav>
+
+    <section id="chat" class="panel" aria-labelledby="chat-title">
+      <div class="document-bar">
+        <input id="pdf-file" type="file" accept=".pdf,application/pdf" hidden>
+        <button id="upload-pdf" class="primary" type="button" disabled>Upload PDF</button>
+        <label><input id="ask-pdf" type="checkbox" disabled> <span id="ask-document-label">Ask this PDF</span></label>
+        <label id="pdf-reader-choice" hidden>PDF model
+          <select id="pdf-reader">
+            <option value="qwen">Qwen</option>
+            <option value="tinygpt">TinyGPT (preview)</option>
+          </select>
+        </label>
+        <span id="pdf-status" role="status"></span>
+      </div>
+      <div id="messages" class="messages" role="log" aria-label="Chat messages">
+        <div id="welcome" class="welcome">
+          <h1 id="chat-title">How can I help?</h1>
+          <p>Type a question or switch to Voice to talk.</p>
+        </div>
+      </div>
+      <form id="chat-form" class="composer">
+        <label class="visually-hidden" for="prompt">Message</label>
+        <textarea id="prompt" placeholder="Write a message…" rows="2" maxlength="4000" required></textarea>
+        <button id="send" class="primary" type="submit">Send</button>
+      </form>
+      <p id="chat-status" class="status" role="status"></p>
+    </section>
+
+    <section id="voice" class="panel voice" aria-labelledby="voice-title" hidden>
+      <div class="voice-controls">
+        <h1 id="voice-title">Talk to your assistant</h1>
+        <p>Record a short message, review the transcript, then send it.</p>
+        <button id="record" class="primary record" type="button">Start recording</button>
+        <p id="voice-status" class="status" role="status"></p>
+      </div>
+      <form id="voice-review" class="voice-result" hidden>
+        <div class="utterance review">
+          <label for="voice-transcript">Review transcript</label>
+          <textarea id="voice-transcript" rows="3" maxlength="4000" required></textarea>
+          <button id="send-transcript" class="primary" type="submit">Send transcript</button>
+        </div>
+      </form>
+      <div id="voice-result" class="voice-result" hidden>
+        <div class="utterance">
+          <h2>Transcript</h2>
+          <p id="transcript"></p>
+        </div>
+        <div class="utterance">
+          <h2>Reply</h2>
+          <p id="voice-reply"></p>
+          <audio id="playback" controls preload="none" aria-label="Spoken reply"></audio>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

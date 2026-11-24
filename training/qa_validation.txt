@@ -1,0 +1,18 @@
+Question: How can I describe the Python language? Answer: Python is a general-purpose programming language.
+Question: What kind of collection is a list? Answer: A list is an ordered, mutable collection.
+Question: What kind of collection is a tuple? Answer: A tuple is an ordered, immutable collection.
+Question: What kind of data goes in a dictionary? Answer: A dictionary maps keys to values.
+Question: What kind of elements belong in a set? Answer: A set stores distinct elements.
+Question: What is meant by a function? Answer: A function is a reusable block of code.
+Question: How does the caller receive a result? Answer: The return statement sends a value to the caller.
+Question: What happens inside a loop? Answer: A loop repeats a block of code.
+Question: What are strings made of? Answer: A string stores a sequence of characters.
+Question: What are the possible Boolean values? Answer: A Boolean is either True or False.
+Question: What does len measure in a collection? Answer: The len function returns the number of items.
+Question: How does append modify a list? Answer: The append method adds one item to the end of a list.
+Question: What is meant by an exception? Answer: An exception signals an error or unusual condition.
+Question: What happens when you import a module? Answer: An import makes a module available to your code.
+Question: How would you describe the Python int type? Answer: An integer is a whole number.
+Question: When will the code inside an if run? Answer: An if statement runs code when its condition is true.
+Question: What does print show when you call it? Answer: The print function displays text or values.
+Question: What is the purpose of an index? Answer: An index identifies an item by position.

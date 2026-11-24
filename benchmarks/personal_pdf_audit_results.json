@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-24",
+  "manifest": "benchmarks/personal_pdf_questions.json",
+  "grading": "Expected evidence fragments and source pages, plus abstention on missing facts. Structured lookups can bypass retrieval.",
+  "runs": [
+    {
+      "configuration": "Qwen baseline",
+      "retrieval_hits": [
+        22,
+        24
+      ],
+      "correct_answers": [
+        20,
+        30
+      ],
+      "unsupported_answers_on_missing_questions": [
+        0,
+        4
+      ],
+      "failure_counts": {
+        "verification_or_answer_assembly": 6,
+        "retrieval": 2,
+        "structured_lookup": 1,
+        "generation_or_selection": 1
+      }
+    },
+    {
+      "configuration": "Qwen expanded multi-part retrieval",
+      "retrieval_hits": [
+        22,
+        23
+      ],
+      "correct_answers": [
+        21,
+        30
+      ],
+      "unsupported_answers_on_missing_questions": [
+        0,
+        4
+      ],
+      "failure_counts": {
+        "verification_or_answer_assembly": 6,
+        "retrieval": 1,
+        "structured_lookup": 1,
+        "generation_or_selection": 1
+      }
+    },
+    {
+      "configuration": "Qwen detailed prompt trial",
+      "retrieval_hits": [
+        22,
+        23
+      ],
+      "correct_answers": [
+        19,
+        30
+      ],
+      "unsupported_answers_on_missing_questions": [
+        0,
+        4
+      ],
+      "failure_counts": {
+        "verification_or_answer_assembly": 7,
+        "retrieval": 1,
+        "generation_or_selection": 2,
+        "structured_lookup": 1
+      }
+    },
+    {
+      "configuration": "Qwen default after audit",
+      "retrieval_hits": [
+        22,
+        23
+      ],
+      "correct_answers": [
+        22,
+        30
+      ],
+      "unsupported_answers_on_missing_questions": [
+        0,
+        4
+      ],
+      "failure_counts": {
+        "verification_or_answer_assembly": 5,
+        "retrieval": 1,
+        "generation_or_selection": 2
+      }
+    },
+    {
+      "configuration": "Qwen section-aware chunking trial",
+      "retrieval_hits": [
+        23,
+        23
+      ],
+      "correct_answers": [
+        19,
+        30
+      ],
+      "unsupported_answers_on_missing_questions": [
+        1,
+        4
+      ],
+      "failure_counts": {
+        "verification_or_answer_assembly": 8,
+        "generation_or_selection": 2,
+        "unsupported_answer": 1
+      }
+    },
+    {
+      "configuration": "TinyGPT baseline",
+      "retrieval_hits": [
+        14,
+        23
+      ],
+      "correct_answers": [
+        13,
+        30
+      ],
+      "unsupported_answers_on_missing_questions": [
+        0,
+        4
+      ],
+      "failure_counts": {
+        "retrieval": 9,
+        "generation_or_selection": 7,
+        "structured_lookup": 1
+      }
+    },
+    {
+      "configuration": "TinyGPT after audit",
+      "retrieval_hits": [
+        14,
+        22
+      ],
+      "correct_answers": [
+        15,
+        30
+      ],
+      "unsupported_answers_on_missing_questions": [
+        0,
+        4
+      ],
+      "failure_counts": {
+        "generation_or_selection": 7,
+        "retrieval": 8
+      }
+    }
+  ],
+  "active_report_check": {
+    "question": "Which library is used in this project?",
+    "source_page": 23,
+    "verified_readers": [
+      "qwen",
+      "tinygpt"
+    ],
+    "library_names_found": 7
+  },
+  "qwen_max_observed_prompt_tokens": 1573,
+  "qwen_configured_context_tokens": 8192
+}

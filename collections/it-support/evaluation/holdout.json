@@ -1,0 +1,231 @@
+{
+  "collection": "IT Support",
+  "split": "holdout",
+  "page_numbering": "One-based PDF file pages",
+  "scope": "Named-institution public guides. The existing benchmark selects one source PDF at a time.",
+  "documents": [
+    {
+      "filename": "vpn-csun-working-remotely.pdf",
+      "questions": [
+        {
+          "id": "IT-H01",
+          "kind": "fact",
+          "question": "Before leaving campus, what should a CSUN employee do with their workstation and which detail should they record for remote access?",
+          "answer": "Leave the workstation on and note its workstation name.",
+          "contains": [
+            "leave your workstation on",
+            "workstation name"
+          ],
+          "sources": [
+            {
+              "pages": [
+                12
+              ],
+              "contains": [
+                "leave your workstation on",
+                "workstation name"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-H02",
+          "kind": "fact",
+          "question": "What does the CSUN guide tell you to enter in Remote Desktop when you are ready to connect?",
+          "answer": "Your workstation name.",
+          "contains": [
+            "Remote Desktop",
+            "workstation name"
+          ],
+          "sources": [
+            {
+              "pages": [
+                13
+              ],
+              "contains": [
+                "Remote Desktop",
+                "workstation name"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "password-reset-flcc.pdf",
+      "questions": [
+        {
+          "id": "IT-H03",
+          "kind": "fact",
+          "question": "How long does the six-digit code shown by the FLCC Microsoft Authenticator example last?",
+          "answer": "30 seconds.",
+          "contains": [
+            "30 seconds"
+          ],
+          "sources": [
+            {
+              "pages": [
+                5
+              ],
+              "contains": [
+                "30 seconds"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "password-reset-surrey.pdf",
+      "questions": [
+        {
+          "id": "IT-H04",
+          "kind": "fact",
+          "question": "How many security questions does the Surrey setup ask you to choose, and are the answers case sensitive?",
+          "answer": "Choose five questions. The answers are case sensitive.",
+          "contains": [
+            "5 security questions",
+            "case sensitive"
+          ],
+          "sources": [
+            {
+              "pages": [
+                2
+              ],
+              "contains": [
+                "5 security questions",
+                "case sensitive"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "print-houston-mobile.pdf",
+      "questions": [
+        {
+          "id": "IT-H05",
+          "kind": "fact",
+          "question": "What is the queue name for the Houston LAB272 color printer in Mobility Print?",
+          "answer": "LAB272-COLOR (Mobility).",
+          "contains": [
+            "LAB272-COLOR"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "LAB272-COLOR"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "print-university-of-london-papercut.pdf",
+      "questions": [
+        {
+          "id": "IT-H06",
+          "kind": "missing",
+          "question": "How many pages were printed across all Senate House Library printers last calendar quarter?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "wifi-lakehead-eduroam.pdf",
+      "questions": [
+        {
+          "id": "IT-H07",
+          "kind": "fact",
+          "question": "After the Windows setup, what email address format does Lakehead tell you to use to authenticate to eduroam?",
+          "answer": "Use your full Lakehead email address.",
+          "contains": [
+            "full Lakehead email address"
+          ],
+          "sources": [
+            {
+              "pages": [
+                8
+              ],
+              "contains": [
+                "full Lakehead email address"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "wifi-nova-windows-eduroam.pdf",
+      "questions": [
+        {
+          "id": "IT-H08",
+          "kind": "missing",
+          "question": "Where does NOVA IMS publish a live map of access point utilization for eduroam?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "software-scsu-mac-self-service.pdf",
+      "questions": [
+        {
+          "id": "IT-H09",
+          "kind": "fact",
+          "question": "In the SCSU Mac Self Service guide, what happens to an app entry in the list when installation completes?",
+          "answer": "The program is removed from the list.",
+          "contains": [
+            "removed from this list"
+          ],
+          "sources": [
+            {
+              "pages": [
+                2
+              ],
+              "contains": [
+                "removed from this list"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "software-tamucc-windows-software-center.pdf",
+      "questions": [
+        {
+          "id": "IT-H10",
+          "kind": "fact",
+          "question": "After an app is installed on a Texas A&M University-Corpus Christi Windows PC, where do you find it if you want to launch it?",
+          "answer": "Search for the app by name or look in the Start menu app list.",
+          "contains": [
+            "Search bar",
+            "Start button",
+            "list of apps"
+          ],
+          "sources": [
+            {
+              "pages": [
+                3
+              ],
+              "contains": [
+                "Search bar",
+                "Start button",
+                "list of apps"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "documents": [
+    {
+      "id": "insight",
+      "split": "train",
+      "title": "InSight Mars Landing Press Kit",
+      "publisher": "NASA/JPL",
+      "source_url": "https://mars.nasa.gov/files/mepjpl/InSight_NASA_Press_Kit.pdf",
+      "sha256": "1794d9bbb4de1b59cfde60774f89f1aee22b7b1b8740d372e9914e41732c7337",
+      "pages": 66,
+      "evidence": [
+        {
+          "id": "insight-01",
+          "page": 16,
+          "text": "Average diameter 4,212 miles (6,780 kilometers);",
+          "questions": [
+            "What average diameter does the Mars fact sheet give in kilometers?",
+            "Across its diameter, how many kilometers does the fact sheet say Mars measures?"
+          ]
+        },
+        {
+          "id": "insight-02",
+          "page": 16,
+          "text": "Revolves around the Sun once every 687 Earth days",
+          "questions": [
+            "How many Earth days does Mars take to circle the Sun?",
+            "How long is the orbit of Mars in Earth days?"
+          ]
+        },
+        {
+          "id": "insight-03",
+          "page": 16,
+          "text": "Rotation period (length of day) is 24 hours, 39 minutes, 35 seconds (1.027 Earth days)",
+          "questions": [
+            "How long is the Martian day according to the rotation figure?",
+            "What hours, minutes and seconds does the guide list for one rotation of Mars?"
+          ]
+        },
+        {
+          "id": "insight-04",
+          "page": 16,
+          "text": "Pole is tilted 25 degrees, creating seasons similar to those on Earth",
+          "questions": [
+            "What axial tilt does the fact sheet give for Mars?",
+            "How far is the Martian pole tilted, in degrees?"
+          ]
+        },
+        {
+          "id": "insight-05",
+          "page": 17,
+          "text": "Atmosphere composed chiefly of carbon dioxide (95.3%), nitrogen (2.7%) and argon (1.6%)",
+          "questions": [
+            "What gas makes up most of the Martian atmosphere?",
+            "What atmospheric gas accounts for 95.3 percent in the Mars fact sheet?"
+          ]
+        },
+        {
+          "id": "insight-06",
+          "page": 17,
+          "text": "Larger moon named Phobos (“fear”); smaller is Deimos (“terror”)",
+          "questions": [
+            "Which Martian moon is larger?",
+            "Does the guide identify Phobos or Deimos as the larger moon?"
+          ]
+        }
+      ],
+      "missing_detail_questions": [
+        "What is the atmospheric methane concentration at the landing site?",
+        "What is the serial number of the InSight lander's main computer?"
+      ]
+    },
+    {
+      "id": "water-use",
+      "split": "train",
+      "title": "Summary of Estimated Water Use in the United States in 2015",
+      "publisher": "USGS",
+      "source_url": "https://pubs.usgs.gov/fs/2018/3035/fs20183035.pdf",
+      "sha256": "cfe9df1d257365210a4e54b07b3044f56edc7493af2d173e4b2e389d33a0927c",
+      "pages": 2,
+      "evidence": [
+        {
+          "id": "water-use-01",
+          "page": 1,
+          "text": "A total of 322 Bgal/d of water withdrawals was reported for eight categories of use in the United States in 2015",
+          "questions": [
+            "How much water per day was withdrawn in the United States in 2015?",
+            "What 2015 total does the summary report, in billion gallons per day?"
+          ]
+        },
+        {
+          "id": "water-use-02",
+          "page": 2,
+          "text": "withdrawals steadily increased from 1950 (180 Bgal/d) to the peak in 1980 (430 Bgal/d)",
+          "questions": [
+            "In what year did total withdrawals peak at 430 billion gallons per day?",
+            "When was the historical peak in total withdrawals recorded?"
+          ]
+        },
+        {
+          "id": "water-use-03",
+          "page": 1,
+          "text": "Fresh surface-water withdrawals (198 Bgal/d) were 14 percent less than in 2010",
+          "questions": [
+            "What was the reported volume of fresh surface-water withdrawals?",
+            "How many billion gallons per day came from fresh surface water in the 2015 estimates?"
+          ]
+        },
+        {
+          "id": "water-use-04",
+          "page": 1,
+          "text": "fresh groundwater withdrawals (82.3 Bgal/d) were about 8 percent more than in 2010",
+          "questions": [
+            "How much fresh groundwater was withdrawn per day?",
+            "What 2015 amount does the fact sheet list for groundwater from fresh sources?"
+          ]
+        },
+        {
+          "id": "water-use-05",
+          "page": 1,
+          "text": "saline groundwater withdrawals (2.34 Bgal/d) were 5 percent more than in 2010",
+          "questions": [
+            "What was the estimate for saline groundwater withdrawals?",
+            "How much groundwater from saline sources was withdrawn per day?"
+          ]
+        },
+        {
+          "id": "water-use-06",
+          "page": 1,
+          "text": "Total population in the United States in 2015 (325 million) increased by 4 percent (12.4 million) from 2010",
+          "questions": [
+            "What population does the report list for 2015?",
+            "How many people were counted in the report's 2015 population figure?"
+          ]
+        }
+      ],
+      "missing_detail_questions": [
+        "How much water did Japan withdraw per day in 2015?",
+        "What was the U.S. withdrawal estimate for 2016?"
+      ]
+    },
+    {
+      "id": "metric",
+      "split": "train",
+      "title": "Preferred Metric Units for General Use by the Federal Government",
+      "publisher": "NIST",
+      "source_url": "https://www.nist.gov/system/files/documents/2017/05/09/fs376-b.pdf",
+      "sha256": "727b13c0006f812858009b379f4e978d72e0d121f6e0961efbda90dfe6367d78",
+      "pages": 30,
+      "context": "Base unit table columns are quantity, unit name, and unit symbol.",
+      "evidence": [
+        {
+          "id": "metric-01",
+          "page": 5,
+          "text": "length meter m",
+          "questions": [
+            "What SI base unit does the table give for length?",
+            "Which unit name and symbol are listed beside length?"
+          ]
+        },
+        {
+          "id": "metric-02",
+          "page": 5,
+          "text": "time second s",
+          "questions": [
+            "Which base unit measures time in this table?",
+            "What name and symbol does the base-unit table give for elapsed time?"
+          ]
+        },
+        {
+          "id": "metric-03",
+          "page": 5,
+          "text": "electric current ampere A",
+          "questions": [
+            "What SI base unit does the standard associate with electric current?",
+            "Which unit name and symbol are shown for electric current?"
+          ]
+        },
+        {
+          "id": "metric-04",
+          "page": 5,
+          "text": "thermodynamic temperature kelvin K",
+          "questions": [
+            "Which base unit is listed for thermodynamic temperature?",
+            "What is the symbol of the kelvin in the temperature row?"
+          ]
+        },
+        {
+          "id": "metric-05",
+          "page": 5,
+          "text": "amount of substance mole mol",
+          "questions": [
+            "What SI base unit is used for amount of substance?",
+            "Which quantity in the table is paired with the symbol mol?"
+          ]
+        },
+        {
+          "id": "metric-06",
+          "page": 5,
+          "text": "luminous intensity candela cd",
+          "questions": [
+            "Which base unit does the table assign to luminous intensity?",
+            "What is the abbreviation shown in the candela row?"
+          ]
+        }
+      ],
+      "missing_detail_questions": [
+        "Which base unit row gives the symbol for monetary cost?",
+        "What is the serial number of the first prototype meter bar?"
+      ]
+    },
+    {
+      "id": "census",
+      "split": "train",
+      "title": "2020 Census Apportionment, Table 1",
+      "publisher": "U.S. Census Bureau",
+      "source_url": "https://www2.census.gov/programs-surveys/decennial/2020/data/apportionment/apportionment-2020-table01.pdf",
+      "sha256": "7775e3533e03f914af2ddffc63615194a2cdaf71d01336959743c47a9e8150bc",
+      "pages": 1,
+      "context": "2020 apportionment table columns are state, apportionment population, House seats, and seat change since 2010.",
+      "evidence": [
+        {
+          "id": "census-01",
+          "page": 1,
+          "text": "Alaska 736,081 1 0",
+          "questions": [
+            "What apportionment population is listed for Alaska?",
+            "How many people does the Alaska apportionment row show?"
+          ]
+        },
+        {
+          "id": "census-02",
+          "page": 1,
+          "text": "Arizona 7,158,923 9 0",
+          "questions": [
+            "How many House seats does Arizona have in this table?",
+            "What number of representatives was assigned to Arizona?"
+          ]
+        },
+        {
+          "id": "census-03",
+          "page": 1,
+          "text": "California 39,576,757 52 -1",
+          "questions": [
+            "What was California's change in House seats from 2010?",
+            "Did the California row gain or lose a seat relative to 2010?"
+          ]
+        },
+        {
+          "id": "census-04",
+          "page": 1,
+          "text": "Colorado 5,782,171 8 1",
+          "questions": [
+            "What is the 2020 apportionment population for Colorado?",
+            "Which population total is shown beside Colorado?"
+          ]
+        },
+        {
+          "id": "census-05",
+          "page": 1,
+          "text": "Florida 21,570,527 28 1",
+          "questions": [
+            "How many seats does the 2020 table assign to Florida?",
+            "How many representatives is Florida listed with?"
+          ]
+        },
+        {
+          "id": "census-06",
+          "page": 1,
+          "text": "Texas 29,183,290 38 2",
+          "questions": [
+            "How many seats did Texas gain compared with 2010?",
+            "What change in seats is shown in the final Texas column?"
+          ]
+        }
+      ],
+      "missing_detail_questions": [
+        "What is the median household income for Florida?",
+        "How many votes did each Texas congressional candidate receive?"
+      ]
+    },
+    {
+      "id": "hurricane",
+      "split": "validation",
+      "title": "The Saffir-Simpson Hurricane Wind Scale",
+      "publisher": "NOAA/NHC",
+      "source_url": "https://www.nhc.noaa.gov/pdf/sshws.pdf",
+      "sha256": "fffe290696e3360431570e0f7a8b7bac0a9ee5afe877ed4fd03f06416abac744",
+      "pages": 4,
+      "evidence": [
+        {
+          "id": "hurricane-01",
+          "page": 2,
+          "text": "Category One Hurricane (Sustained winds 74-95 mph, 64-82 kt, or 119-153 km/h)",
+          "questions": [
+            "What sustained wind range in mph is printed in the Category One heading?"
+          ]
+        },
+        {
+          "id": "hurricane-02",
+          "page": 2,
+          "text": "Category Two Hurricane (Sustained winds 96-110 mph, 83-95 kt, or 154-177 km/h)",
+          "questions": [
+            "Which sustained winds in mph does the PDF list for Category Two?"
+          ]
+        },
+        {
+          "id": "hurricane-03",
+          "page": 3,
+          "text": "Category Three Hurricane (Sustained winds 111-129 mph, 96-112 kt, or 178-208 km/ h)",
+          "questions": [
+            "What wind speed range in miles per hour appears for Category Three?"
+          ]
+        },
+        {
+          "id": "hurricane-04",
+          "page": 3,
+          "text": "Category Four Hurricane (Sustained winds 130-156 mph, 113-136 kt, or 209-251 km/h)",
+          "questions": [
+            "What is the lower mph boundary printed for Category Four?"
+          ]
+        },
+        {
+          "id": "hurricane-05",
+          "page": 4,
+          "text": "Category Five Hurricane (Sustained winds 156 mph or higher, 136 kt or higher, or 251 km/h or higher)",
+          "questions": [
+            "What lower wind speed in knots does this PDF's Category Five heading show?"
+          ]
+        },
+        {
+          "id": "hurricane-06",
+          "page": 1,
+          "text": "The scale does not address the potential for other hurricane-related impacts, such as storm surge, rainfall-induced floods, and tornadoes.",
+          "questions": [
+            "Does this wind scale include rainfall-induced flood potential?"
+          ]
+        }
+      ],
+      "missing_detail_questions": [
+        "What is the average annual payout for insured hurricane losses in Texas?",
+        "What rainfall total in inches is assigned to Category Three?"
+      ]
+    },
+    {
+      "id": "osiris-rex",
+      "split": "validation",
+      "title": "OSIRIS-REx Launch Press Kit",
+      "publisher": "NASA",
+      "source_url": "https://www.nasa.gov/wp-content/uploads/2016/06/osiris-rex_press_kit_0.pdf",
+      "sha256": "0b5261bc6fdb4ee3f0ddf1c6542434fcfca15dc9dbb70dab9f6c0ac3b652b782",
+      "pages": 16,
+      "evidence": [
+        {
+          "id": "osiris-rex-01",
+          "page": 4,
+          "text": "Dry Mass (unfueled): 1,940 pounds (880 kilograms)",
+          "questions": [
+            "How much does the spacecraft weigh unfueled, in kilograms?"
+          ]
+        },
+        {
+          "id": "osiris-rex-02",
+          "page": 4,
+          "text": "Wet Mass (fueled): 4,650 pounds (2,110 kilograms)",
+          "questions": [
+            "What fueled spacecraft mass does the kit give in pounds?"
+          ]
+        },
+        {
+          "id": "osiris-rex-03",
+          "page": 4,
+          "text": "Sample return capsule (SRC) mass: 100 pounds (46 kilograms)",
+          "questions": [
+            "What is the mass of the return capsule in kilograms?"
+          ]
+        },
+        {
+          "id": "osiris-rex-04",
+          "page": 4,
+          "text": "Sampling arm (TAGSAM) Length: 11 feet (3 .35 meters)",
+          "questions": [
+            "How long is the sampling arm in feet?"
+          ]
+        },
+        {
+          "id": "osiris-rex-05",
+          "page": 4,
+          "text": "Date of Earth flyby: Sept . 22, 2017",
+          "questions": [
+            "When was the Earth flyby scheduled in this launch plan?"
+          ]
+        },
+        {
+          "id": "osiris-rex-06",
+          "page": 4,
+          "text": "Date of re-entry: Sept . 24, 2023",
+          "questions": [
+            "What date did the original mission schedule give for re-entry?"
+          ]
+        }
+      ],
+      "missing_detail_questions": [
+        "What was the final measured mass of the sample after it arrived on Earth?",
+        "What serial number is listed for the returned sample capsule?"
+      ]
+    },
+    {
+      "id": "precambrian",
+      "split": "test",
+      "title": "Precambrian Time: The Story of the Early Earth",
+      "publisher": "USGS",
+      "source_url": "https://pubs.usgs.gov/fs/2007/3004/pdf/FS07-3004_508.pdf",
+      "sha256": "2fa856652172004494f68dee75ab5e551869cd5053a87bda54932623f810aca3",
+      "pages": 4,
+      "evidence": [
+        {
+          "id": "precambrian-01",
+          "page": 1,
+          "text": "The age of the solid Earth has been estimated fairly precisely at 4.54 billion years",
+          "questions": [
+            "What age does the fact sheet estimate for the solid Earth?"
+          ]
+        },
+        {
+          "id": "precambrian-02",
+          "page": 1,
+          "text": "the Moon cooled from a molten state 4.53 billion years ago",
+          "questions": [
+            "When does the fact sheet say the Moon cooled from a molten state?"
+          ]
+        },
+        {
+          "id": "precambrian-03",
+          "page": 1,
+          "text": "the age of the solar system has been estimated from meteorites at 4.57 billion years",
+          "questions": [
+            "What age for the solar system was estimated from meteorites?"
+          ]
+        },
+        {
+          "id": "precambrian-04",
+          "page": 2,
+          "text": "The Precambrian is usually divided at 2.5 billion years ago into two eons, the Archean and the Proterozoic.",
+          "questions": [
+            "What date usually separates the Archean and Proterozoic eons?"
+          ]
+        },
+        {
+          "id": "precambrian-05",
+          "page": 4,
+          "text": "dates the rise of atmospheric oxygen during a time called “The Great Oxidation Event,” about 2.4–2.2 billion years ago.",
+          "questions": [
+            "What date range does the fact sheet give for the Great Oxidation Event?"
+          ]
+        },
+        {
+          "id": "precambrian-06",
+          "page": 4,
+          "text": "The earliest life appeared on Earth more than 3.5 billion years ago.",
+          "questions": [
+            "How far back does the fact sheet place the earliest life on Earth?"
+          ]
+        }
+      ],
+      "missing_detail_questions": [
+        "What was the precise global average ocean temperature 3 billion years ago?",
+        "How many individual microorganisms lived during the Archean?"
+      ]
+    },
+    {
+      "id": "coral",
+      "split": "test",
+      "title": "What Is Coral Bleaching?",
+      "publisher": "NOAA",
+      "source_url": "https://cdn.oceanservice.noaa.gov/oceanserviceprod/facts/coralbleaching.pdf",
+      "sha256": "77bdc55294f9c272b06457dc20b3caa8bc7c71835106479e6ebf1d0fc0a5abab",
+      "pages": 1,
+      "evidence": [
+        {
+          "id": "coral-01",
+          "page": 1,
+          "text": "microscopic algae called zooxanthellae that live in their tissues",
+          "questions": [
+            "What is the name of the microscopic algae living in coral tissue?"
+          ]
+        },
+        {
+          "id": "coral-02",
+          "page": 1,
+          "text": "These algae are the coral’s primary food source and give them their color.",
+          "questions": [
+            "What two things do the resident algae provide to healthy coral?"
+          ]
+        },
+        {
+          "id": "coral-03",
+          "page": 1,
+          "text": "Increased ocean temperature caused by climate change is the leading cause of coral bleaching.",
+          "questions": [
+            "What leading cause of bleaching does the infographic identify?"
+          ]
+        },
+        {
+          "id": "coral-04",
+          "page": 1,
+          "text": "Storm generated precipitation can rapidly dilute ocean water and runoff can carry pollutants — these can bleach near-shore corals.",
+          "questions": [
+            "What effect of storm-generated precipitation can bleach corals close to shore?"
+          ]
+        },
+        {
+          "id": "coral-05",
+          "page": 1,
+          "text": "When temperatures are high, high solar irradiance contributes to bleaching in shallow-water corals.",
+          "questions": [
+            "How can strong sunlight affect shallow-water corals when temperatures are high?"
+          ]
+        },
+        {
+          "id": "coral-06",
+          "page": 1,
+          "text": "Exposure to the air during extreme low tides can cause bleaching in shallow corals.",
+          "questions": [
+            "What happens to shallow corals exposed to air during unusually low tides?"
+          ]
+        }
+      ],
+      "missing_detail_questions": [
+        "How many days does a bleached coral take to recover?",
+        "What water temperature in degrees Celsius triggers bleaching in every coral species?"
+      ]
+    }
+  ]
+}

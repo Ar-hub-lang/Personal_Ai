@@ -1,0 +1,121 @@
+topic,sentence,answer_url,author_url
+strings,The addition operator is overloaded for strings to concatenate (combine) them.,https://stackoverflow.com/a/8691338,https://stackoverflow.com/users/23822
+strings,"The comma separated numbers are coming in as a single string, and the for is splitting the string into characters.",https://stackoverflow.com/a/8693736,https://stackoverflow.com/users/5987
+sequences,A random list of lists with varying lengths...,https://stackoverflow.com/a/8696030,https://stackoverflow.com/users/577088
+dictionaries,The other possibility is to rely on the dict's __str__ implementation to yield valid javascript code.,https://stackoverflow.com/a/8696927,https://stackoverflow.com/users/704327
+functions,"The whole processing pipeline is implemented in OpenCV, however I do not know the function names in python wrappers.",https://stackoverflow.com/a/8698452,https://stackoverflow.com/users/981773
+functions,The re.sub function takes a regular expresion and replace all the matches in the string with the second parameter.,https://stackoverflow.com/a/8703078,https://stackoverflow.com/users/972208
+sequences,You can use regular python lists (which are dynamic) as vectors.,https://stackoverflow.com/a/8705570,https://stackoverflow.com/users/526956
+dictionaries,The headers argument should be a mapping of extra HTTP headers to send with the request.,https://stackoverflow.com/a/8706007,https://stackoverflow.com/users/331473
+exceptions,A traceback object isn't necessary unless you want to preserve the state for the future.,https://stackoverflow.com/a/8706144,https://stackoverflow.com/users/215583
+strings,"The I s in the formatting string mean ""unsigned integer, 32 bits"".",https://stackoverflow.com/a/8710723,https://stackoverflow.com/users/28169
+modules,You can then run $VENV/python and your package will be in the sys.path and available for import.,https://stackoverflow.com/a/8711129,https://stackoverflow.com/users/704327
+sequences,You can't create arbitrary lists in the Django templating system.,https://stackoverflow.com/a/8713834,https://stackoverflow.com/users/301749
+functions,The hash() function works great when you hash classes or instances.,https://stackoverflow.com/a/8714242,https://stackoverflow.com/users/660554
+functions,The __import__ function can be a bit hard to understand.,https://stackoverflow.com/a/8719100,https://stackoverflow.com/users/407651
+files,The models.py file in the tests subdirectory contains my test-only models.,https://stackoverflow.com/a/8719352,https://stackoverflow.com/users/387163
+files,The temporary file will always be properly closed (when its with block ends).,https://stackoverflow.com/a/8720431,https://stackoverflow.com/users/99057
+dictionaries,The key is to make the mask (for the paste) the image itself.,https://stackoverflow.com/a/8720632,https://stackoverflow.com/users/1128945
+files,You can send an entire file in one command.,https://stackoverflow.com/a/8722433,https://stackoverflow.com/users/604511
+sequences,You can find a full list of commands at List of Database Commands.,https://stackoverflow.com/a/8727314,https://stackoverflow.com/users/124745
+functions,The iterable argument to map don't have to be a numeric range.,https://stackoverflow.com/a/8727385,https://stackoverflow.com/users/934836
+strings,The.find() method will give you the index of the first occurrence of the string.,https://stackoverflow.com/a/8730606,https://stackoverflow.com/users/1079354
+files,An initial ~user is handled by stripping the last directory component from the created user path derived above.,https://stackoverflow.com/a/8734254,https://stackoverflow.com/users/617711
+functions,"The timeout parameter is also checked, which is a signed timestamp stored within the cookie.",https://stackoverflow.com/a/8735346,https://stackoverflow.com/users/704327
+modules,"The logging.config module reads config files with ConfigParser, which has support for multiline values.",https://stackoverflow.com/a/8735999,https://stackoverflow.com/users/984421
+files,The file is then automatically closed at the end of the block.,https://stackoverflow.com/a/8744091,https://stackoverflow.com/users/617711
+files,You can pass a file location in 'dir' constructor parameter.,https://stackoverflow.com/a/8745535,https://stackoverflow.com/users/13767
+strings,"The [1] is misleading, the API expects a null-terminated string at the end of the struct.",https://stackoverflow.com/a/8745869,https://stackoverflow.com/users/222914
+loops,A better way is to just iterate over pairs of strings.,https://stackoverflow.com/a/8750744,https://stackoverflow.com/users/398968
+files,The with statement fixes the leak of file handles.,https://stackoverflow.com/a/8752187,https://stackoverflow.com/users/35070
+functions,You can adjust the size of the symbols used in a scatter plot by choosing the s parameter.,https://stackoverflow.com/a/8761382,https://stackoverflow.com/users/717357
+files,The best and most reliable way would be to serve the file via HTTP and set the Content-Type: header appropriately.,https://stackoverflow.com/a/8761688,https://stackoverflow.com/users/916657
+functions,The bin_to_float() function shown below drives the process.,https://stackoverflow.com/a/8762541,https://stackoverflow.com/users/355230
+files,You can also have chunks of the file run by independent worker threads/processes.,https://stackoverflow.com/a/8764219,https://stackoverflow.com/users/724357
+sequences,You can use sum(iterable) to add up all the items in a tuple or list.,https://stackoverflow.com/a/8766623,https://stackoverflow.com/users/794960
+files,The Python shell is not the place to edit your files.,https://stackoverflow.com/a/8766947,https://stackoverflow.com/users/308903
+dictionaries,The.copy method on the dictionary should suffice.,https://stackoverflow.com/a/8771845,https://stackoverflow.com/users/331473
+sequences,The readlines() method of a file object returns a list of the lines of the file including the newline characters.,https://stackoverflow.com/a/8773966,https://stackoverflow.com/users/279627
+modules,The multiprocessing module doesn't AFAIK offer a functionality to enforce the use of a specific amount of cores.,https://stackoverflow.com/a/8775026,https://stackoverflow.com/users/1107807
+functions,The product function accepts an optional repeat argument.,https://stackoverflow.com/a/8775922,https://stackoverflow.com/users/224671
+functions,You can use isinstance() to see if the argument is an instance of some class.,https://stackoverflow.com/a/8779872,https://stackoverflow.com/users/929510
+loops,The update code for the position and event checking is done once (and only once) before the main loop begins.,https://stackoverflow.com/a/8783025,https://stackoverflow.com/users/722121
+modules,The output can then be processed directly in Python with the plistlib module.,https://stackoverflow.com/a/8785381,https://stackoverflow.com/users/145403
+dictionaries,"The order you see when you print a dictionary is ""random"" and not to be trusted.",https://stackoverflow.com/a/8788237,https://stackoverflow.com/users/110204
+files,The standard Unix way to merge files is cat.,https://stackoverflow.com/a/8789400,https://stackoverflow.com/users/3408
+files,You can also adjust the settings of your documentation editing the auto-generated conf.py file.,https://stackoverflow.com/a/8793084,https://stackoverflow.com/users/1132524
+functions,You can control the resolution of the histogram using the bins parameter.,https://stackoverflow.com/a/8794701,https://stackoverflow.com/users/717357
+functions,The parameter chosenCave receives its value when the checkCave function is invoked.,https://stackoverflow.com/a/8796657,https://stackoverflow.com/users/155020
+modules,Use the inspect module to test the type of an object (but remember to be true to Python's duck typing and so on).,https://stackoverflow.com/a/8797515,https://stackoverflow.com/users/342327
+modules,Python resolves module names by searching the directories in sys.path.,https://stackoverflow.com/a/8797871,https://stackoverflow.com/users/996292
+dictionaries,"You can't say ""the first five keys"" of a dictionary and mean something well-defined.",https://stackoverflow.com/a/8801278,https://stackoverflow.com/users/28169
+dictionaries,The key was really in defining the joins properly.,https://stackoverflow.com/a/8809907,https://stackoverflow.com/users/67009
+strings,"The partition method will split a string into head, separator, tail, based on the first occurence of separator.",https://stackoverflow.com/a/8813264,https://stackoverflow.com/users/984421
+functions,The flags argument is the fifth one - you're passing the value of re.I as the count argument (an easy mistake to make).,https://stackoverflow.com/a/8813288,https://stackoverflow.com/users/984421
+functions,"You can't ls with a specific directory as an argument, (like ls Users ), only your current directory.",https://stackoverflow.com/a/8814180,https://stackoverflow.com/users/712603
+modules,You can't. __version__ is just name for an object the module creates while being executed.,https://stackoverflow.com/a/8818259,https://stackoverflow.com/users/16102
+loops,"Use ""[ ]"" to inline your for loop.",https://stackoverflow.com/a/8820243,https://stackoverflow.com/users/726883
+modules,"The docstring is always an attribute of an object (module, class or function), not tied to a specific variable.",https://stackoverflow.com/a/8820636,https://stackoverflow.com/users/107660
+files,"The location property of filesrc takes a file path, not an URI.",https://stackoverflow.com/a/8827045,https://stackoverflow.com/users/302803
+files,"You can't write to the file and ""insert"".",https://stackoverflow.com/a/8838096,https://stackoverflow.com/users/267781
+loops,You can then call the unregister method and finally break out of the loop when all FDs are closed.,https://stackoverflow.com/a/8842740,https://stackoverflow.com/users/110204
+strings,Python's string classes simply implement __mod__ to do string formatting.,https://stackoverflow.com/a/8852413,https://stackoverflow.com/users/166955
+files,The path you get from Firebug is an XPath expression.,https://stackoverflow.com/a/8853637,https://stackoverflow.com/users/151238
+functions,The __str__ function is used in classes.,https://stackoverflow.com/a/8854467,https://stackoverflow.com/users/1074592
+modules,"An echo with the semantics you mentioned is also possible, using the inspect module.",https://stackoverflow.com/a/8856129,https://stackoverflow.com/users/99057
+exceptions,"In Python, one would normally raise an exception to indicate a problem in the constructor.",https://stackoverflow.com/a/8859488,https://stackoverflow.com/users/893
+modules,The colorsys module seems to have functions to make the conversion from RGB.,https://stackoverflow.com/a/8863952,https://stackoverflow.com/users/372643
+sequences,"The extended slice notation is much more concise, though.",https://stackoverflow.com/a/8865978,https://stackoverflow.com/users/1142167
+modules,The commands module has been removed from Python3.,https://stackoverflow.com/a/8869782,https://stackoverflow.com/users/190597
+strings,The extension data must be a string and is encoded using ASN.1 automatically.,https://stackoverflow.com/a/8870421,https://stackoverflow.com/users/18243
+loops,Python let's you iterate over lines in a file like you would items in a list.,https://stackoverflow.com/a/8872208,https://stackoverflow.com/users/410889
+sequences,The language has also pretty good online documentation and a active mailing list.,https://stackoverflow.com/a/8872886,https://stackoverflow.com/users/563154
+strings,"The problem is you have separated the string, making the % operator only work on the last part.",https://stackoverflow.com/a/8881866,https://stackoverflow.com/users/617711
+modules,The point of PyPI is a module package index for quick reference and access to Python modules and packages.,https://stackoverflow.com/a/8894565,https://stackoverflow.com/users/908210
+strings,"An UTF-16 encoded file wont decode as UTF-8, so we try with UTF-8 first.",https://stackoverflow.com/a/8898439,https://stackoverflow.com/users/110204
+loops,You can create new lists in Python with a List Comprehension.,https://stackoverflow.com/a/8899663,https://stackoverflow.com/users/351031
+sequences,You can read about tuples in the Python tutorial.,https://stackoverflow.com/a/8900198,https://stackoverflow.com/users/1136463
+modules,A simple reminder of using caution with module naming conventions.,https://stackoverflow.com/a/8902457,https://stackoverflow.com/users/965668
+strings,"Python's print will always append a newline character, which is the extra byte you see.",https://stackoverflow.com/a/8902707,https://stackoverflow.com/users/482262
+modules,The python module of the week page for struct also has some very useful information.,https://stackoverflow.com/a/8903990,https://stackoverflow.com/users/1047786
+sequences,"You can use the [] operator more than once -- if a is a list, then a[0] is its first element.",https://stackoverflow.com/a/8905672,https://stackoverflow.com/users/70605
+sequences,"You can store all paths in a list, use yield generator, etc.",https://stackoverflow.com/a/8907098,https://stackoverflow.com/users/842935
+strings,You can use StringIO to provide a file-like interface to a string.,https://stackoverflow.com/a/8907167,https://stackoverflow.com/users/148241
+strings,The leading b makes your string binary.,https://stackoverflow.com/a/8908304,https://stackoverflow.com/users/NA
+strings,"The.*?[A-Z] consumes characters up to, and including, the first uppercase letter.",https://stackoverflow.com/a/8913706,https://stackoverflow.com/users/367273
+loops,You can filter them out in your loop if you want to (e.g. if not name.startswith('func'): continue ).,https://stackoverflow.com/a/8915117,https://stackoverflow.com/users/617711
+dictionaries,You can supply your own default value to get() which is returned if the key is not found.,https://stackoverflow.com/a/8917088,https://stackoverflow.com/users/505088
+strings,The string.format method can convert integers into their binary string representations.,https://stackoverflow.com/a/8919154,https://stackoverflow.com/users/190597
+sequences,"The complete list used by Python is given in the Python Language Reference section 3, ""Data model"".",https://stackoverflow.com/a/8920369,https://stackoverflow.com/users/20862
+sequences,The url will be at index 0 of the list returned and the query at index 1.,https://stackoverflow.com/a/8926166,https://stackoverflow.com/users/109960
+modules,"You can change variables at the module level, but only if you import the module, not the variable.",https://stackoverflow.com/a/8929674,https://stackoverflow.com/users/104349
+sequences,Use find_packages or list z_script in the py_modules keyword.,https://stackoverflow.com/a/8941134,https://stackoverflow.com/users/230454
+sequences,Use subprocess.Popen to run the sequence of easy_install scripts.,https://stackoverflow.com/a/8950162,https://stackoverflow.com/users/10661
+loops,The loop terminates when there are no more values to take.,https://stackoverflow.com/a/8954415,https://stackoverflow.com/users/54175
+exceptions,"In Python 3, you get a TypeError when comparing values of different types like str vs. int or anything vs.",https://stackoverflow.com/a/8961036,https://stackoverflow.com/users/20670
+exceptions,The result being assertRaises is not called at all and the exception is not caught.,https://stackoverflow.com/a/8962064,https://stackoverflow.com/users/617711
+dictionaries,The second time d is defined will create a new dictionary which will not include the 'O' key.,https://stackoverflow.com/a/8964034,https://stackoverflow.com/users/1139393
+loops,The statement after the non-terminating loop will never get executed.,https://stackoverflow.com/a/8981643,https://stackoverflow.com/users/412529
+exceptions,"The finally block contains code which should be run after any try, except or else block, even if an exception occured.",https://stackoverflow.com/a/8990597,https://stackoverflow.com/users/623518
+dictionaries,The first problem with MonkeyRunner for me came in the form of the type function being broken when the space key is used.,https://stackoverflow.com/a/8991806,https://stackoverflow.com/users/210613
+dictionaries,The corresponding public key to decrypt the data was held by the client in a text file.,https://stackoverflow.com/a/9006291,https://stackoverflow.com/users/99983
+loops,You can then safely delete the keys in the dictionary during iteration.,https://stackoverflow.com/a/9023812,https://stackoverflow.com/users/126214
+loops,"The unique function is also broken for the Python 3.x series, since dict.keys returns an iterator for Python 3.x.",https://stackoverflow.com/a/9035455,https://stackoverflow.com/users/82294
+loops,"Python's ""for"" is really a ""for each"" and is used with iterables (not loop conditions).",https://stackoverflow.com/a/9038492,https://stackoverflow.com/users/1001643
+loops,The inner loop for map runs at C speed.,https://stackoverflow.com/a/9042305,https://stackoverflow.com/users/1001643
+loops,"Python strings are already iterable, no need to create you own iterator.",https://stackoverflow.com/a/9044902,https://stackoverflow.com/users/147129
+dictionaries,The more natural data structure for my_tuple is a dictionary.,https://stackoverflow.com/a/9067205,https://stackoverflow.com/users/487339
+loops,"You can also do a thing called ""unpacking,"" which is what your for loop does.",https://stackoverflow.com/a/9073707,https://stackoverflow.com/users/577088
+dictionaries,"The for clause only contains 2 items, so your final dict is only going to have 2 items.",https://stackoverflow.com/a/9078577,https://stackoverflow.com/users/110707
+dictionaries,You can use dict.get() if all you want to do is avoid the KeyError and return a default value.,https://stackoverflow.com/a/9085997,https://stackoverflow.com/users/169121
+dictionaries,You can represent a set using a dictionary.,https://stackoverflow.com/a/9116463,https://stackoverflow.com/users/222914
+exceptions,"The cause of the import error is easily found, in the backtrace of the ImportError exception.",https://stackoverflow.com/a/9219685,https://stackoverflow.com/users/146289
+exceptions,The traceback is intentionally not saved when the Greenlet dies.,https://stackoverflow.com/a/9273337,https://stackoverflow.com/users/197910
+exceptions,The exception TypeError: 'NoneType' object is not subscriptable happens because the value of lista is actually None.,https://stackoverflow.com/a/9320883,https://stackoverflow.com/users/462302
+exceptions,"Python is not an exception - its most popular/""traditional"" implementation is called CPython and is written in C.",https://stackoverflow.com/a/9452140,https://stackoverflow.com/users/406693
+exceptions,"The with statement handles opening and closing the file, including if an exception is raised in the inner block.",https://stackoverflow.com/a/9475834,https://stackoverflow.com/users/147019
+exceptions,"The list is not frozen - your iterator will not ""break"" in the sense of raising an exception.",https://stackoverflow.com/a/9515496,https://stackoverflow.com/users/21640
+exceptions,The trick is not to use %exception but to define %typemap(argout).,https://stackoverflow.com/a/9561624,https://stackoverflow.com/users/235698
+exceptions,The get method will raise an exception when object does not exists.,https://stackoverflow.com/a/9562494,https://stackoverflow.com/users/205234
+exceptions,The first argument is the name of the new exception class.,https://stackoverflow.com/a/9690436,https://stackoverflow.com/users/763305
+exceptions,You can raise a CloseSpider exception to close down a spider.,https://stackoverflow.com/a/9699317,https://stackoverflow.com/users/968644

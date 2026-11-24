@@ -1,0 +1,18 @@
+Question: What does Python refer to in programming? Answer: Python is a general-purpose programming language.
+Question: What are the main properties of a list? Answer: A list is an ordered, mutable collection.
+Question: What are the main properties of a tuple? Answer: A tuple is an ordered, immutable collection.
+Question: What is the purpose of a Python dict? Answer: A dictionary maps keys to values.
+Question: What makes the items in a set special? Answer: A set stores distinct elements.
+Question: What is the purpose of a Python function? Answer: A function is a reusable block of code.
+Question: What does a return statement send back? Answer: The return statement sends a value to the caller.
+Question: What is the purpose of a loop? Answer: A loop repeats a block of code.
+Question: What does a string represent? Answer: A string stores a sequence of characters.
+Question: Which values belong to the bool type? Answer: A Boolean is either True or False.
+Question: What information do you get from len? Answer: The len function returns the number of items.
+Question: How do I add one item at the end of a list? Answer: The append method adds one item to the end of a list.
+Question: What situation can an exception represent? Answer: An exception signals an error or unusual condition.
+Question: Why use an import statement? Answer: An import makes a module available to your code.
+Question: Which numbers does an integer represent? Answer: An integer is a whole number.
+Question: What determines whether an if block executes? Answer: An if statement runs code when its condition is true.
+Question: How do I display output in the terminal? Answer: The print function displays text or values.
+Question: What does a sequence index tell you? Answer: An index identifies an item by position.

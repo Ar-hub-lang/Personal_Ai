@@ -1,0 +1,636 @@
+{
+  "run_date": "2026-11-24",
+  "question_set": "benchmarks/real_pdf_questions.json",
+  "method": "Whole-PDF API regression with 20 original questions and 12 alternate wordings. A pass requires the expected evidence and page citation, or abstention on a missing answer.",
+  "variants_used_for_fine_tuning": 411,
+  "selected_checkpoint": "models/tiny-gpt-document-reader.pt",
+  "selected_checkpoint_sha256": "7c13edf1a3be015fe42aa1383f9c09ce8201e5c0bbf8898a6ca8d3c8a7d6e573",
+  "results": {
+    "current": {
+      "summary": {
+        "clean": {
+          "passed": 15,
+          "total": 20,
+          "missing_correct": 5,
+          "missing_total": 5
+        },
+        "variant": {
+          "passed": 11,
+          "total": 12,
+          "missing_correct": 3,
+          "missing_total": 3
+        }
+      },
+      "questions": [
+        {
+          "case": "energy-saver-01",
+          "type": "clean",
+          "question": "How much does the guide say sealing uncontrolled air leaks can reduce heating and cooling bills?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            10
+          ]
+        },
+        {
+          "case": "energy-saver-01",
+          "type": "variant",
+          "question": "What savigns are possible on heating and cooling bills after sealing uncontrolled air leaks?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            10
+          ]
+        },
+        {
+          "case": "energy-saver-02",
+          "type": "clean",
+          "question": "What does a higher insulation R-value tell you?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            11
+          ]
+        },
+        {
+          "case": "energy-saver-02",
+          "type": "variant",
+          "question": "Can you tell me what a higher insulation R-vlaue means?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            11
+          ]
+        },
+        {
+          "case": "energy-saver-03",
+          "type": "clean",
+          "question": "What share of typical household energy use does the guide attribute to water heating?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-04",
+          "type": "clean",
+          "question": "What temperature range does the refrigerator section recommend for refrigerators?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-04",
+          "type": "variant",
+          "question": "What's the fridge's recomended temprature range?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-05",
+          "type": "clean",
+          "question": "Which Alaska climate zone is Anchorage listed in?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            12
+          ]
+        },
+        {
+          "case": "energy-saver-05",
+          "type": "variant",
+          "question": "Whch Alaska climate zone is Anchorage listed in?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            12
+          ]
+        },
+        {
+          "case": "energy-saver-06",
+          "type": "clean",
+          "question": "What bill savings are estimated for sealing uncontrolled air leaks, and what does a higher insulation R-value mean?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "case": "energy-saver-07",
+          "type": "clean",
+          "question": "What share of household energy is attributed to water heating, and what temperature range does the guide recommend for refrigerators?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-08",
+          "type": "clean",
+          "question": "How many copies of this edition did the publisher print?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-08",
+          "type": "variant",
+          "question": "How many copise of this edition did the publisher print?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-09",
+          "type": "clean",
+          "question": "What is the purchase date of the water heater pictured in the Reducing Water Heating Costs section?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-10",
+          "type": "clean",
+          "question": "What ISBN does this edition list?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-01",
+          "type": "clean",
+          "question": "Which two water activities does the guide prohibit in Hetch Hetchy Reservoir?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-02",
+          "type": "clean",
+          "question": "About how long is the Valley Floor Tour listed in the program schedule?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            6
+          ]
+        },
+        {
+          "case": "yosemite-guide-03",
+          "type": "clean",
+          "question": "Which shuttle stop number serves Mirror Lake?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-03",
+          "type": "variant",
+          "question": "Whch bus stop numbr servse Mirror Lake?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-04",
+          "type": "clean",
+          "question": "Which shuttle stop number serves Lower Pines Campground?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-04",
+          "type": "variant",
+          "question": "What station gets me to Lower Pines Campground?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-05",
+          "type": "clean",
+          "question": "Which shuttle route serves the Cathedral Beach stop?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-05",
+          "type": "variant",
+          "question": "Whcih shuttel route goes to Cathedral Beach?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-06",
+          "type": "clean",
+          "question": "What were the Glacier Point Gift Shop hours listed in this issue?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            4
+          ]
+        },
+        {
+          "case": "yosemite-guide-06",
+          "type": "variant",
+          "question": "Can you tell me what hours the Glacier Point Gift Shop is open?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            4
+          ]
+        },
+        {
+          "case": "yosemite-guide-07",
+          "type": "clean",
+          "question": "How long did the Valley Floor Tour take, and what were the Glacier Point Gift Shop hours?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            4,
+            6
+          ]
+        },
+        {
+          "case": "yosemite-guide-07",
+          "type": "variant",
+          "question": "How long does the Valley Floor Tour last, and what hours is Glacier Point Gift Shop open?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            4,
+            6
+          ]
+        },
+        {
+          "case": "yosemite-guide-08",
+          "type": "clean",
+          "question": "Does this guide allow ordinary pets on hiking trails or on park shuttles?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-09",
+          "type": "clean",
+          "question": "What was the actual Valleywide Shuttle ridership on July 20, 2025?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-09",
+          "type": "variant",
+          "question": "What was Valleywide Shuttle passenger count on July 20, 2025?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-10",
+          "type": "clean",
+          "question": "What was the exact round-trip mileage of the Valley Floor Tour tram route?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-10",
+          "type": "variant",
+          "question": "What was the exact round-trip milegae of the Valley Floor Tour tram route?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        }
+      ]
+    },
+    "fine_tuned": {
+      "summary": {
+        "clean": {
+          "passed": 14,
+          "total": 20,
+          "missing_correct": 5,
+          "missing_total": 5
+        },
+        "variant": {
+          "passed": 9,
+          "total": 12,
+          "missing_correct": 3,
+          "missing_total": 3
+        }
+      },
+      "questions": [
+        {
+          "case": "energy-saver-01",
+          "type": "clean",
+          "question": "How much does the guide say sealing uncontrolled air leaks can reduce heating and cooling bills?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            10
+          ]
+        },
+        {
+          "case": "energy-saver-01",
+          "type": "variant",
+          "question": "What savigns are possible on heating and cooling bills after sealing uncontrolled air leaks?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            10
+          ]
+        },
+        {
+          "case": "energy-saver-02",
+          "type": "clean",
+          "question": "What does a higher insulation R-value tell you?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            11
+          ]
+        },
+        {
+          "case": "energy-saver-02",
+          "type": "variant",
+          "question": "Can you tell me what a higher insulation R-vlaue means?",
+          "missing": false,
+          "passed": false,
+          "pages": [
+            11
+          ]
+        },
+        {
+          "case": "energy-saver-03",
+          "type": "clean",
+          "question": "What share of typical household energy use does the guide attribute to water heating?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-04",
+          "type": "clean",
+          "question": "What temperature range does the refrigerator section recommend for refrigerators?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-04",
+          "type": "variant",
+          "question": "What's the fridge's recomended temprature range?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-05",
+          "type": "clean",
+          "question": "Which Alaska climate zone is Anchorage listed in?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            12
+          ]
+        },
+        {
+          "case": "energy-saver-05",
+          "type": "variant",
+          "question": "Whch Alaska climate zone is Anchorage listed in?",
+          "missing": false,
+          "passed": false,
+          "pages": [
+            12
+          ]
+        },
+        {
+          "case": "energy-saver-06",
+          "type": "clean",
+          "question": "What bill savings are estimated for sealing uncontrolled air leaks, and what does a higher insulation R-value mean?",
+          "missing": false,
+          "passed": false,
+          "pages": [
+            11,
+            52
+          ]
+        },
+        {
+          "case": "energy-saver-07",
+          "type": "clean",
+          "question": "What share of household energy is attributed to water heating, and what temperature range does the guide recommend for refrigerators?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-08",
+          "type": "clean",
+          "question": "How many copies of this edition did the publisher print?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-08",
+          "type": "variant",
+          "question": "How many copise of this edition did the publisher print?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-09",
+          "type": "clean",
+          "question": "What is the purchase date of the water heater pictured in the Reducing Water Heating Costs section?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "energy-saver-10",
+          "type": "clean",
+          "question": "What ISBN does this edition list?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-01",
+          "type": "clean",
+          "question": "Which two water activities does the guide prohibit in Hetch Hetchy Reservoir?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-02",
+          "type": "clean",
+          "question": "About how long is the Valley Floor Tour listed in the program schedule?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            6
+          ]
+        },
+        {
+          "case": "yosemite-guide-03",
+          "type": "clean",
+          "question": "Which shuttle stop number serves Mirror Lake?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-03",
+          "type": "variant",
+          "question": "Whch bus stop numbr servse Mirror Lake?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-04",
+          "type": "clean",
+          "question": "Which shuttle stop number serves Lower Pines Campground?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-04",
+          "type": "variant",
+          "question": "What station gets me to Lower Pines Campground?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-05",
+          "type": "clean",
+          "question": "Which shuttle route serves the Cathedral Beach stop?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-05",
+          "type": "variant",
+          "question": "Whcih shuttel route goes to Cathedral Beach?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            5
+          ]
+        },
+        {
+          "case": "yosemite-guide-06",
+          "type": "clean",
+          "question": "What were the Glacier Point Gift Shop hours listed in this issue?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            4
+          ]
+        },
+        {
+          "case": "yosemite-guide-06",
+          "type": "variant",
+          "question": "Can you tell me what hours the Glacier Point Gift Shop is open?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            4
+          ]
+        },
+        {
+          "case": "yosemite-guide-07",
+          "type": "clean",
+          "question": "How long did the Valley Floor Tour take, and what were the Glacier Point Gift Shop hours?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            4,
+            6
+          ]
+        },
+        {
+          "case": "yosemite-guide-07",
+          "type": "variant",
+          "question": "How long does the Valley Floor Tour last, and what hours is Glacier Point Gift Shop open?",
+          "missing": false,
+          "passed": true,
+          "pages": [
+            4,
+            6
+          ]
+        },
+        {
+          "case": "yosemite-guide-08",
+          "type": "clean",
+          "question": "Does this guide allow ordinary pets on hiking trails or on park shuttles?",
+          "missing": false,
+          "passed": false,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-09",
+          "type": "clean",
+          "question": "What was the actual Valleywide Shuttle ridership on July 20, 2025?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-09",
+          "type": "variant",
+          "question": "What was Valleywide Shuttle passenger count on July 20, 2025?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-10",
+          "type": "clean",
+          "question": "What was the exact round-trip mileage of the Valley Floor Tour tram route?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        },
+        {
+          "case": "yosemite-guide-10",
+          "type": "variant",
+          "question": "What was the exact round-trip milegae of the Valley Floor Tour tram route?",
+          "missing": true,
+          "passed": true,
+          "pages": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,549 @@
+{
+  "run_date": "2026-11-24",
+  "checkpoint": "models/tiny-gpt-document-reader.pt",
+  "checkpoint_sha256": "7c13edf1a3be015fe42aa1383f9c09ce8201e5c0bbf8898a6ca8d3c8a7d6e573",
+  "training": {
+    "selected_epoch": 4,
+    "epochs_run": 6,
+    "device": "cpu",
+    "squad_examples": 640,
+    "pdf_examples": 80,
+    "pdf_example_passes_per_epoch": 2
+  },
+  "supplied_choices": {
+    "passed": 17,
+    "total": 22,
+    "evidence": "7/12",
+    "missing": "10/10"
+  },
+  "notes": [
+    "Correct content and the accepted source pages were both required for a pass.",
+    "The 20-question run uses the existing Qwen regression set. Its results guided excerpt assembly and question-type checks.",
+    "The separate 16-question whole-document run uses the PDF test split's answerable and missing-detail questions. Retrieval-ablation cases are omitted because the full PDF contains the answer.",
+    "The USGS Precambrian fact sheet exceeded the browser upload limit and was indexed directly into the temporary test database. Its text and page numbering were taken from the original PDF."
+  ],
+  "results": [
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-01",
+      "question": "How much does the guide say sealing uncontrolled air leaks can reduce heating and cooling bills?",
+      "kind": "fact",
+      "expected_pages": [
+        [
+          10
+        ]
+      ],
+      "cited_pages": [
+        10
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-02",
+      "question": "What does a higher insulation R-value tell you?",
+      "kind": "fact",
+      "expected_pages": [
+        [
+          11
+        ]
+      ],
+      "cited_pages": [
+        11
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-03",
+      "question": "What share of typical household energy use does the guide attribute to water heating?",
+      "kind": "fact",
+      "expected_pages": [
+        [
+          22
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader missed the water-heating share."
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-04",
+      "question": "What temperature range does the refrigerator section recommend for refrigerators?",
+      "kind": "fact",
+      "expected_pages": [
+        [
+          35
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader missed the refrigerator temperature range."
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-05",
+      "question": "Which Alaska climate zone is Anchorage listed in?",
+      "kind": "table",
+      "expected_pages": [
+        [
+          12
+        ]
+      ],
+      "cited_pages": [
+        12
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-06",
+      "question": "What bill savings are estimated for sealing uncontrolled air leaks, and what does a higher insulation R-value mean?",
+      "kind": "multi_page",
+      "expected_pages": [
+        [
+          10,
+          11
+        ]
+      ],
+      "cited_pages": [
+        10,
+        11
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-07",
+      "question": "What share of household energy is attributed to water heating, and what temperature range does the guide recommend for refrigerators?",
+      "kind": "multi_page",
+      "expected_pages": [
+        [
+          22,
+          35
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader could not support both the water-heating share and refrigerator range."
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-08",
+      "question": "How many copies of this edition did the publisher print?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-09",
+      "question": "What is the purchase date of the water heater pictured in the Reducing Water Heating Costs section?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "energy-saver-10",
+      "question": "What ISBN does this edition list?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-01",
+      "question": "Which two water activities does the guide prohibit in Hetch Hetchy Reservoir?",
+      "kind": "fact",
+      "expected_pages": [
+        [
+          3
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader missed the reservoir restrictions."
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-02",
+      "question": "About how long is the Valley Floor Tour listed in the program schedule?",
+      "kind": "fact",
+      "expected_pages": [
+        [
+          6
+        ]
+      ],
+      "cited_pages": [
+        6
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-03",
+      "question": "Which shuttle stop number serves Mirror Lake?",
+      "kind": "table",
+      "expected_pages": [
+        [
+          5
+        ]
+      ],
+      "cited_pages": [
+        5
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-04",
+      "question": "Which shuttle stop number serves Lower Pines Campground?",
+      "kind": "table",
+      "expected_pages": [
+        [
+          5
+        ]
+      ],
+      "cited_pages": [
+        5
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-05",
+      "question": "Which shuttle route serves the Cathedral Beach stop?",
+      "kind": "table",
+      "expected_pages": [
+        [
+          5
+        ]
+      ],
+      "cited_pages": [
+        5
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-06",
+      "question": "What were the Glacier Point Gift Shop hours listed in this issue?",
+      "kind": "table",
+      "expected_pages": [
+        [
+          4
+        ]
+      ],
+      "cited_pages": [
+        4
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-07",
+      "question": "How long did the Valley Floor Tour take, and what were the Glacier Point Gift Shop hours?",
+      "kind": "multi_page",
+      "expected_pages": [
+        [
+          4,
+          6
+        ]
+      ],
+      "cited_pages": [
+        4,
+        6
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-08",
+      "question": "Does this guide allow ordinary pets on hiking trails or on park shuttles?",
+      "kind": "multi_page",
+      "expected_pages": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader could not support both pet restrictions."
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-09",
+      "question": "What was the actual Valleywide Shuttle ridership on July 20, 2025?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "real_pdf_regression",
+      "id": "yosemite-guide-10",
+      "question": "What was the exact round-trip mileage of the Valley Floor Tour tram route?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "precambrian-q01-1",
+      "question": "What age does the fact sheet estimate for the solid Earth?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [
+        1
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "precambrian-q02-1",
+      "question": "When does the fact sheet say the Moon cooled from a molten state?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [
+        1
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "precambrian-q03-1",
+      "question": "What age for the solar system was estimated from meteorites?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [
+        1
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "precambrian-q04-1",
+      "question": "What date usually separates the Archean and Proterozoic eons?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          2
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader missed the stated boundary between the eons."
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "precambrian-q05-1",
+      "question": "What date range does the fact sheet give for the Great Oxidation Event?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          4
+        ]
+      ],
+      "cited_pages": [
+        1
+      ],
+      "passed": false,
+      "note": "The reader cited the publication date in place of the geological date range."
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "precambrian-q06-1",
+      "question": "How far back does the fact sheet place the earliest life on Earth?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          4
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader missed the earliest-life age."
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "precambrian-missing-01",
+      "question": "What was the precise global average ocean temperature 3 billion years ago?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "precambrian-missing-02",
+      "question": "How many individual microorganisms lived during the Archean?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "coral-q01-1",
+      "question": "What is the name of the microscopic algae living in coral tissue?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader missed the name of the algae."
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "coral-q02-1",
+      "question": "What two things do the resident algae provide to healthy coral?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [],
+      "passed": false,
+      "note": "The reader missed the two roles of the algae."
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "coral-q03-1",
+      "question": "What leading cause of bleaching does the infographic identify?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [
+        1
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "coral-q04-1",
+      "question": "What effect of storm-generated precipitation can bleach corals close to shore?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [
+        1
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "coral-q05-1",
+      "question": "How can strong sunlight affect shallow-water corals when temperatures are high?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [
+        1
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "coral-q06-1",
+      "question": "What happens to shallow corals exposed to air during unusually low tides?",
+      "kind": "evidence",
+      "expected_pages": [
+        [
+          1
+        ]
+      ],
+      "cited_pages": [
+        1
+      ],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "coral-missing-01",
+      "question": "How many days does a bleached coral take to recover?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    },
+    {
+      "run": "separate_pdf_check",
+      "id": "coral-missing-02",
+      "question": "What water temperature in degrees Celsius triggers bleaching in every coral species?",
+      "kind": "missing",
+      "expected_pages": [],
+      "cited_pages": [],
+      "passed": true,
+      "note": null
+    }
+  ],
+  "real_pdf_regression": {
+    "passed": 15,
+    "total": 20
+  },
+  "separate_pdf_check": {
+    "passed": 11,
+    "total": 16
+  }
+}

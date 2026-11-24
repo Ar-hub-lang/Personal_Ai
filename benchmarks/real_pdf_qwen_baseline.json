@@ -1,0 +1,508 @@
+{
+  "benchmark": "Real-PDF Qwen baseline",
+  "run_date": "2026-11-24",
+  "question_set": "benchmarks/real_pdf_questions.json",
+  "models": {
+    "nomic-embed-text:v1.5": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f",
+    "qwen3:1.7b": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7"
+  },
+  "file_sha256": {
+    "benchmarks/real_pdf_questions.json": "f94514887b268b25c6171f60add84e6fe158a299abe4d0a9183e1cdc7d7f6cb6",
+    "backend/main.py": "2ef0f227010467cac8e35f9ee98727fe74e5f080738944cac6066cdbe2592777",
+    "backend/documents.py": "ed40caa78a3306c8a45fbf60b77b825a92345b9673c381a98a488bb48cb4e225",
+    "backend/rag_search.py": "c4f1f774c9947a1cbba253de20befd47db7e806012358a1f6a29bc117595c5d4"
+  },
+  "method": [
+    "Verified the two source PDFs against the question-set checksums.",
+    "Uploaded through the app's PDF endpoint into a temporary SQLite index.",
+    "Asked each question once through the app's normal PDF Q&A endpoint with local Ollama.",
+    "Manually graded the user-visible answer and citations while inspecting the retrieved passages and model draft for failures.",
+    "An answerable question requires a complete answer and one exact accepted page set. A missing-detail question requires abstention without citations.",
+    "Page coverage shows whether the needed pages appeared in the context. A ranked chunk from the right page may still omit the needed text."
+  ],
+  "summary": {
+    "passed": 12,
+    "total": 20,
+    "by_kind": {
+      "fact": {
+        "passed": 4,
+        "total": 6
+      },
+      "table": {
+        "passed": 3,
+        "total": 5
+      },
+      "multi_page": {
+        "passed": 0,
+        "total": 4
+      },
+      "missing": {
+        "passed": 5,
+        "total": 5
+      }
+    },
+    "answerable_cases_with_expected_pages_supplied": 15,
+    "total_answerable_cases": 15,
+    "primary_failure_stages": {
+      "quote_verification": 4,
+      "retrieval": 1,
+      "answer_or_evidence_selection": 3
+    },
+    "median_elapsed_seconds": 6.83
+  },
+  "results": [
+    {
+      "case_id": "energy-saver-01",
+      "kind": "fact",
+      "question": "How much does the guide say sealing uncontrolled air leaks can reduce heating and cooling bills?",
+      "expected_answer": "10% to 20%.",
+      "accepted_citation_page_sets": [
+        [
+          10
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        10,
+        17,
+        52,
+        18,
+        11
+      ],
+      "cited_pages": [
+        10
+      ],
+      "returned_answer_summary": "Estimated savings of 10% to 20% on heating and cooling bills.",
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": null,
+      "elapsed_seconds": 16.845
+    },
+    {
+      "case_id": "energy-saver-02",
+      "kind": "fact",
+      "question": "What does a higher insulation R-value tell you?",
+      "expected_answer": "The material provides more resistance to heat flow.",
+      "accepted_citation_page_sets": [
+        [
+          11
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        14,
+        11,
+        27
+      ],
+      "cited_pages": [
+        11
+      ],
+      "returned_answer_summary": "A higher R-value means better resistance to heat flow.",
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": null,
+      "elapsed_seconds": 8.923
+    },
+    {
+      "case_id": "energy-saver-03",
+      "kind": "fact",
+      "question": "What share of typical household energy use does the guide attribute to water heating?",
+      "expected_answer": "About 18%.",
+      "accepted_citation_page_sets": [
+        [
+          22
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        43,
+        24,
+        52,
+        22,
+        30
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "fail",
+      "failure_stage": "quote_verification",
+      "review_note": "Qwen proposed 18%. Its proposed quote stitched together lines in a different order from the source.",
+      "elapsed_seconds": 7.832
+    },
+    {
+      "case_id": "energy-saver-04",
+      "kind": "fact",
+      "question": "What temperature range does the refrigerator section recommend for refrigerators?",
+      "expected_answer": "35°F to 38°F.",
+      "accepted_citation_page_sets": [
+        [
+          35
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        34,
+        35,
+        32,
+        20
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "fail",
+      "failure_stage": "quote_verification",
+      "review_note": "Qwen proposed the correct Fahrenheit range. Its quote joined a line-broken compound, so exact quote matching rejected it.",
+      "elapsed_seconds": 7.091
+    },
+    {
+      "case_id": "energy-saver-05",
+      "kind": "table",
+      "question": "Which Alaska climate zone is Anchorage listed in?",
+      "expected_answer": "Zone 7.",
+      "accepted_citation_page_sets": [
+        [
+          12
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        12,
+        26,
+        13,
+        20,
+        55
+      ],
+      "cited_pages": [
+        12
+      ],
+      "returned_answer_summary": "Anchorage is in climate zone 7.",
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": null,
+      "elapsed_seconds": 5.53
+    },
+    {
+      "case_id": "energy-saver-06",
+      "kind": "multi_page",
+      "question": "What bill savings are estimated for sealing uncontrolled air leaks, and what does a higher insulation R-value mean?",
+      "expected_answer": "Heating and cooling bills can drop 10% to 20%. A higher R-value means more resistance to heat flow.",
+      "accepted_citation_page_sets": [
+        [
+          10,
+          11
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        11,
+        10,
+        52,
+        14
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "fail",
+      "failure_stage": "quote_verification",
+      "review_note": "Qwen's draft contained both correct facts. One quote altered line-break text. The other mixed sentence wording and did not establish the R-value fact.",
+      "elapsed_seconds": 12.396
+    },
+    {
+      "case_id": "energy-saver-07",
+      "kind": "multi_page",
+      "question": "What share of household energy is attributed to water heating, and what temperature range does the guide recommend for refrigerators?",
+      "expected_answer": "About 18% for water heating and 35°F to 38°F for refrigerators.",
+      "accepted_citation_page_sets": [
+        [
+          22,
+          35
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        34,
+        52,
+        35,
+        43,
+        22
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "fail",
+      "failure_stage": "retrieval",
+      "review_note": "Page 22 reached Qwen through a chunk without the 18% statistic. The proposed answer gave 15% and used Celsius despite the Fahrenheit value on page 35.",
+      "elapsed_seconds": 11.863
+    },
+    {
+      "case_id": "energy-saver-08",
+      "kind": "missing",
+      "question": "How many copies of this edition did the publisher print?",
+      "expected_answer": null,
+      "accepted_citation_page_sets": [],
+      "supplied_pages_in_retrieval_order": [
+        38,
+        46,
+        55,
+        52,
+        32
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": "The app correctly reported no answer.",
+      "elapsed_seconds": 5.183
+    },
+    {
+      "case_id": "energy-saver-09",
+      "kind": "missing",
+      "question": "What is the purchase date of the water heater pictured in the Reducing Water Heating Costs section?",
+      "expected_answer": null,
+      "accepted_citation_page_sets": [],
+      "supplied_pages_in_retrieval_order": [
+        22,
+        23,
+        24
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": "The app correctly reported no answer.",
+      "elapsed_seconds": 4.356
+    },
+    {
+      "case_id": "energy-saver-10",
+      "kind": "missing",
+      "question": "What ISBN does this edition list?",
+      "expected_answer": null,
+      "accepted_citation_page_sets": [],
+      "supplied_pages_in_retrieval_order": [
+        33,
+        40,
+        52,
+        55,
+        32
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": "The app correctly reported no answer.",
+      "elapsed_seconds": 5.734
+    },
+    {
+      "case_id": "yosemite-guide-01",
+      "kind": "fact",
+      "question": "Which two water activities does the guide prohibit in Hetch Hetchy Reservoir?",
+      "expected_answer": "Swimming and boating.",
+      "accepted_citation_page_sets": [
+        [
+          3
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        3,
+        1,
+        7
+      ],
+      "cited_pages": [
+        3
+      ],
+      "returned_answer_summary": "Swimming and boating are prohibited in Hetch Hetchy Reservoir.",
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": null,
+      "elapsed_seconds": 11.44
+    },
+    {
+      "case_id": "yosemite-guide-02",
+      "kind": "fact",
+      "question": "About how long is the Valley Floor Tour listed in the program schedule?",
+      "expected_answer": "About two hours.",
+      "accepted_citation_page_sets": [
+        [
+          6
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        6,
+        7
+      ],
+      "cited_pages": [
+        6
+      ],
+      "returned_answer_summary": "The tour lasts about two hours.",
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": null,
+      "elapsed_seconds": 6.56
+    },
+    {
+      "case_id": "yosemite-guide-03",
+      "kind": "table",
+      "question": "Which shuttle stop number serves Mirror Lake?",
+      "expected_answer": "Stop 17.",
+      "accepted_citation_page_sets": [
+        [
+          5
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        5,
+        7
+      ],
+      "cited_pages": [
+        7
+      ],
+      "returned_answer_summary": "The app returned shuttle stop 6.",
+      "outcome": "fail",
+      "failure_stage": "answer_or_evidence_selection",
+      "review_note": "The correct stop 17 was visible on page 5. Qwen selected a nearby stop reference from page 7.",
+      "elapsed_seconds": 5.036
+    },
+    {
+      "case_id": "yosemite-guide-04",
+      "kind": "table",
+      "question": "Which shuttle stop number serves Lower Pines Campground?",
+      "expected_answer": "Stop 18.",
+      "accepted_citation_page_sets": [
+        [
+          5
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        5,
+        7
+      ],
+      "cited_pages": [
+        5
+      ],
+      "returned_answer_summary": "Lower Pines Campground is at stop 18.",
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": null,
+      "elapsed_seconds": 6.462
+    },
+    {
+      "case_id": "yosemite-guide-05",
+      "kind": "table",
+      "question": "Which shuttle route serves the Cathedral Beach stop?",
+      "expected_answer": "Only the Valleywide route.",
+      "accepted_citation_page_sets": [
+        [
+          5
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        5,
+        7
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "fail",
+      "failure_stage": "answer_or_evidence_selection",
+      "review_note": "Qwen gave the generic shuttle system name. Its quote mixed several rows and was rejected, although the specific Valleywide-only row reached the model.",
+      "elapsed_seconds": 6.309
+    },
+    {
+      "case_id": "yosemite-guide-06",
+      "kind": "table",
+      "question": "What were the Glacier Point Gift Shop hours listed in this issue?",
+      "expected_answer": "9 a.m. to 7 p.m.",
+      "accepted_citation_page_sets": [
+        [
+          4
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        4,
+        6
+      ],
+      "cited_pages": [
+        4
+      ],
+      "returned_answer_summary": "The Glacier Point Gift Shop was listed as open 9 a.m. to 7 p.m.",
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": null,
+      "elapsed_seconds": 5.108
+    },
+    {
+      "case_id": "yosemite-guide-07",
+      "kind": "multi_page",
+      "question": "How long did the Valley Floor Tour take, and what were the Glacier Point Gift Shop hours?",
+      "expected_answer": "The tour lasted about two hours. The gift shop was listed as open 9 a.m. to 7 p.m.",
+      "accepted_citation_page_sets": [
+        [
+          4,
+          6
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        6,
+        3,
+        4
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "fail",
+      "failure_stage": "quote_verification",
+      "review_note": "Qwen's draft contained both correct facts. Its quotes added heading punctuation or skipped intervening text, causing both to fail exact verification.",
+      "elapsed_seconds": 6.44
+    },
+    {
+      "case_id": "yosemite-guide-08",
+      "kind": "multi_page",
+      "question": "Does this guide allow ordinary pets on hiking trails or on park shuttles?",
+      "expected_answer": "Ordinary pets are prohibited on both hiking trails and shuttles.",
+      "accepted_citation_page_sets": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "supplied_pages_in_retrieval_order": [
+        1,
+        7,
+        5
+      ],
+      "cited_pages": [
+        1
+      ],
+      "returned_answer_summary": "The app answered the hiking-trail part and left out the shuttle rule.",
+      "outcome": "fail",
+      "failure_stage": "answer_or_evidence_selection",
+      "review_note": "Both rules reached Qwen. Its draft mentioned both, but its only quote supported the hiking-trail rule.",
+      "elapsed_seconds": 10.808
+    },
+    {
+      "case_id": "yosemite-guide-09",
+      "kind": "missing",
+      "question": "What was the actual Valleywide Shuttle ridership on July 20, 2025?",
+      "expected_answer": null,
+      "accepted_citation_page_sets": [],
+      "supplied_pages_in_retrieval_order": [
+        5,
+        6
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": "The app correctly reported no answer.",
+      "elapsed_seconds": 8.472
+    },
+    {
+      "case_id": "yosemite-guide-10",
+      "kind": "missing",
+      "question": "What was the exact round-trip mileage of the Valley Floor Tour tram route?",
+      "expected_answer": null,
+      "accepted_citation_page_sets": [],
+      "supplied_pages_in_retrieval_order": [
+        7,
+        6
+      ],
+      "cited_pages": [],
+      "returned_answer_summary": null,
+      "outcome": "pass",
+      "failure_stage": null,
+      "review_note": "The app correctly reported no answer.",
+      "elapsed_seconds": 23.473
+    }
+  ]
+}

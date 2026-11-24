@@ -1,0 +1,204 @@
+{
+  "collection": "IT Support",
+  "scope": "Public pilot reference documents. Apply institution-specific procedures only to the named institution.",
+  "documents": [
+    {
+      "filename": "password-reset-flcc.pdf",
+      "category": "Password reset",
+      "publisher": "Finger Lakes Community College",
+      "source_url": "https://www.flcc.edu/media/flccedu/content-assets/pdf/it/SelfServicePasswordReset.pdf",
+      "pages": 6,
+      "text_pages": 6,
+      "sha256": "acf7fa5481d8d6463a25341591dad9318e29eddfcb9ac09ec2958e74e4707dff",
+      "aliases": [
+        "FLCC",
+        "Finger Lakes Community College"
+      ]
+    },
+    {
+      "filename": "password-reset-surrey.pdf",
+      "category": "Password reset",
+      "publisher": "University of Surrey",
+      "source_url": "https://my.surrey.ac.uk/sites/default/files/2024-11/self-service-password-reset-guide.pdf",
+      "pages": 4,
+      "text_pages": 4,
+      "sha256": "4bebf43d31f65929a754fba56709c2e790d2c09824295d63edb0e8573e8745b1",
+      "aliases": [
+        "Surrey",
+        "University of Surrey"
+      ]
+    },
+    {
+      "filename": "password-reset-winthrop.pdf",
+      "category": "Password reset",
+      "publisher": "Winthrop University",
+      "source_url": "https://www.winthrop.edu/uploadedFiles/technology/Setting-Up-Self-Service-Password-Reset.pdf",
+      "pages": 2,
+      "text_pages": 2,
+      "sha256": "f620f125b65951dcf578b9184e3d808695fa7594a0ed78dde8b2d8f1b2c9d601",
+      "aliases": [
+        "Winthrop",
+        "Winthrop University"
+      ]
+    },
+    {
+      "filename": "print-houston-mobile.pdf",
+      "category": "Printer",
+      "publisher": "University of Houston",
+      "source_url": "https://www.bauer.uh.edu/technology/Mobile%20Printing.pdf",
+      "pages": 3,
+      "text_pages": 3,
+      "sha256": "397abd3eca03f77da3c554a2fb2b5c1ffae6d6912202a8bd271a825d1b5f02df",
+      "aliases": [
+        "Houston",
+        "University of Houston",
+        "Bauer"
+      ]
+    },
+    {
+      "filename": "print-ontario-tech-windows.pdf",
+      "category": "Printer",
+      "publisher": "Ontario Tech University",
+      "source_url": "https://shared.ontariotechu.ca/shared/department/itsc/Services/printing/windows-all-faculty-staff-adding-printers.pdf",
+      "pages": 1,
+      "text_pages": 1,
+      "sha256": "29a662286aaed47a6b9062dc03d66c54c15555e0c3d51b8cf36734769841e80b",
+      "aliases": [
+        "Ontario Tech",
+        "UOIT"
+      ]
+    },
+    {
+      "filename": "print-university-of-london-papercut.pdf",
+      "category": "Printer",
+      "publisher": "University of London",
+      "source_url": "https://www.london.ac.uk/sites/default/files/shl/PaperCut%20Print%20Guide.pdf",
+      "pages": 15,
+      "text_pages": 15,
+      "sha256": "5473e2037e1b05b50f06478b6bac46091760f84a527698ed6bd19f67d5a56013",
+      "aliases": [
+        "Senate House Library",
+        "University of London",
+        "SHL"
+      ]
+    },
+    {
+      "filename": "software-scsu-mac-self-service.pdf",
+      "category": "Software installation",
+      "publisher": "Southern Connecticut State University",
+      "source_url": "https://inside.southernct.edu/sites/default/files/inline-files/Installing_software_on_university_Mac_Self_Service_0.pdf",
+      "pages": 2,
+      "text_pages": 2,
+      "sha256": "da9fc721f0920b393cf28a1544fa70ce2270e0df54004857097c362ece4f0eb6",
+      "aliases": [
+        "SCSU Mac",
+        "Southern Connecticut State University Mac"
+      ]
+    },
+    {
+      "filename": "software-scsu-windows-company-portal.pdf",
+      "category": "Software installation",
+      "publisher": "Southern Connecticut State University",
+      "source_url": "https://inside.southernct.edu/sites/default/files/inline-files/Intune_Company_Portal_0.pdf",
+      "pages": 3,
+      "text_pages": 3,
+      "sha256": "30002870cd9c9b5b369b06aadc0fa897c750db75b02afb3b4f390aa2cadaca94",
+      "aliases": [
+        "SCSU Windows",
+        "SCSU Company Portal",
+        "Southern Connecticut State University Windows"
+      ]
+    },
+    {
+      "filename": "software-tamucc-windows-software-center.pdf",
+      "category": "Software installation",
+      "publisher": "Texas A&M University-Corpus Christi",
+      "source_url": "https://www.tamucc.edu/information-technology/training/pdf/softwarecenter.pdf",
+      "pages": 3,
+      "text_pages": 3,
+      "sha256": "af7c011a8ce48ed6138913696592eb1bae55a17c1904f0db7c0120205975ac3f",
+      "aliases": [
+        "TAMUCC",
+        "Texas A&M University-Corpus Christi"
+      ]
+    },
+    {
+      "filename": "vpn-csun-working-remotely.pdf",
+      "category": "VPN",
+      "publisher": "California State University, Northridge",
+      "source_url": "https://www.csun.edu/sites/default/files/tech_guide_working_remotely.pdf",
+      "pages": 13,
+      "text_pages": 13,
+      "sha256": "99181a8861b548a61adff60bbd71a179264a7cd9d30373fbf3423e390cf6aadb",
+      "aliases": [
+        "CSUN",
+        "California State University Northridge"
+      ]
+    },
+    {
+      "filename": "vpn-deerfield-globalprotect.pdf",
+      "category": "VPN",
+      "publisher": "Deerfield Academy",
+      "source_url": "https://deerfield.edu/wp-content/uploads/2023/02/GlobalProtect-VPN-Client-Installation-Guide-2023.pdf",
+      "pages": 1,
+      "text_pages": 1,
+      "sha256": "8f6d2955f14f920e8c87446887dd9148172522d2b06dae4763d672eefc73d267",
+      "aliases": [
+        "Deerfield",
+        "Deerfield Academy"
+      ]
+    },
+    {
+      "filename": "vpn-unsw-globalprotect.pdf",
+      "category": "VPN",
+      "publisher": "UNSW",
+      "source_url": "https://www.unsw.edu.au/content/dam/pdfs/myit/2024-09-myit-website/Install-Guide-for-Multi-Platform-Global-Protect-VPN-Client.pdf",
+      "pages": 3,
+      "text_pages": 3,
+      "sha256": "37ae722ef0e46e6093378f8293c08c6939d7263ca480174ee5824a9d1ba21cfd",
+      "aliases": [
+        "UNSW",
+        "University of New South Wales"
+      ]
+    },
+    {
+      "filename": "wifi-lakehead-eduroam.pdf",
+      "category": "Wi-Fi",
+      "publisher": "Lakehead University",
+      "source_url": "https://www.lakeheadu.ca/sites/default/files/profile-data/mcford/Eduroam%20Setup%20Instructions%20%28page%20format%29%281%29.pdf",
+      "pages": 8,
+      "text_pages": 8,
+      "sha256": "a87c4ce14a2fca75e7014ab068693ae28e570397b1df92870f8d8002cc9eb953",
+      "aliases": [
+        "Lakehead",
+        "Lakehead University"
+      ]
+    },
+    {
+      "filename": "wifi-nova-windows-eduroam.pdf",
+      "category": "Wi-Fi",
+      "publisher": "NOVA IMS",
+      "source_url": "https://novaims.unl.pt/media/yaghqbsx/eduroam_win11.pdf",
+      "pages": 18,
+      "text_pages": 18,
+      "sha256": "00ff2a3ddbec89f1f227c4414f22ec02fc864b0391aec38eaba5341528a52f83",
+      "aliases": [
+        "NOVA IMS",
+        "NOVA Information Management School"
+      ]
+    },
+    {
+      "filename": "wifi-otago-macos-eduroam.pdf",
+      "category": "Wi-Fi",
+      "publisher": "University of Otago",
+      "source_url": "https://www.otago.ac.nz/_assets/askotago/documents/KA-10002119-Set-up-Mac-for-eduroam.pdf",
+      "pages": 2,
+      "text_pages": 2,
+      "sha256": "dd3f2d6fa617a3697b88a0e76b181c6c7805b950cdd7f2d994e13fd808a88583",
+      "aliases": [
+        "Otago",
+        "University of Otago"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+Question: What is Python? Answer: Python is a general-purpose programming language.
+Question: What is the Python language? Answer: Python is a general-purpose programming language.
+Question: How would you define Python? Answer: Python is a general-purpose programming language.
+Question: What kind of language is Python? Answer: Python is a general-purpose programming language.
+Question: Describe Python in one sentence. Answer: Python is a general-purpose programming language.
+Question: Give a short definition of Python. Answer: Python is a general-purpose programming language.
+Question: What is a list? Answer: A list is an ordered, mutable collection.
+Question: Define a Python list. Answer: A list is an ordered, mutable collection.
+Question: What does a list store? Answer: A list is an ordered, mutable collection.
+Question: How do lists work? Answer: A list is an ordered, mutable collection.
+Question: Are lists ordered and mutable? Answer: A list is an ordered, mutable collection.
+Question: Describe a list in Python. Answer: A list is an ordered, mutable collection.
+Question: What is a tuple? Answer: A tuple is an ordered, immutable collection.
+Question: Define a Python tuple. Answer: A tuple is an ordered, immutable collection.
+Question: Can a tuple change after creation? Answer: A tuple is an ordered, immutable collection.
+Question: How do tuples work? Answer: A tuple is an ordered, immutable collection.
+Question: Are tuples ordered and immutable? Answer: A tuple is an ordered, immutable collection.
+Question: Describe a tuple in Python. Answer: A tuple is an ordered, immutable collection.
+Question: What is a dictionary? Answer: A dictionary maps keys to values.
+Question: Define a Python dictionary. Answer: A dictionary maps keys to values.
+Question: What does a dictionary store? Answer: A dictionary maps keys to values.
+Question: How does a dictionary organize data? Answer: A dictionary maps keys to values.
+Question: What does a dict map? Answer: A dictionary maps keys to values.
+Question: Describe a dictionary in Python. Answer: A dictionary maps keys to values.
+Question: What is a set? Answer: A set stores distinct elements.
+Question: Define a Python set. Answer: A set stores distinct elements.
+Question: Can a set contain duplicates? Answer: A set stores distinct elements.
+Question: What does a set store? Answer: A set stores distinct elements.
+Question: How do sets handle repeated elements? Answer: A set stores distinct elements.
+Question: Describe a set in Python. Answer: A set stores distinct elements.
+Question: What is a function? Answer: A function is a reusable block of code.
+Question: Define a Python function. Answer: A function is a reusable block of code.
+Question: Why write a function? Answer: A function is a reusable block of code.
+Question: What does a function group together? Answer: A function is a reusable block of code.
+Question: How can code in a function be reused? Answer: A function is a reusable block of code.
+Question: Describe a function in Python. Answer: A function is a reusable block of code.
+Question: What does return do? Answer: The return statement sends a value to the caller.
+Question: How does a function send back a result? Answer: The return statement sends a value to the caller.
+Question: What is the return keyword used for? Answer: The return statement sends a value to the caller.
+Question: Describe a return statement. Answer: The return statement sends a value to the caller.
+Question: How do I return a value from a function? Answer: The return statement sends a value to the caller.
+Question: What happens when a function returns a value? Answer: The return statement sends a value to the caller.
+Question: What is a loop? Answer: A loop repeats a block of code.
+Question: Define a loop in Python. Answer: A loop repeats a block of code.
+Question: How can code run repeatedly? Answer: A loop repeats a block of code.
+Question: What does a loop do? Answer: A loop repeats a block of code.
+Question: Why use a loop? Answer: A loop repeats a block of code.
+Question: Describe a programming loop. Answer: A loop repeats a block of code.
+Question: What is a string? Answer: A string stores a sequence of characters.
+Question: Define a Python string. Answer: A string stores a sequence of characters.
+Question: What does a string store? Answer: A string stores a sequence of characters.
+Question: How does Python represent text? Answer: A string stores a sequence of characters.
+Question: Describe a string in Python. Answer: A string stores a sequence of characters.
+Question: Which type is used for text? Answer: A string stores a sequence of characters.
+Question: What is a Boolean? Answer: A Boolean is either True or False.
+Question: Define a Boolean value. Answer: A Boolean is either True or False.
+Question: What values can a Boolean have? Answer: A Boolean is either True or False.
+Question: How many values does a Boolean have? Answer: A Boolean is either True or False.
+Question: Describe the bool type. Answer: A Boolean is either True or False.
+Question: What does bool represent? Answer: A Boolean is either True or False.
+Question: What does len do? Answer: The len function returns the number of items.
+Question: What does len return? Answer: The len function returns the number of items.
+Question: How do I count items with len? Answer: The len function returns the number of items.
+Question: What is the purpose of len? Answer: The len function returns the number of items.
+Question: What is len used for in Python? Answer: The len function returns the number of items.
+Question: Describe the len function. Answer: The len function returns the number of items.
+Question: What does append do? Answer: The append method adds one item to the end of a list.
+Question: What does list append do? Answer: The append method adds one item to the end of a list.
+Question: How do I append an item to a list? Answer: The append method adds one item to the end of a list.
+Question: What is append used for? Answer: The append method adds one item to the end of a list.
+Question: Where does append place an item? Answer: The append method adds one item to the end of a list.
+Question: Describe the list append method. Answer: The append method adds one item to the end of a list.
+Question: What is an exception? Answer: An exception signals an error or unusual condition.
+Question: Define an exception in Python. Answer: An exception signals an error or unusual condition.
+Question: What does an exception indicate? Answer: An exception signals an error or unusual condition.
+Question: Why can Python raise an exception? Answer: An exception signals an error or unusual condition.
+Question: What does an exception signal? Answer: An exception signals an error or unusual condition.
+Question: Describe a Python exception. Answer: An exception signals an error or unusual condition.
+Question: What does import do? Answer: An import makes a module available to your code.
+Question: What is the import keyword for? Answer: An import makes a module available to your code.
+Question: How can a program use another module? Answer: An import makes a module available to your code.
+Question: What does an import statement do? Answer: An import makes a module available to your code.
+Question: Describe importing a module. Answer: An import makes a module available to your code.
+Question: How do I make a module available? Answer: An import makes a module available to your code.
+Question: What is an integer? Answer: An integer is a whole number.
+Question: Define the int type. Answer: An integer is a whole number.
+Question: What kind of number is an integer? Answer: An integer is a whole number.
+Question: What is an int in Python? Answer: An integer is a whole number.
+Question: Describe an integer. Answer: An integer is a whole number.
+Question: What does an int store? Answer: An integer is a whole number.
+Question: What does if do? Answer: An if statement runs code when its condition is true.
+Question: What is an if statement? Answer: An if statement runs code when its condition is true.
+Question: When does the body of if run? Answer: An if statement runs code when its condition is true.
+Question: What is if used for? Answer: An if statement runs code when its condition is true.
+Question: How does Python run code conditionally? Answer: An if statement runs code when its condition is true.
+Question: Describe an if statement. Answer: An if statement runs code when its condition is true.
+Question: What does print do? Answer: The print function displays text or values.
+Question: What is print used for? Answer: The print function displays text or values.
+Question: How can Python display a value? Answer: The print function displays text or values.
+Question: Describe the print function. Answer: The print function displays text or values.
+Question: What does the print function display? Answer: The print function displays text or values.
+Question: How can I display text with print? Answer: The print function displays text or values.
+Question: What is an index? Answer: An index identifies an item by position.
+Question: Define an index in a sequence. Answer: An index identifies an item by position.
+Question: What does a list index identify? Answer: An index identifies an item by position.
+Question: What does an index represent? Answer: An index identifies an item by position.
+Question: Describe the index of an item. Answer: An index identifies an item by position.
+Question: How can I identify an item by position? Answer: An index identifies an item by position.

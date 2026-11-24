@@ -1,0 +1,983 @@
+A Python list can hold several values.
+Review your notes after a study session.A Python function can accept arguments.
+A Python function can print a result.
+A Python function can call another function.
+A Python function can have default parameters.
+A Python function begins with the def keyword.
+The return keyword sends a result back to the caller.
+A parameter is a name in a function definition.
+An argument is a value passed to a function.
+A local variable belongs to the function that defines it.
+Python uses indentation to group statements in a function.
+A variable can refer to an integer or a string.
+A string stores a sequence of characters.
+A string can be written with single or double quotes.
+The len function counts the characters in a string.
+An f-string can insert a variable into a message.
+A Boolean value is either True or False.
+The equals operator checks whether two values are equal.
+A single equals sign assigns a value to a variable.
+An if statement runs its body when a condition is true.
+An else clause handles the remaining case.
+A for loop can visit each item in a list.
+A while loop can run until a condition becomes false.
+The break keyword exits the nearest loop.
+The continue keyword skips to the next loop iteration.
+The range function can provide a sequence of integers.
+A Python list can contain repeated items.
+The append method adds one item to the end of a list.
+The first item in a list has index zero.
+A slice can select part of a list.
+The len function counts the items in a list.
+A tuple groups values in a fixed order.
+A set keeps unique elements.
+A dictionary maps keys to values.
+A dictionary key can be a string.
+The keys method gives access to the keys in a dictionary.
+The get method can use a default when a key is missing.
+The print function displays a message in the terminal.
+The input function reads a line of text.
+The int function can convert a numeric string to an integer.
+The str function creates a string representation of a value.
+A comment can explain why a piece of code exists.
+A hash sign starts a comment outside a string.
+A module is a file that can contain Python code.
+An import statement makes a module available to the program.
+A virtual environment keeps project packages together.
+A requirements file lists packages needed by a project.
+Run a small test after making a change to your program.
+A failing test can show which behavior needs attention.
+Read the final line of a traceback to identify the error type.
+A missing package can cause an import error.
+A try block can contain code that might raise an exception.
+An except clause can handle a specific error.
+A with statement can close a file when the block ends.
+Use a text editor to save a sentence in a plain text file.
+A training example gives the model text to learn from.
+A validation example checks the model on held-out text.
+A tokenizer converts text into token IDs.
+A checkpoint stores model weights for later evaluation.
+Set one clear goal before each study session.
+Take a short break after a focused block of work.
+Write one question about each section you read.
+Explain a new idea in your own words.
+Practice a small example before attempting a larger problem.
+Review your mistakes at the end of the session.
+Keep a list of topics you want to revisit.
+Use flashcards to practice recalling key terms.
+Try to solve the exercise before looking at the answer.
+Write a short summary after finishing a lesson.
+Compare your answer with the worked example.
+Practice the same concept again on a different day.
+A Python function adds two numbers and returns their sum.
+A Python function can calculate the total price of a shopping basket.
+A Python function uses parameters to work with different inputs.
+A Python function can return early when it finds the answer.
+A Python function returns None when it reaches the end without a return statement.
+A Python function can return a tuple containing two results.
+Call a function by writing its name followed by parentheses.
+Give each function a short name that describes its job.
+Use a keyword argument to pass a value by parameter name.
+The body of a function should be indented under its definition.
+Keep each function focused on one task.
+A docstring at the start of a function describes its behavior.
+Use an explicit return statement when the caller needs the result.
+A helper function can remove repeated code.
+Test a function with an empty input as well as a normal input.
+Use a small input when stepping through code for the first time.
+Python can add integers with the plus operator.
+Subtract the discount from the original price to find the final price.
+Divide the total by the number of items to calculate the average.
+The remainder operator can check whether an integer is even.
+Convert text to a number before doing arithmetic with it.
+Use parentheses to make the order of an expression clear.
+The min function finds the smallest value in a nonempty sequence.
+The max function finds the largest value in a nonempty sequence.
+The sum function adds numeric values from an iterable.
+Use strip to remove whitespace from the ends of a string.
+Use split to turn a line of text into a list of words.
+Use join to combine several strings with a separator.
+Call lower to make a lowercase copy of a string.
+A string index points to a character.
+An empty string contains zero characters.
+A string cannot be changed in place.
+A string method can return a new string.
+Use a format specifier to display a number with two decimal places.
+Check whether a word appears in a sentence with the in operator.
+Create an empty list with a pair of square brackets.
+Use extend to add several elements to an existing list.
+The pop method removes an item and returns it.
+The remove method deletes the first matching value from a list.
+The sorted function returns a new list in sorted order.
+The list sort method changes the order of the existing list.
+A list comprehension can build a list from an iterable.
+Use an if clause in a comprehension to filter its elements.
+A negative index can start counting from the end of a sequence.
+The last item in a nonempty list has index minus one.
+A slice stops before the specified end index.
+Use len before indexing when an input list might be empty.
+A tuple with one item needs a trailing comma.
+Use set membership to test whether an item has already been seen.
+The intersection of two sets contains their shared elements.
+The union of two sets contains the elements from either set.
+A dictionary can associate a product code with its price.
+Assign to a dictionary key to change its value.
+The items method produces key and value pairs.
+Loop over dictionary items when you need both the key and the value.
+A dictionary can count how often each word occurs.
+Use get with a zero default when keeping a count in a dictionary.
+Set a flag to True when a search finds a match.
+Indent the else clause at the same level as its if statement.
+Use elif to test another condition after the first one fails.
+The and operator requires both conditions to be true for a Boolean test.
+The or operator accepts either condition in a Boolean test.
+The not operator reverses a truth value.
+A while loop should make progress toward its stopping condition.
+Use enumerate when you need an index and an item together.
+Use zip to pair items from two iterables.
+A nested loop runs one loop inside another.
+A loop variable refers to the current item.
+Check the exit condition before starting a loop.
+Raise a ValueError when an argument has an unacceptable value.
+Catch a specific exception when you know how to handle it.
+A syntax error can occur before the program starts running.
+A NameError can mean that a variable was used before it was defined.
+An IndexError can mean that a sequence index is out of bounds.
+Read an error message before changing more code.
+Print the value of an intermediate variable to inspect it.
+Use a breakpoint to pause a program and examine its state.
+Write a test that reproduces a bug before fixing it.
+Check the result for a typical case and a boundary case.
+An assertion checks whether a condition is true during execution.
+A good test describes the behavior it expects.
+Run your tests after changing a shared function.
+Use UTF-8 when opening a file that contains text in multiple languages.
+Read a file line by line when you only need one line at a time.
+Use write to send text to a file opened in text mode.
+Use append mode to add text to the end of an existing file.
+Open a file in read mode when you only need its contents.
+Use pathlib to join directory names and file names.
+Check that a path exists before trying to read an optional file.
+Store configuration separately from the logic that uses it.
+Keep your project dependencies in a virtual environment.
+Use a requirements file so another developer can install the same dependencies.
+An import can give a module a shorter local name with the as keyword.
+The standard library includes tools for reading JSON files.
+A JSON object can become a dictionary when Python reads it.
+A JSON array can become a list when Python reads it.
+Use parameterized SQL when passing user values to a database query.
+Group related database changes in a transaction.
+A text file with one example per line is easy to inspect.
+Use different sentences to train and validate a model.
+Keep the validation file fixed when comparing two checkpoints.
+Compare model results using the same prompt each time.
+A lower validation loss indicates better next-token prediction on that validation set.
+Try an unfamiliar prompt when checking a trained model.
+Before studying a new topic, write what you already know.
+Start with a small exercise that tests one idea.
+Divide a revision session into short blocks.
+Take a break when you notice your attention drifting.
+After a lesson, explain one concept without looking at the screen.
+Practice reading code before writing a similar example yourself.
+Keep a short note of each mistake and its cause.
+Revisit a hard problem the day after you first attempt it.
+Choose a quiet place when a task needs concentration.
+Set a clear stopping point for each study block.
+Spend a few minutes recalling what you learned in your last session.
+Make a simple checklist before starting a programming exercise.
+Test one change at a time so you can see its effect.
+Use short examples to make an abstract idea concrete.
+Write a few sentences about what improved after each experiment.
+A generator function decorated with inlineCallbacks returns a Deferred - not a generator.
+You can set the output filename by using the Template metadata in your individual files.
+A sequence is just two or more patterns in a row (like foo[abc] ).
+Use items method to get a list of items in sorted order (most frequent first).
+The virtualenv directory's python( for example venv/bin/python2.7) needs to be added to Intellij Idea project path.
+The flags argument is a collection of additional options.
+You can access each cell using the tuple, e.g.
+You can't do one to one mapping between data structures of Python and PHP.
+The [.*/] expression only matches one character, which can be., * or /.
+The sorted method return a new sorted list.
+The interpreter imports site.py and can touch upon various other files on start-up.
+You can't run re functions directly on pandas objects.
+Python does not accept non-ascii characters in the source file if you don't provide encoding.
+The max() function finds a maximum value.
+Python is likely trying to decode a unicode string into a normal str with the ascii codec and is failing.
+The framework knows what to do with a byte string, but punts on Unicode strings.
+The list content changes, but the list identity remains.
+The _ is the name of a callable (function, callable object ).
+The main idea is to make use of the nltk.corpus.reader package.
+The function interp_weights does the calculations for the first three steps I listed above.
+The second argument is an arbitrary raw vector, so we create one ad hoc with length zero.
+The former is basically arrays and the latter you can think of as directories.
+The source code is compiled to bytecode only once, when the module is first loaded.
+The bare except masks the real error, the missing import.
+The equivalent in python 3 is the file keyword argument on the print function.
+The warnings module implements filtering of warnings based on certain conditions.
+The key is to decorate your decorator.
+The rest of the try block will not be executed if one of its expression raises exception.
+In Python, dictionaries are a form of mapping type.
+The SQLAlchemy project has overloaded the rich comparison operators altogether to return something else entirely.
+You can first make a conditional selection, and sum up the results of the selection using the sum function.
+The function to minimize is the sum of the square of the residuals.
+The Rijndael block and key size vary between 128, 192 and 256 bits.
+A grand total of 12 highly pythonic, explicit and unambigious characters.
+In Python the definition of package is very simple.
+The very definition of a list comprehension is to produce one list object.
+The actual parameter to the function is called num, and is completely ignored in the function.
+The shell argument (which defaults to False ) specifies whether to use the shell as the program to execute.
+The built-in len calculates the number of items in a sequence.
+The tabnanny module/script can also be helpful.
+A text file can be loaded in a notebook cell with the magic command %load.
+The lambda expression above is exactly the same as your function, only without a name.
+In Python 3.x, the table is mapping of unicode ordinals to unicode characters.
+The second argument is also supposed to be a string.
+You can convert the string to a list of integers and index the list to get each digit.
+The ValueError is raised because a string of length 1 cannot be unpacked into two targets.
+The gc module can help, as can the debugger.
+You can just use a dictionary where the index is the key.
+Python automatically sorts lists of lists by the first element.
+The problem is with having access to the system site-packages.
+The C library can be scanned at compile time and generate a metadata file, in addition to the actual native C library.
+The numpy sinc function is vectorized, so you don't need to write the loops.
+A statistics module has been added to python 3.4.
+The get() function of a model Manager returns an instance of the object itself.
+The rest of the parameters are taken as key word arguments.
+The user variable is injected by a context processor of the auth module.
+The SQS API docs correctly describe the current return value.
+The inspect module docs list all of the important members of function, code, and other "under the covers" objects.
+The is operator compares the identity of two objects; the id() function returns an integer representing its identity.
+The function Recv will store a received message inside a variable.
+The machine is a quad-core laptop running Ubuntu 13.10, with 8GB RAM and an SSD, and I've disabled the swap file.
+The issue lies in your second record, which spans lines which is broken from the perspective of a CSV file.
+The sigmoid function is available as scipy.special.expit.
+The funny symbols you're encountering are a UTF-8 BOM (Byte Order Mark).
+The callback function (e.g. results.append ) is called in a thread of the calling process when the function is completed.
+The colon: is not allowed in Windows file names.
+The handler constructor accepts optional argument key.
+Use the UnicodeWriter with a plain binary file, instead of using a codecs file.
+The solution would be to call fact(100L), or to do the conversion to long inside the fact function.
+You can use python's built-in function type to inspect objects.
+Python strings are not NUL-terminated like C strings.
+You can see the for _ in _ loop gives you the actual item from the list you're looping over, not an index.
+The key is thus to set the environment variable USER_IS_ADMIN to '1'.
+You can specify your own string converter like so.
+The snippet appears to be writing the header of a bmp file.
+The call to describe_stacks should return a list of Stack objects, not a single StackSummary object.
+The values you were using for your coordinates in your for loop were screwed up.
+The Pythonic way is to to use a module if one exists.
+The tukeyhsd of statsmodels doesn't return P value.
+Use WebElement.send_keys method to simulate key typing.
+A dictionary-like object containing all given HTTP GET parameters.
+The key is the 'remote_side' kwarg there.
+The keyword arguments axis, with_mean, with_std are self explanatory, and are shown in their default state.
+The system pip will install into the system site-packages, not Anaconda's site-packages.
+You can leave out the list if you only need an iterator.
+The real solution is to use fixed point math, for example, with Python's decimal module.
+The ''.join() only has to build one new string object.
+The path is an attribute of the cookie.
+The start anchor ( ^ ) matches the beginning of the string (or line in MULTILINE mode).
+The STATICFILES_STORAGE setting dictates which backend the collectstatic function will use.
+The string was automatically escaped by render_to_response.
+A better method would be to save your file in a different format, rather than saving in python syntax.
+The major proposed change is the introduction of a new module level attribute, __package__.
+The repr() of a string is its escaped code, by design.
+You can iterate a set, like a list.
+The edge cases are things like trying to send values or throw exceptions into the subgenerator.
+You can see a list of String Methods and Common Sequence Operations.
+The mysqldb adapter only supports the format and pyformat parameter styles.
+The default random.random() function uses the Mersenne Twister algorithm, which has a period of 2**19937-1.
+The str.strip you mentioned basically takes off any leading or trailing whitespace of the string.
+The.RData file can contain structured objects as well as plain tables so watch out.
+The tuple of 2-tuples works as a dictionary.
+The [2:0:-1] slice returns the third and second columns in reverse order.
+Use the.astype() function to manipulate column dtypes.
+You can actually use a list of tuples in the file param and eliminate the need for Multidict.
+The only thing you need to do is change each line (which is a string) into a tuple or list.
+The function __getattr__ just works with class instance, not class.
+You can see the difference between collections.OrderedDict, dict and SortedDict.
+The - character doesn't have the same representation in all encodings.
+You can just call np.array on the list of 1D arrays.
+The expression inside the parenthesis returns a string, even if foobar() returns a falsy value.
+You can subscribe to our mailing list and ask any Pony-related questions there.
+The documentation you are referring to is the string module documentation.
+The solution is correct, but you need to apply the abs() function to the result, since you don't need the sign.
+The first one makes a list while the second one is a generator expression.
+The first one uses a list comprehension to build a list of all of the float values.
+The pathos fork also has the ability to work directly with multiple argument functions, as you need for class methods.
+The returned list will be used for comparison.
+The return value must be a string object.
+The omitted beginning and ending points default to the start and end of the list.
+A complete listing can be found in the documentation for the typing module.
+Use itertools.izip_longest() to keep zipping until the longest sequence has been exhausted.
+The following works fine, because the name is_number inside check_lines is not resolved until the function is called.
+The report does not show what is the offending module.
+You can use the partial argument in order to allow partial updates.
+The key bit of information you're missing is the way multiple typemaps cooperate to wrap a single function.
+The signal module is what you are looking for.
+A list comprehension produces all values in one go and returns a list object containing them.
+The first argument to defaultdict must be callable.
+You can use a list comprehension to do both of the things you're looking to do.
+The dot file itself is a plain-text format and fairly self-explanatory.
+The best approach is generally to make your exception handlers as specific as possible.
+Python thus produces as list with None values of length len(threads) for you.
+The | operator performs a union on two counters, storing the maximum count for a given key.
+A one-character string used to separate fields.
+The writer.writerow() takes a sequence (a list or tuple), but you are passing in a string instead.
+The functions and object names map directly to what's documented in the vSphere Web Services SDK.
+The u'...' syntax for string literal has been removed in Python 3.
+The remove method takes an object to remove from the list, not an index.
+Use enumerate, list.index returns the index of first match found.
+The new function process_time will not include time elapsed during sleep.
+Python 3.3 adds the venv module, and Python 3.4 adds the ensurepip module.
+The package is available in the PyPI [2].
+The unicodecsv file reads and decodes byte strings for you.
+The df.plot() function returns a matplotlib.axes.AxesSubplot object.
+The string can then be immediately collected.
+You can debug the validation in flask_wtf/csrf.py file, in the validate_csrf() function.
+The / (division) and // (floor division) operators yield the quotient of their arguments.
+You can't use the query method on a table without specifying a specific hash key.
+The return value isn't automatically stored anywhere.
+A simple way is to use the optional parameter for next() which is used if the generator is exhausted (or empty).
+Use your package manager to install them system-wide.
+Python doesn't allow you to append just by assigning to an index out of the range of the list.
+The formatting you're demonstrating is the old style of string interpolation, borrowed from C.
+The rule of thumb is to raise an exception, if error happens, and take appropriate actions.
+The the basic open() + read() calls are not enough to correctly handle the file contents.
+You can turn off the traceback by limiting its depth.
+You can also skip your loop and any building of intermediate lists by using generator comprehension.
+The random.choice method will randomly pick an element of a given sequence.
+A command like name.split() returns a list.
+You can either use sys.argv, or for more easy and sophisticated parsing the argparse standard library.
+The grid, pack, and place methods of every Tkinter widget operate in-place and always return None.
+You can pass a callable as the analyzer argument to get full control over the tokenization, e.g.
+The "" and r"" ways of specifying the string exist only in the source code itself.
+The Pool class in python takes maxtasksperchild as an argument.
+The slice notation is start, end, step.
+The designated end of the slice cannot be reached from the start.
+The: character is invalid on windows filesystem.
+The NVARCHAR column returns a utf-16-le encoded string, which is a pain in the ass.
+Python 3.4 has an object-oriented path module: pathlib.
+A byte string s can begin at any offset because its standard size is 1.
+The regular expressions pointed out by Ned and cheeseinvert don't take into account when the match is inside a string.
+The defaultdict and for loop create a map from name to a list of the value.
+The closest equivalent would be the %q option for string.format.
+The following code reads the input file line at a time, and writes out CSV rows per record as you go along.
+You can try to use lambda to pass arguments.
+You can read their values from keys as KeyProperty metadata.
+The list now looks like [2, 2, 3, 4, 5, 6, 7, 8, 9].
+The important thing to be noted is, the task to be done part should return a valid value (even None is a valid value).
+You can now only get the entity by including its parent key.
+The data in hand is a list of numbers.
+Use autosummary:: in TOC tree in your index.rst file.
+The preferred, fast way to concatenate a sequence of strings is by calling ''.join(sequence).
+Python 3 handles strings a bit different.
+The query string is implicitly passed to any view, without you having to write any special code.
+The dict.get method, will look for the first parameter in the dictionary.
+An XML file must contain enough information in the first line to handle decoding by the parser.
+The key to understanding parameter passing is to stop thinking about "variables".
+The __unicode__() method is called whenever you call unicode() on an object.
+The loop only runs the loop if to_be_removed is empty.
+You can run the tac file in the foreground: twistd -n -y service.tac.
+The simplest approach is to maintain a dictionary with keys as serial numbers and sets to contain the columns.
+The numpy approach will let you know, most likely with a ValueError.
+In Python 3, map returns an iterator, which you can only iterate over once.
+Use the.to_dict() method to turn a Stripe charge object into a python dictionary.
+The else branch of a for loop is always executed unless the loop was broken out of (with a break ).
+The key and value parts are separate expressions.
+The generator expressions you assign to req[key] binds on the key variable.
+The built-in bool function uses the standard truth testing procedure.
+The return is a list of tuples because dictionaries themselves can't be sorted.
+The script can be stopped with the KeyboardInterruption exception if the file is never created.
+In Python 3, input() returns a string.
+A simpler way to compile the module is using a setup.py module.
+The for loop evaluates the iterable expression just once.
+The default restype is c_int, and the default argument conversion from an integer is also c_int.
+The conversion is necessary only if you have a column of strings or objects.
+You can use dict() to copy one dictionary and pass in the extra key.
+The data is created in 228.3 seconds, and saving the file is done in another 2.9 seconds.
+The bytearray type is used when we want mutable strings or arrays of bytes.
+You can get clean and clear solutions by building the appropriate predicates as helper functions.
+The Eclipse uses static analysis of modules by default. flask.ext builds import list dynamically.
+The will not work if you wants to scan string from prompt.
+The problems only occur when you modify the same thing you iterate over.
+The else: suite is only executed if there was no exception raised in the try suite.
+The special method's let you hook into concepts, not so much built-in functions or other things.
+Use list(polygon_array) if you want a list of tuples.
+In Python, strings have to be enclosed with single or double quotes ( ' or " ).
+Python's built-in and itertools module has taken many things from Haskell, but not the until function.
+The first takes every second element in the input list, starting from the second item.
+You can use tuple unpacking combined with collections.defaultdict to make your life easier.
+The fetchall() will return a list of the rows returned from the select.
+The for loop derefences m_l once; rebinding m_l won't change the loop.
+The Python interpreter looks for string literals only.
+The optimize.leastsq method will return the fractional covariance matrix.
+The requirements for the openshift app are specified in the setup.py file.
+Use exception handling and a list comprehension.
+You can use a simple bitmask to generate all possible binary strings of a given length.
+The nested lists are just values in the outer list.
+With import a.b you load both and make both available (under the names a and a.b ).
+The chars argument is a string specifying the set of characters to be removed.
+The print output clearly shows the terminal is interpreting output using Latin-1, and is not using UTF-8.
+The solution when using argparse is to make sure an argument string will not be confused for an option flag.
+You can't get the A,B from a file or user input etc.
+An empty pair of parentheses yields an empty tuple object.
+The loop doesn't print 11. print run() does, because the function run() returns 11.
+The number of paths from A to B must be equal to the number of paths from C to B, plus the number of paths from D to B.
+Use numpy to create the x-coordinate list and y-coordinate list.
+A nice way to deal with temporary files and directories is via a context manager.
+You can then use the view for passing slices between functions and the array for calling NumPy functions.
+You can use the mimetypes module from the standard library to guess the media type from the suffix.
+Use search instead of match. match matches the pattern only at the beginning of the string.
+The problem is not the file type, as you will be pleased to know.
+Use my_dict instead of dict for example.
+You can therefore change the terminal's encoding, independantly from the shell's environment.
+A search for the string "scalar" will lead you to np.ScalarType and np.isscalar.
+In Python 3, the input function always returns a string.
+Use tuple(v) if you want tuples instead of lists.
+The.+ part of your regex will match one or more characters.
+In Python 3.x, map returns an iterator so will be lazy by default.
+The encoding option will force the file to load UTF8.
+The return function if IS_SPHINX_BUILD else wrapped line is what allows SPHINX to pick up the correct signature.
+The loop is O(N), keeping the loop invariant is O(logK) (where K is the heap size), sorting O(KlogK).
+The substring will be in group 1 instead of the whole pattern match which will only be the first character.
+The function should do what you expect if you set P to your cameraMatrix.
+A similar use would be in empty loops.
+An alternative design would be to create an entirely new list without changing the old one.
+The syntax in haskell is a little different from python's list comprehensions.
+The * operator is used in Python to unpack argument lists.
+You can iterate over each section and use.items() to get all key/value pairs of each section.
+The nested list object referenced by A[1] has no connection back to its original container.
+The open() function returns a file object.
+The number of function calls will rise exponentially.
+A dict is to a bicycle as a DataFrame is to a car.
+The dict constructor can work on a list of key/value pairs but not a list of arbitary-length sequences.
+The mode is not for the csv reader, but for the python default file handler.
+The return value of the function is used to compare elements order.
+The third parameter 'Person' can be anything you want.
+The Django development server, however, is an exception.
+The method ax.get_xlim() will simply return the current values of the x-axis (and similarly for the y-axis).
+The Library.zip contains mostly pyc/pyo files, you can decompile them using any decompiler.
+The resulting files will be named *.py.pdf.
+The use of get on the dict object returns a default value when the key is not present.
+You can also return soemthing passing the something value back to the caller.
+The Unicode Consortium defines the Unicode standard.
+You can do so with the following list comprehension.
+You can however filter the sequence during iteration which allows you to skip items.
+The print() function adds whitespace between the arguments, there is nothing to strip there.
+The closest equivalent is a range based for-loop.
+You can use the heapq module, in particular its nlargest or nsmallest functions.
+The enumerate() function adds a counter to an iterable.
+The stream is positioned at the end of the file.
+A file object is its own iterator, for example iter(f) returns f (unless f is closed).
+The fdel function should not be called directly.
+The resource files belong in the project directory (i.e. outside the package).
+A subtle point: The keys returned by sliceDef.keys() are not guaranteed to be in any particular order.
+In Python versions before 3.3, __loader__ was not set by the built-in import machinery.
+An import is just a command like any other (assignment, a function call, def, class ).
+The most important attributes are packages, include_package_data, and package_data..
+An alternative would be to write a function to be passed to sys.settrace.
+The -d argument is to enable debug logging, which prints which file change triggered the run.
+The returned proxy works exactly like the original objects, except for some exceptions described in the documentation.
+You can make a list either by putting something in square brackets or by calling the list function.
+The easiest way to do so is to use import my_module syntax, rather than from my_module import some_object.
+You can also just make a new dictionary with a dictionary comprehension.
+A function should be a self-contained unit of code 1.
+Python names are merely references to actual objects, as are dictionaries, lists, attributes, etc.
+The character 'o' is missing because you have told re.findall to match groups, and each group has a single character.
+Python is trying to call the j+2 with j+1 as argument.
+A solution can be stored them at module level or create a class merely to contain the constants.
+You can supply either a string of characters to check or an iterable of strings, e.g.
+The default implementation calls boundingRect() to return a simple rectangular shape...
+You can try multiplying each element in a loop.
+The sqlite3 module stores sql tables in a single file, without requiring a webserver for access like mySQL.
+The distinction is important when you try to run a package.
+The rc parameters for font can be used to set a single default font.
+The easy_install command is provided by the setuptools package.
+The sets of tuples below contain everything I need to create SAS if/then/else statements.
+The os.path.dirname(path) function returns the head of the path.
+The structure means the main GUI (set up later) can access each function easily.
+The proper name for [...] is list, not array.
+A CSV file is IMHO very cold, just a bunch of data dumped to a file.
+The expensive part in finding out the minimum or maximum value in a list is not the comparison.
+In Python 3, the list comprehension creates its own variable in a private scope.
+The islice(song_iter, 3, 4) iterable will skip 3 elements, then return the 4th, then be done.
+You can have multiple inlines, hence the plural, and you need to have them inside a list or a tuple.
+Python versions before 2.7 and 3.1 used suboptimal bytecode to produce a list comprehension.
+Python's sys module is implemented in Python/sysmodule.c file.
+In Python 3.x, print is a function.
+The ^ character matches the start of the string.
+The problem lies in the encoding of user_data, which is already performed by boto.
+The string for data-series is "JSON" (JavaScript Object Notation) data.
+Use a dict comprehension and sum, since the values are strings you'll have to convert them to floats first using float.
+A dictionary is a hash table, internally ordered exclusively for search speed.
+With the + operator, for every concatenation a new string is made.
+Python doesn't keep track of what names a module was imported by.
+The example just puts strings on the queue, I'd use collections.namedtuples for more structured messages.
+You can get other behaviours by passing different strings as arguments.
+Python's functions are indeed objects (instances of the function class).
+The simple answer is you have not imported the request global object from the flask package.
+You can't pass r.raw to ZipFile() directly because the former is a non-seekable file.
+Python isn't somehow keeping track of the original string.
+The search for foo starts at the next class after the first argument given.
+Python lists are mutable, and when you change them, you change them wherever you have a pointer to them.
+The package also includes a high-level interface to emulate most of the.NET FileSystemWatcher API.
+You can get the error if you copy-paste the string into your Python source code as a string literal.
+Python doesn't have a 'single character' type.
+The list comprehension approach is more canonical in Python though...
+In Python 3, print is a function and therefore can be used in the ternary operator.
+The concept of replacement also applies to dictionaries.
+You can change the array's shape parameter, leading to in-place shape change.
+The enumerate() function adds indices to the loop.
+Use the chain object in a for loop instead.
+With global a, you can modify variables in the function.
+Python doesn't execute line by line in the function code you submitted.
+You can supply a key function to list.sort to determine what value each item in your list should be mapped to for sorting.
+Use list.sort() when you want to mutate the list, sorted() when you want a new sorted object back.
+The [:] will keep the list object the same.
+The RSA module support writing out the public key in OpenSSH format now (possibly didn't at the time of earlier posts).
+The problem is in your merge function.
+A list of bricks is indexable; however, a brick itself is not unless you implement the methods above.
+The zipfile module in python has no support for adding a directory with file so you need to add the files one by one.
+You can use list comprehension to create the new list directly from the source.
+The unary ~ (invert) operator yields the bitwise inversion of its plain or long integer argument.
+The first argument to Value is *typecode_or_type*.
+A view function should return an HTTP response object.
+The solution is use either a named file or don't write interactive programs in vim.
+A generator function is a function, not a class.
+The code will return True if all characters in string s can be found in string d.
+The final steps are to re-generate your GUI module using pyside-uic and generate the resources module using pyside-rcc.
+You can remove the GridStep and GridClear functions entirely then.
+The iso_c_binding module in Fortran only matches the C naming convention.
+The (df1-df2).dropna() call creates a slice of the dataframe.
+The codecs module provides a function to open files with automatic Unicode encoding/decoding, among other things.
+The replacement fields within the *format_spec* are substituted before the *format_spec* string is interpreted.
+The intermediate step where Python stores 10000 in the list is only for the string which is compiled.
+The actual underlying functions are really still different objects.
+In Python 3, zip returns an iterator 1.
+You can do so by equating two gaussian functions and solve for x.
+The keys of the dictionary options are strings.
+The order of parameter of Digest::HMAC.hexdigest is different from python version.
+A bytes sequence is an immutable sequence of integers (like a tuple of numbers).
+The packages in the virtualenv definitely won't be in the system path.
+Use list.sort (inplace sorting) or sorted (returns new sorted list) and pass key function.
+The new Python 3.4 enum module for example, uses an OrderedDict() instance instead, to preserve attribute ordering.
+The solution is to uninstall all sass-related packages apart from django-libsass and libsass.
+The sortedcontainers module is pure-Python and fast (as in fast-as-C implementations like blist and rbtree).
+Use a different character not on the reserved character list.
+The mode argument specifies how to handle the edges.
+You can set up text regions to determine which numbers/letters/characters are drawn in which region.
+The import as syntax was introduced in PEP 221 and is well documented there.
+The previous entry was super useful to me, but the for loop slowed my application down.
+The problem is unused arguments passed to compiler.
+The timeout parameter specifies how long the connection should wait for the lock to go away until raising an exception.
+A look into the Matplotlib sample matplotlibrc file might also help to find the right parameters to adjust.
+The error contains the repr of the dict.
+The advice in the documentation is to explicitly concatenate the various option lists.
+The main thing to explain would be the argument to --cover-package.
+The line for i in range(step, len(string)): starts the index counter from the current indent / step level.
+You can also create lists of lists with list and generator comprehensions.
+The second set of read will not be able to read anything unless you do fh.seek(0) in between the two for loops.
+The for line in file_input: loop will read the file line by line.
+The order of your parameters is not correct.
+You can use the *args arguments to save many arrays in only one temp file.
+The SortedDict type also supports indexed location lookups and deletion which isn't possible with the built-in dict type.
+Python decorators are functions returning functions ( or classes ).
+The min() function takes a key argument already, no need for a list comprehension.
+Use the AUTH_USER_MODEL setting to reference the User model at import time.
+Use a list comprehension or similar device to split the lines on whitespace.
+You can use zip(*data) to transpose a sequence of sequences.
+The second argument of the split() method is the limit.
+Python implicitly concatenates nearby strings with nothing in between them.
+The first argument to python should be the script name.
+The jobs command will list paused tasks or tasks running in background.
+Use the decimal module instead if you need more precision.
+The error is in your __init__ arguments.
+The low byte of argc indicates the number of positional parameters, the high byte the number of keyword parameters.
+The last parameter in a slice is the step value.
+The function foo has been defined, but not run.
+The main change is to move all random number generation out of the main loop.
+The.+? is matching the first comma, because. matches any character, including a comma.
+The keys of the dictionaries should be hashble.
+A Hash can have a default value or a default Proc (which is called when a key is absent).
+In Python 3 dict.keys() does not return a list object, but a dictionary view object.
+The traceback says you have a SyntaxError on line 4, therefore print firstArg isn't valid Python.
+The problem comes when you have a lot of parameters (a lot of independent variables) but not too much data.
+The mysql.connector has been updated and now you can use the following option to enable a dictionary cursor.
+The (pseudo-)randomness is controlled by the random_state constructor parameter.
+The second import line imports Form from wtforms, replacing the import from flask_wtf.
+The is no equivalent append for int s, since int s cannot be modified but list s can.
+The dictionary you're currently specifying is invalid, since the keys of your dictionaries cannot be list objects.
+You can then convert the set back to a list and get the desired result.
+The (?i) in the regex pattern tells the re module to ignore case.
+You can replace dict with OrderedDict if you want to preserve the column orders.
+Python installs its own SIGINT handler in order to raise KeyboardInterrupt exceptions.
+In Python 3, the module is called builtins instead.
+The instance so created by calling the constructor is used as the exception value.
+You can do what you want with a simple list comprehension.
+The problem in your code is the range function.
+You can use the request.access_route attribute only if you define a list of trusted proxies.
+The python-dev package is required for compilation of Python extensions written in C or C++, like psycopg2.
+A sorted dict sorts the elements by key and maintains a mapping to a value.
+The function f is totally differentiable at x1,..., xn if and only if x1,..., xn are pairwise distinct.
+The first entry of sys.path is usually empty and stands for the current directory.
+The following example demonstrates how to use the send and recv functions in mpi4py with ranks and tags.
+You can then get the list back as out.items(), which gives me.
+The for will (basically) delegate to a function call on the iterator's __iter__.
+You can use enumerate function to get an iterator which gives the current index and the item.
+The %constant directive tells SWIG to wrap f as a function pointer, not a function.
+The lambda function holds a reference to the variable y, because of the closure property.
+The logging module was developed by a separate company in 2001, and was heavily based on Log4j.
+The operations: bisecting, indexing, and key lookup are all very fast within the sortedcontainers module.
+The whole module is pure-Python and has benchmark graphs to backup the performance claims (fast-as-C implementations).
+The module is pure-Python and fast-as-C implementations with 100% test coverage and hours of stress.
+With a SortedDict you can bisect for the desired key.
+The SortedList type will automatically maintain the tuples in order by number and allow for fast searching.
+The sorted list type has a bisect function you can use.
+You can use bson.son.SON or OrderedDict to store ordered dict.
+The tr function is used for translating user-visible strings.
+You can os.walk and then look at each of the files checking the "type" with os.path.isfile.
+The copy list is a new list object containing a reference to the same dictionary contained in sample.
+The PHP code posts a field named file, your Python code posts a field named bulk_test2.mov.
+The 'upgrade' option tries to solve all dependencies in installed packages.
+The error is somewhat self-explanatory: tzinfo argument requires a tzinfo object rather than a string.
+In Python 3, the allowed open modes are more restricted (essentially, only valid strings are permitted).
+An alternative approach is to use plt.bar which takes in a list of colors.
+In Python 3.2 and higher, you can use list. to reset the list location.
+You can use the collections.OrderedDict if you want to use a sorted dictionary.
+The sql module now uses sqlalchemy to support different database flavors.
+You can use map and a list comprehension to apply your function to all of your elements.
+Use the key parameter in the sorted function.
+The body attribute contains the raw body of the request as a string.
+A character class [...] stands for "one character, any of the ones included inside the character class".
+You can use urlencode() which is the way for url-encode strings in Python.
+The ChoiceField expect a list of choices.
+In Python, when you split your code base across modules, you qualify the name of the import with the name of the module.
+A negative index is treated as counting from the end of the list (or string, or tuple) instead of the start.
+The % operator on a string is used for string formatting operations.
+The new list doesn't have to be the same length, or can be empty.
+You can eliminate the inner loop by using '*' to make r spaces, which cleans things up a lot.
+The base value tells python to interpret the given string to be a value of a different base.
+You can remove None in output list, by adding explicit if-check as: [d['price'] for d in data if 'price' in d].
+A special case is a loop, which adds two to the degree.
+The iterable's items are normally numbers, and the start value is not allowed to be a string.
+Python should now find and load the modules you specified.
+You can handle string formatting in different ways with various pros and cons.
+You can find full list with description in Configuration docs: CELERY_RESULT_BACKEND.
+The telnet interface probably wants to work in bytes not Unicode.
+A string is a sequence of individual characters otherwise, and direct iteration will indeed just loop over each character.
+You can provide an iterable by implementing a __iter__ method, which should return an iterator.
+You can use Regular Expression to capture the string surrounded by ' s and then add the HTML tags around them.
+The IPython API has functions for reading and writing notebook files.
+Use continue when you get bad input, and break out of the loop when you're satisfied.
+The creation of a tuple using the built-in tuple() function is done in the function PySequence_Tuple.
+The response from the docker API is an uncompressed tar file.
+The TimeoutExpired exception will be re-raised after the child process has terminated.
+A dictionary can't contain a list as a key, since dictionaries are based on a hash table and lists can't be hashed.
+The first import doesn't even have to mention the login view.
+The IUS Community provides some up-to-date packages for RHEL & CentOS.
+You can use info locals to list all the local variables.
+A list will be adapted by psycopg2 to an array.
+Python simply contains many different ways to remove items from a list.
+The triple quotes ''' or """ are just different ways of representing strings.
+With the string you are building a unicode string.
+The thing the tuple contains is empty.
+The answers there show you how to divide a list into sublists of consecutive integers.
+The first step is to select the parts of your string you're interested in.
+The additional for gv in (list(g),) loop assigns a list to gv containing all elements from the g group.
+You can use a single textFile call to read multiple files.
+A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators.
+An IEnumerable is an object capable of creating an iterator (an IEnumerator ).
+A non empty string in python is always True, otherwise False.
+The logging module is intended to be thread-safe without any special work needing to be done by its clients.
+Use string formatting to get the desired number of decimal places.
+The ** prefix before d will "unpack" the dictionary, passing each key/value pair as a keyword argument to the function.
+Python 3 introduces a "random seed" to the hashing of string keys as something of a security measure.
+The former use string's format method to create a string.
+The value is returned instead of None if there's no such key.
+The reason is simple: The result will always be a string, and the separator will always be a string.
+The win32com.client package contains a number of modules to provide access to automation objects.
+The data is represented as strings, not numbers.
+You can use any arbitrary function or built-in convenience functions given as strings, included 'count' and 'sum' etc.
+The PyPi package (which is downloaded using pip and easy_install) is horribly outdated (from 2012).
+The problem is the whole file is handled as a string, and $ matches only the end of the string.
+The main difference if simply changing np.str to |S15 (a 15-byte string).
+The exception is caused by a byte string value.
+The pathlib module supports / for concatenating path objects.
+The file pointer is placed at the beginning of the file.
+The idea is to, first, read the header into the list.
+You can check which file is getting loaded as the io module by printing print(io).
+The best solution is to use forward slashes for paths - Python will do the correct thing, even under Windows.
+Use random.shuffle to shuffle the list (in-place).
+The purpose of the repr is to provide an unambiguous string representation for each object.
+The second argument in execute takes a list/tuple of strings, not a string.
+The first version leaves the original list unaffected; a new list object is returned.
+The second argument to UploadSet() takes a sequence of extensions.
+The except clause(s) specify one or more exception handlers.
+You can see django's code in django/core/files/temp.py.
+The real enumerate function returns an iterator, but not an actual generator.
+The elements are separated by SP characters.
+The import error is due to a circular import.
+The pydub quickstart documentation only shows how to create AudioSegments from files.
+A string literal which appears as the first expression in a class, function or module.
+The fastest method I can find in Python is to use slicing to compare each channel.
+You can use --upgrade with the pip command to upgrade Python packages.
+The article you cite only applies to import.
+The re module is much more efficient than doing Python loops and tests "by hand".
+The keepdims parameter obviously does not make sense for lists or generators.
+The.sublime-build file needs to be valid JSON, which requires strings be wrapped in double quotes, not single.
+The get_host() method will return the current domain without a path appended.
+Python strings must be enclosed in single quotes ( 'a' ), double quotes ( "a" ) or triple quotes ( """a""" or '''a''' ).
+Use.values to get a numpy.array and then.tolist() to get a list.
+The module has to be compiled and linked with libeng.
+You can add additional key-value pairs as keyword arguments.
+The size of my text file is 2.1 GB.
+An arbitrary primary key should be specified.
+The docs were probably written with Python 3 in mind, where all strings are Unicode and!s always calls str.
+Use the subprocess module if you want to retrieve the exit code more reliably and easily.
+The redirection overwrites the previous contents of the file.
+You can simplify Joe Kington's code using the ax parameter of figure.colorbar() with a list of axes.
+The for loop in Python, will pick each items on every iteration.
+You can iterate and get the one with canvas.children.
+The request object has an attribute GET, a QueryDict instance, which is a dictionary-like object.
+The dictionary could be create online, so previous knowledge of all the labels is not necessary.
+The write mode truncates the contents of the file.
+You can run any module with coverage to see the code usage.
+Python is able to detect circular dependencies and prevent the infinite loop of imports.
+The result from the csv reader is a list, lower only works on strings.
+The leading -- characters should not be included in the option name.
+The right hand side is evaluated into some object (an integer, string,...).
+The aim is just to have a longer iteration so the time hides overhead.
+The resulting module object is then stored in sys.modules and re-used for subsequent imports.
+You can replace the config module imported by whatever module you're actually trying to test.
+The Format String Syntax supports only integers or valid Python identifiers as keys.
+Python 3 decodes text files when reading.
+Python containers such as list or dict also use repr() to show their contents, when printed.
+In Python, strings are iterable, just like lists.
+You can always turn the keys back into lists if you have to.
+The author of requests has also created a gevent -integration package: grequests.
+The elements of a python list are references to other objects.
+You can loop over the geomerties with OGR and for each one call gdalwarp with the appropriate parameters.
+The file location issue is a more complicated one.
+A python dictionary on the other hand, uses a hash table to test for membership.
+You can instead use the mysqlclient package as a drop-in replacement for MySQL-python.
+The method count is implemented by strings or lists.
+Use double quotes for the statement passed to the timeit module.
+The function reduce(func, seq) continually applies the function func() to the sequence seq.
+You can install a package from a tarball or a folder, on the web or your computer.
+The intention is to speed up runtime execution of the function at the cost of slower definiton (read: import) time.
+The value parameter is just the key of your hash object entry.
+The absolute path to the directory where collectstatic will collect static files for deployment.
+You can then import the module and refer to module.VAR anytime you need the setting.
+The reverse direction requires at least a list of classes for which to call a _fromjson method.
+An empty dict is falsy, so you will get a new empty dict on subsequent recursive calls.
+The backslash disables the "magic" behavior of special characters like *.
+In Python 3, the z_set function (3.4.1) does not automatically convert str (now Unicode) to bytes.
+The mock_calls list is checked for the calls.
+The filter pattern operators ([]) have a higher precedence than the path operators (/ and //).
+The exception message actually offers you a hint.
+The b prefix signifies a bytes string literal.
+The python-espeak package is available in Debian, Ubuntu, Redhat, and other Linux distributions.
+You can use the list.sort to avoid creating new lists with sorted and sort the lists in place.
+The "from __main__ import..." lets you use code from your main module inside the artificial environment created by timeit.
+You can then later switch to another stopword list or add an operator.
+You can either iterate over them or, if you know you only have one dataFrame, you can use find instead.
+The additional comma is needed to distinguish a tuple with one element from an expression.
+The nested loops on Python are just not so easy to see.
+You can't iterate over None, hence the error.
+The dict.update method works in-place and therefore always returns None.
+Use python -m pydoc os instead of pydoc directly, no need to add to path variable.
+You can monkey-patch ssl.wrap_socket() in the ssl module by overriding the ssl_version keyword parameter.
+The index function will throw a ValueError if either '83' or '75' is not found.
+With your code you will always get a string full of k.
+An example with time fixed effects using pandas' PanelOLS (which is in the plm module).
+The PostgreSQL 9.3 packages require Python 27.
+Python doesn't and cannot support arbitrary C files as modules.
+The length of the "filtered" list is essentially the number of matches.
+Python can then perhaps reuse the same memory location for a new string object, if you re-run the same code.
+Use a module global to store data you only want to load once.
+The exception may be thrown several levels deep.
+The file is in your operating system's disk cache, which is stored in RAM.
+The config file /etc/myapp.conf/foo.conf will be used.
+The __init__.py in a package serves much the same function.
+The loop then retrieves the odd groups (the integers); the next(grouped) call in the loop body retrieves the even groups.
+The ImportError is the result of Bloomberg not being able to find the "blpapi3_32.dll" DLL file.
+You can use numpy.argsort to get a list with the sorted indices of your array.
+The outer loop will run three times because list_of_dicts has three items.
+You can then decode pdf size from initial pdf file bytes and decide to continue or not.
+You can call get() with the path to Chrome.
+The delay in random file access is mostly due to the physical rotation of the disks (SSD is another story).
+The MarkupSafe package uses syntax only supported by Python 3.3 and up.
+You can use else blocks with loop statements.
+You can make your own exception by extending the base Exception class.
+The specific handling of strings is necessary as even an empty string can be iterated over, causing endless recursion.
+The updated code is set up to exit safely after 3 seconds, by using a while loop to join() each thread.
+The pyc file can be distributed in place of the py file.
+The expression on the right of the in operator in a for-loop header is evaluated just once, before looping commences.
+Python packages should also have short, all-lowercase names, although the use of underscores is discouraged.
+The preferred way is to use the subprocessing module.
+The main problem is the white space in your file.
+The solution is to include time module when building the pypy-c sandbox.
+The other answers already explain well what lambda and sorted 's key parameter do.
+The value of greatest is never updated inside the for-loop of function max.
+You can use pyperclip - cross-platform clipboard module.
+The resulting SVG file contains only one extra element, as savefig really wants to save the figure background.
+You can apply a specific function to a specific column by passing in a dict.
+The second loop version just iterating over rows, do pearsonr manually.
+The distutils package provides support for building and installing additional modules into a Python installation.
+An alternative is to raise an exception from the SIGTERM handler, which will be propagated up the stack.
+The fastest I've found is using the list comprehension, but then replace the contents of the original list.
+A for loop is executed as interpreted Python bytecode. sum() loops entirely in C code.
+The loop then adds a pre-existing item to the final list output.
+The for loop will iterate any iterable with the next protocol.
+The shell hands the file to flask/bin/python.
+The csv module will always write bytestrings, not Unicode.
+You can also use the full path /usr/bin/python in bash to use the default python interpreter.
+The iterator stops when the shortest input iterable is exhausted.
+With pytest you can add a conftest.py file(s) to your project.
+You can use an iterator and the consume recipe from itertools.
+Python never goes back to load the iterator again.
+An iterator is created for the result of the expression_list.
+The file you were using won't be closed until the generator is garbage-collected.
+The matching files remain in your git repository, but are deleted from the slug after you push to Heroku.
+The first value in the tuple is used as the conventional code key.
+Python's re module only allows fixed-length strings using look-behinds.
+You can also use the codecs module.
+Use itertools.izip_longest to provide a fill value and continue to the end of the longer file.
+The mock_open() object does indeed not implement iteration.
+The second for-loop however just repeatedly reassigns the name str1 to str.replace(x, " ").
+You can use your_dict.get(key, "default value") instead of directly referencing a key.
+The second module won't be able to see the cookies set by the first module.
+Python-level loops are slow, and so you lose a lot of the benefits you get from using numpy in the first place.
+You can make a directory "fonts" in a root of your project and put your fonts (sans_serif.ttf) file there.
+The code uses direct pointers to cl_dict (custom Python classes) and tp_dict to reference class and type dictionaries.
+The blobstore expects a field with the file.
+The return value of compute_something() can be referenced directly in the list comprehension.
+You can use os.path.getsize(filename) to get the size of your target file.
+The break statement will exit the loop immediately.
+You can catch the OperationalError exception and reconnect.
+A for loop can have an else branch which gets executed after the loop has performed all scheduled iterations.
+You can also pass verify the path to a CA_BUNDLE file for private certs.
+The story is there in your traceback.
+The fdopen() function associates a stream with the existing file descriptor, fd.
+Use os.path.basename() instead and not worry about the details.
+The exception thrown by do_something_to_apologize() will be caught.
+The original exception is mentioned in the traceback but is subsumed in the later one and can no longer be caught.
+A "python_interpreter" project settings key is also used by plugins like Anaconda.
+You can then create your desired dictionary based on the AST structure.
+You can see specifically which mysql error was caught by coercing the exception to a string using str.
+The asyncio event loop is single threaded, so nothing running on the event loop will run in parallel.
+The defaultdict() stores a new count() value each time a key has not yet been seen, producing a unique counter per string.
+The read method reads exactly as many bytes/characters as you ask for, or fewer if the file is too small.
+The exception is caused by the contents of your data dictionary, at least one of the keys or values is not UTF-8 encoded.
+The iterator object simply produces the values in reverse, no list object is produced.
+The function returns a list of caught Invalid exceptions from your validators.
+The boundary you see is because you are mapping a closed surface (S2) to an open one (R2).
+The default encoding for JSON data is UTF-8.
+Use traceback.extract_stack() if you want convenient access to module and function names and line numbers.
+The answer is to, at least within memory, have a standard encoding for all strings.
+Python converts 'tenantB', 'tenantC' as a tuple and looks for tuple as a key for the dict.
+The event loop is single-threaded; whenever execution is inside one of your functions, the event loop is blocked.
+The key will be group 1 and the value will be group 2 or 3.
+In Python 3, map() returns an iterator so you need a small modification, list(map(type, a)).count(int).
+The prompts dictionary allows users to control interactive prompts.
+A foreign key relationship is generally known as a many-to-one relationship.
+The innermost dictionary is then used to set the value with the last element of the path as the key.
+The dict of tuple s is both somewhat complicated as well as very powerful.
+Use os.path.basename() to extract the base filename from a path.
+The outer project directory is not usually on the Python path.
+You can create a new syntax definition via Settings / Editor / File and Code Templates.
+Python doesn't have any exact equivalent to a.jar file.
+A file object is its own iterator, [..].
+The best option is to use the posixpath module when working with the path component of URLs.
+Use pygame.KEYDOWN and pygame.KEYUP to detect if a key is physically pressed down or released.
+The answer to "how do I sort a list of objects by..." is always "use the key argument to sort ".
+The object itself never equals None, or any other False equivalent - so your loop never ends.
+The Python 3 io library, which provides you with the file object from an open() call, gives you a buffered file object.
+The package's documentation also contains the key mappings, which you can easily customize.
+You can also use other infinite iterator like itertools.cycle or itertools.repeat.
+You can modify the keys in the dictionary if you want to have Total LOS....
+You can't have duplicate keys in a dict, so of course you end up with just one item.
+Use list comprehension and the in operator.
+You can use a list comprehension with str.join and zip.
+A dictionary comprehension can only ever produce one key-value pair per iteration.
+The else clause only happens if the loop exits without hitting a break statement.
+In Python 3, map() returns an iterator, not a list.
+Use a key function to slice each string; sorting then takes place using the values produced by the key.
+You can iterate through the tree directly to get the child subtrees.
+The key part is sending the available choices as JSON, and dynamically changing the available options.
+Use a while loop which keeps taking input until the user enters the correct input.
+The outer most val for sublist in... loop flattens the list to be one dimensional.
+The event loop by itself does not alter anything.
+The values yielded by the iterator are not in sorted order.
+You can leverage a Hash (aka Dictionary in Python) data structure.
+You can also use indvidual variables instead of dictionary and do the same.
+The DoesNotExist exception is raised when an object is not found for the given parameters of a query.
+You can use sorted with the key parameter.
+A dictionary mapping each component of the violinplot to a list of the corresponding collection instances created.
+The error you see there is a dict comprehension, added in Python 3 & 2.7+.
+Python already had the lists, dictionaries and objects. numpy adds the arrays.
+In Python 3 dict.keys() returns an iteratable but not indexable object.
+The intersection is only empty if no keys are shared between the needed_keys set and the dictionary.
+Use then SCAN command to loop over your key set.
+A StopIteration exception is also raised if control flows off the end of the generator without an explict return.
+A try statement may have more than one except clause, to specify handlers for different exceptions.
+You can of course define any exceptions you want.
+The problem was I was catching incorrect exception.
+With map_async the exception will be raised if you call async_result.get() - no iteration required.
+A connection time out raises an OperationalError exception.
+The only exception I can think of is the smallest of code snipplets.
+The __exit__ method is called as normal if the context manager is broken by an exception.
+With exception handling when element is not present in the list.
+You can read more about handing errors and exceptions in the official documentation on "defining clean-up actions".
+With either formulation, you'll get a StopIteration exception if the search term is not found.
+The else statement runs if there are no exceptions and if not interrupted by a return, continue, or break statement.
+The default configuration for Python is to use the default warning configuration (with a few specific exceptions ).
+The solution would be using a list comprehension, which does propagate the StopIteration exception.
+An exception is when a has an integer type with less precision than the default platform integer.
+The right solution in my opinion is to explicitly fail the test if the exception is raised.
+A literal could only produce a SyntaxError exception, while at runtime you can throw other exceptions.
+The modulo operator will also throw TypeError: unsupported operand type(s) for most non-ints.
+You can learn more about exceptions and SystemExit in the docs.
+Use try / except blocks to catch the KeyError exception.
+The only significant difference is what happens when an exception is raised from within the iterable.
+The attribute is there, but in is still going to raise a TypeError.
+Python 3.x will resist the temptation to do something silly and instead just raise a TypeError.
+Python throws an exception by default when unsupported characters are output.
+The with statement only manages exceptions in step 3.
+With asyncio.gather, any exception thrown by a task inside tasks will be re-raised.
+You can also simply except on redis.exceptions.RedisError which is the base class of all redis exceptions.
+The except block should only catch exceptions you are prepared to handle.
+A try/except block is extremely efficient if no exceptions are raised.
+A non-zero return value of the C close() function leads to Python raising an IOError exception.
+The exception I get for a missing filename is 'OSError', not 'IOError'.
+The task may also return a value or raise a different exception.
+In Python 3, the information is cleared when you exit the exception handler.
+The else clause of a try statement is only run if no exception occurs.
+The StopIteration exception shows the generator is done and cannot produce more values.
+A single exception are Python UDFs which significantly less efficient than its Scala equivalents.
+A finally clause is always executed before leaving the try statement, whether an exception has occurred or not.
+Use the response contained within the exception.
+With the try/error you can generally catch every exception and handle the most important errors individually.
+The function wikipedia.page will raise a wikipedia.exceptions.PageError if the page doesn't exist.
+The exceptions doesn't have anything todo with the filename you provide.
+Python is simply forwarding the error the OS gives you as an exception.
+The context manager's __exit__ method will check the exception information passed in.
+A Task is done when the coroutine returns a value, raises an exception or gets cancelled.
+The interpreter maintains a large number of dictionaries, including one attached to each object (with a few exceptions).
+You can't check the value in the same line as you catch the exception.
+A notable exception is the pop() function which returns the value being popped.
+A ProgrammingError exception is raised, and the connection must be rolled back if another query is to be attempted.
+The MemoryError can be caught, is a subclass of Exception.
+The only difference is a single STORE_FAST to store the exception value (in case of a match).
+The exception StopIteration is raised only when the generator has nothing to produce any more.
+The proper way would be to catch the exception outside of the function.
+The Python type created with class_ has an incompatible layout with Python exceptions types.
+The resulting exception if you try to use the nonexistent method is an AttributeError.
+The dictionary lookup is good, but don't return a sentinel value to signal an error; just raise an appropriate exception.
+A ValueError will be raised if you attempt to obtain a sample larger than your list (or more generally, population) size.
+Python 3 has a beautiful syntactic enhancement on exceptions handling.
+The title of the page you linked to says "openpyxl.utils.exceptions".
+The first variant will catch the more specific exception, and raise a useless Exception with no error message.
+The exception is thrown after you caught an exception.
+The actual implementation will be in C, which is why you get the error without a deeper traceback.

@@ -1,0 +1,279 @@
+{
+  "collection": "IT Support",
+  "split": "tuning",
+  "status": "draft",
+  "page_numbering": "One-based PDF file pages",
+  "review_note": "Verify every answer and source page from the supplied guides. Confirm missing facts across the whole collection. Draft cases are not benchmark inputs.",
+  "cases": [
+    {
+      "id": "IT-T01",
+      "category": "VPN",
+      "question": "Which VPN client should I install on a managed work laptop?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T02",
+      "category": "VPN",
+      "question": "What do I need before I can connect to the company VPN for the first time?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T03",
+      "category": "VPN",
+      "question": "What should I check first if the VPN client times out while connecting?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T04",
+      "category": "VPN",
+      "question": "The VPN says connected, but my shared drive is unavailable. What checks should I run before escalating?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T05",
+      "category": "VPN",
+      "question": "How many simultaneous VPN sessions can one employee account use?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T06",
+      "category": "VPN",
+      "question": "What percentage of the helpdesk's VPN tickets were caused by home routers last quarter?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T07",
+      "category": "Password reset",
+      "question": "Where should I start a self-service password reset for my work account?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T08",
+      "category": "Password reset",
+      "question": "What should I do if I forgot my password and cannot use my registered MFA device?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T09",
+      "category": "Password reset",
+      "question": "What does the guide say to do when my account is locked after too many sign-in attempts?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T10",
+      "category": "Password reset",
+      "question": "How do I refresh a saved work sign-in after my password changes?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T11",
+      "category": "Password reset",
+      "question": "How many password reset tickets did the helpdesk close last month?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T12",
+      "category": "Password reset",
+      "question": "How many days is a password reset request kept in the audit log?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T13",
+      "category": "Printer",
+      "question": "How do I add an office printer to a managed laptop?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T14",
+      "category": "Printer",
+      "question": "Which printer queue should I select when setting up office printing?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T15",
+      "category": "Printer",
+      "question": "What should I check if a print job remains stuck in the queue?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T16",
+      "category": "Printer",
+      "question": "What should I include in a support ticket if the printer remains offline after the documented checks?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T17",
+      "category": "Printer",
+      "question": "What steps does the guide list for collecting a job from a secure-release printer?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T18",
+      "category": "Printer",
+      "question": "What is the exact serial number of the backup printer in the stockroom?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T19",
+      "category": "Wi-Fi",
+      "question": "Which wireless network should staff use on managed work laptops?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T20",
+      "category": "Wi-Fi",
+      "question": "How do I reconnect to the staff Wi-Fi after forgetting the network?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T21",
+      "category": "Wi-Fi",
+      "question": "My laptop connects to Wi-Fi but cannot load pages. What should I check next?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T22",
+      "category": "Wi-Fi",
+      "question": "What should a visitor do to connect to guest Wi-Fi?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T23",
+      "category": "Wi-Fi",
+      "question": "What information should I collect before reporting repeated Wi-Fi disconnections?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T24",
+      "category": "Wi-Fi",
+      "question": "What was the median Wi-Fi throughput on the second floor last Tuesday?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T25",
+      "category": "Software installation",
+      "question": "Where should I look for approved software to install on my work laptop?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T26",
+      "category": "Software installation",
+      "question": "What should I do if the application I need is not listed in the company software catalog?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T27",
+      "category": "Software installation",
+      "question": "Which approvals are required before installing software that needs a paid license?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T28",
+      "category": "Software installation",
+      "question": "What should I try when an approved software installation fails with a permissions error?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T29",
+      "category": "Software installation",
+      "question": "What information should I include when reporting a failed installation to the helpdesk?",
+      "target": "documented_answer_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    },
+    {
+      "id": "IT-T30",
+      "category": "Software installation",
+      "question": "How much did the company spend on desktop software licenses last financial year?",
+      "target": "missing_fact_candidate",
+      "expected_answer": null,
+      "sources": [],
+      "status": "awaiting_source_review"
+    }
+  ]
+}

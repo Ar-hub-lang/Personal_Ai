@@ -1,0 +1,190 @@
+A Python list can hold several values.
+Review your notes after a study session.A Python function can accept arguments.
+A Python function can print a result.
+A Python function can call another function.
+A Python function can have default parameters.
+A Python function begins with the def keyword.
+The return keyword sends a result back to the caller.
+A parameter is a name in a function definition.
+An argument is a value passed to a function.
+A local variable belongs to the function that defines it.
+Python uses indentation to group statements in a function.
+A variable can refer to an integer or a string.
+A string stores a sequence of characters.
+A string can be written with single or double quotes.
+The len function counts the characters in a string.
+An f-string can insert a variable into a message.
+A Boolean value is either True or False.
+The equals operator checks whether two values are equal.
+A single equals sign assigns a value to a variable.
+An if statement runs its body when a condition is true.
+An else clause handles the remaining case.
+A for loop can visit each item in a list.
+A while loop can run until a condition becomes false.
+The break keyword exits the nearest loop.
+The continue keyword skips to the next loop iteration.
+The range function can provide a sequence of integers.
+A Python list can contain repeated items.
+The append method adds one item to the end of a list.
+The first item in a list has index zero.
+A slice can select part of a list.
+The len function counts the items in a list.
+A tuple groups values in a fixed order.
+A set keeps unique elements.
+A dictionary maps keys to values.
+A dictionary key can be a string.
+The keys method gives access to the keys in a dictionary.
+The get method can use a default when a key is missing.
+The print function displays a message in the terminal.
+The input function reads a line of text.
+The int function can convert a numeric string to an integer.
+The str function creates a string representation of a value.
+A comment can explain why a piece of code exists.
+A hash sign starts a comment outside a string.
+A module is a file that can contain Python code.
+An import statement makes a module available to the program.
+A virtual environment keeps project packages together.
+A requirements file lists packages needed by a project.
+Run a small test after making a change to your program.
+A failing test can show which behavior needs attention.
+Read the final line of a traceback to identify the error type.
+A missing package can cause an import error.
+A try block can contain code that might raise an exception.
+An except clause can handle a specific error.
+A with statement can close a file when the block ends.
+Use a text editor to save a sentence in a plain text file.
+A training example gives the model text to learn from.
+A validation example checks the model on held-out text.
+A tokenizer converts text into token IDs.
+A checkpoint stores model weights for later evaluation.
+Set one clear goal before each study session.
+Take a short break after a focused block of work.
+Write one question about each section you read.
+Explain a new idea in your own words.
+Practice a small example before attempting a larger problem.
+Review your mistakes at the end of the session.
+Keep a list of topics you want to revisit.
+Use flashcards to practice recalling key terms.
+Try to solve the exercise before looking at the answer.
+Write a short summary after finishing a lesson.
+Compare your answer with the worked example.
+Practice the same concept again on a different day.
+A Python function adds two numbers and returns their sum.
+A Python function can calculate the total price of a shopping basket.
+A Python function uses parameters to work with different inputs.
+A Python function can return early when it finds the answer.
+A Python function returns None when it reaches the end without a return statement.
+A Python function can return a tuple containing two results.
+Call a function by writing its name followed by parentheses.
+Give each function a short name that describes its job.
+Use a keyword argument to pass a value by parameter name.
+The body of a function should be indented under its definition.
+Keep each function focused on one task.
+A docstring at the start of a function describes its behavior.
+Use an explicit return statement when the caller needs the result.
+A helper function can remove repeated code.
+Test a function with an empty input as well as a normal input.
+Use a small input when stepping through code for the first time.
+Python can add integers with the plus operator.
+Subtract the discount from the original price to find the final price.
+Divide the total by the number of items to calculate the average.
+The remainder operator can check whether an integer is even.
+Convert text to a number before doing arithmetic with it.
+Use parentheses to make the order of an expression clear.
+The min function finds the smallest value in a nonempty sequence.
+The max function finds the largest value in a nonempty sequence.
+The sum function adds numeric values from an iterable.
+Use strip to remove whitespace from the ends of a string.
+Use split to turn a line of text into a list of words.
+Use join to combine several strings with a separator.
+Call lower to make a lowercase copy of a string.
+A string index points to a character.
+An empty string contains zero characters.
+A string cannot be changed in place.
+A string method can return a new string.
+Use a format specifier to display a number with two decimal places.
+Check whether a word appears in a sentence with the in operator.
+Create an empty list with a pair of square brackets.
+Use extend to add several elements to an existing list.
+The pop method removes an item and returns it.
+The remove method deletes the first matching value from a list.
+The sorted function returns a new list in sorted order.
+The list sort method changes the order of the existing list.
+A list comprehension can build a list from an iterable.
+Use an if clause in a comprehension to filter its elements.
+A negative index can start counting from the end of a sequence.
+The last item in a nonempty list has index minus one.
+A slice stops before the specified end index.
+Use len before indexing when an input list might be empty.
+A tuple with one item needs a trailing comma.
+Use set membership to test whether an item has already been seen.
+The intersection of two sets contains their shared elements.
+The union of two sets contains the elements from either set.
+A dictionary can associate a product code with its price.
+Assign to a dictionary key to change its value.
+The items method produces key and value pairs.
+Loop over dictionary items when you need both the key and the value.
+A dictionary can count how often each word occurs.
+Use get with a zero default when keeping a count in a dictionary.
+Set a flag to True when a search finds a match.
+Indent the else clause at the same level as its if statement.
+Use elif to test another condition after the first one fails.
+The and operator requires both conditions to be true for a Boolean test.
+The or operator accepts either condition in a Boolean test.
+The not operator reverses a truth value.
+A while loop should make progress toward its stopping condition.
+Use enumerate when you need an index and an item together.
+Use zip to pair items from two iterables.
+A nested loop runs one loop inside another.
+A loop variable refers to the current item.
+Check the exit condition before starting a loop.
+Raise a ValueError when an argument has an unacceptable value.
+Catch a specific exception when you know how to handle it.
+A syntax error can occur before the program starts running.
+A NameError can mean that a variable was used before it was defined.
+An IndexError can mean that a sequence index is out of bounds.
+Read an error message before changing more code.
+Print the value of an intermediate variable to inspect it.
+Use a breakpoint to pause a program and examine its state.
+Write a test that reproduces a bug before fixing it.
+Check the result for a typical case and a boundary case.
+An assertion checks whether a condition is true during execution.
+A good test describes the behavior it expects.
+Run your tests after changing a shared function.
+Use UTF-8 when opening a file that contains text in multiple languages.
+Read a file line by line when you only need one line at a time.
+Use write to send text to a file opened in text mode.
+Use append mode to add text to the end of an existing file.
+Open a file in read mode when you only need its contents.
+Use pathlib to join directory names and file names.
+Check that a path exists before trying to read an optional file.
+Store configuration separately from the logic that uses it.
+Keep your project dependencies in a virtual environment.
+Use a requirements file so another developer can install the same dependencies.
+An import can give a module a shorter local name with the as keyword.
+The standard library includes tools for reading JSON files.
+A JSON object can become a dictionary when Python reads it.
+A JSON array can become a list when Python reads it.
+Use parameterized SQL when passing user values to a database query.
+Group related database changes in a transaction.
+A text file with one example per line is easy to inspect.
+Use different sentences to train and validate a model.
+Keep the validation file fixed when comparing two checkpoints.
+Compare model results using the same prompt each time.
+A lower validation loss indicates better next-token prediction on that validation set.
+Try an unfamiliar prompt when checking a trained model.
+Before studying a new topic, write what you already know.
+Start with a small exercise that tests one idea.
+Divide a revision session into short blocks.
+Take a break when you notice your attention drifting.
+After a lesson, explain one concept without looking at the screen.
+Practice reading code before writing a similar example yourself.
+Keep a short note of each mistake and its cause.
+Revisit a hard problem the day after you first attempt it.
+Choose a quiet place when a task needs concentration.
+Set a clear stopping point for each study block.
+Spend a few minutes recalling what you learned in your last session.
+Make a simple checklist before starting a programming exercise.
+Test one change at a time so you can see its effect.
+Use short examples to make an abstract idea concrete.
+Write a few sentences about what improved after each experiment.

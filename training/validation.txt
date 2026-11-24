@@ -1,0 +1,17 @@
+A Python function can return a value.
+Test yourself before reading your notes again.
+A Python function can take more than one argument.
+A function can return the result of a calculation.
+A variable name should make its purpose clear.
+An if statement can test whether a list is empty.
+A for loop can repeat an action for every character in a string.
+Use square brackets to access a list item by its index.
+A dictionary can store a name and its associated score.
+A set can remove duplicate values from a collection.
+An import can bring a standard library module into your code.
+An exception message can help you find the source of a problem.
+A test can compare the actual output with the expected result.
+Save a model checkpoint before starting a new experiment.
+Break a difficult lesson into smaller topics.
+Plan a review session for the material you studied yesterday.
+Recall the main points of a chapter without opening your notes.

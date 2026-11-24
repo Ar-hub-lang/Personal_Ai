@@ -1,0 +1,212 @@
+{
+  "page_numbering": "One-based PDF file pages, even when a PDF page contains two printed pages. Each page set is an acceptable evidence citation. An empty list marks an unanswerable question.",
+  "intended_use": "Held-out evaluation for the document reader. Keep these editions out of training.",
+  "documents": [
+    {
+      "title": "Energy Saver Guide (2022)",
+      "publisher": "U.S. Department of Energy",
+      "source_url": "https://www.energy.gov/sites/default/files/2022-08/energy-saver-guide-2022.pdf",
+      "sha256": "416398e39c65d91687a287c6f82a8f63723a5f4e5027702f5d144ccbf1d1f504",
+      "pdf_page_count": 56,
+      "questions": [
+        {
+          "kind": "fact",
+          "question": "How much does the guide say sealing uncontrolled air leaks can reduce heating and cooling bills?",
+          "answer": "10% to 20%.",
+          "page_sets": [
+            [
+              10
+            ]
+          ]
+        },
+        {
+          "kind": "fact",
+          "question": "What does a higher insulation R-value tell you?",
+          "answer": "The material provides more resistance to heat flow.",
+          "page_sets": [
+            [
+              11
+            ]
+          ]
+        },
+        {
+          "kind": "fact",
+          "question": "What share of typical household energy use does the guide attribute to water heating?",
+          "answer": "About 18%.",
+          "page_sets": [
+            [
+              22
+            ]
+          ]
+        },
+        {
+          "kind": "fact",
+          "question": "What temperature range does the refrigerator section recommend for refrigerators?",
+          "answer": "35°F to 38°F.",
+          "page_sets": [
+            [
+              35
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "question": "Which Alaska climate zone is Anchorage listed in?",
+          "answer": "Zone 7.",
+          "page_sets": [
+            [
+              12
+            ]
+          ]
+        },
+        {
+          "kind": "multi_page",
+          "question": "What bill savings are estimated for sealing uncontrolled air leaks, and what does a higher insulation R-value mean?",
+          "answer": "Heating and cooling bills can drop 10% to 20%. A higher R-value means more resistance to heat flow.",
+          "page_sets": [
+            [
+              10,
+              11
+            ]
+          ]
+        },
+        {
+          "kind": "multi_page",
+          "question": "What share of household energy is attributed to water heating, and what temperature range does the guide recommend for refrigerators?",
+          "answer": "About 18% for water heating and 35°F to 38°F for refrigerators.",
+          "page_sets": [
+            [
+              22,
+              35
+            ]
+          ]
+        },
+        {
+          "kind": "missing",
+          "question": "How many copies of this edition did the publisher print?",
+          "answer": null,
+          "page_sets": []
+        },
+        {
+          "kind": "missing",
+          "question": "What is the purchase date of the water heater pictured in the Reducing Water Heating Costs section?",
+          "answer": null,
+          "page_sets": []
+        },
+        {
+          "kind": "missing",
+          "question": "What ISBN does this edition list?",
+          "answer": null,
+          "page_sets": []
+        }
+      ]
+    },
+    {
+      "title": "Yosemite Guide, Volume 50, Issue 6 (July 16 to August 19, 2025)",
+      "publisher": "U.S. National Park Service",
+      "source_url": "https://www.nps.gov/yose/planyourvisit/upload/Yosemite-Guide-50-6-508V1.pdf",
+      "sha256": "b2a46b13c50aedef21d0338b446ce88c590c7e685bf99bf7329dcee6caf522cc",
+      "pdf_page_count": 7,
+      "questions": [
+        {
+          "kind": "fact",
+          "question": "Which two water activities does the guide prohibit in Hetch Hetchy Reservoir?",
+          "answer": "Swimming and boating.",
+          "page_sets": [
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "kind": "fact",
+          "question": "About how long is the Valley Floor Tour listed in the program schedule?",
+          "answer": "About two hours.",
+          "page_sets": [
+            [
+              6
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "question": "Which shuttle stop number serves Mirror Lake?",
+          "answer": "Stop 17.",
+          "page_sets": [
+            [
+              5
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "question": "Which shuttle stop number serves Lower Pines Campground?",
+          "answer": "Stop 18.",
+          "page_sets": [
+            [
+              5
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "question": "Which shuttle route serves the Cathedral Beach stop?",
+          "answer": "Only the Valleywide route.",
+          "page_sets": [
+            [
+              5
+            ]
+          ]
+        },
+        {
+          "kind": "table",
+          "question": "What were the Glacier Point Gift Shop hours listed in this issue?",
+          "answer": "9 a.m. to 7 p.m.",
+          "page_sets": [
+            [
+              4
+            ]
+          ]
+        },
+        {
+          "kind": "multi_page",
+          "question": "How long did the Valley Floor Tour take, and what were the Glacier Point Gift Shop hours?",
+          "answer": "The tour lasted about two hours. The gift shop was listed as open 9 a.m. to 7 p.m.",
+          "page_sets": [
+            [
+              4,
+              6
+            ]
+          ]
+        },
+        {
+          "kind": "multi_page",
+          "question": "Does this guide allow ordinary pets on hiking trails or on park shuttles?",
+          "answer": "Ordinary pets are prohibited on both hiking trails and shuttles.",
+          "page_sets": [
+            [
+              1,
+              5
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "kind": "missing",
+          "question": "What was the actual Valleywide Shuttle ridership on July 20, 2025?",
+          "answer": null,
+          "page_sets": []
+        },
+        {
+          "kind": "missing",
+          "question": "What was the exact round-trip mileage of the Valley Floor Tour tram route?",
+          "answer": null,
+          "page_sets": []
+        }
+      ]
+    }
+  ]
+}

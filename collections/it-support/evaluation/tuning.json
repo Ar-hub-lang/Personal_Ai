@@ -1,0 +1,636 @@
+{
+  "collection": "IT Support",
+  "split": "tuning",
+  "page_numbering": "One-based PDF file pages",
+  "scope": "Named-institution public guides. The existing benchmark selects one source PDF at a time.",
+  "documents": [
+    {
+      "filename": "vpn-unsw-globalprotect.pdf",
+      "questions": [
+        {
+          "id": "IT-T01",
+          "kind": "fact",
+          "question": "Which UNSW GlobalProtect VPN connection profile is for Faculty support?",
+          "answer": "hostingvpn-portal.unsw.edu.au.",
+          "contains": [
+            "hostingvpn-portal.unsw.edu.au"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "hostingvpn-portal.unsw.edu.au"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T02",
+          "kind": "fact",
+          "question": "Which three MFA options are listed for UNSW GlobalProtect sign-in?",
+          "answer": "Microsoft Authenticator, a third-party mobile authenticator, or a hardware token.",
+          "contains": [
+            "Microsoft Authenticator",
+            "3rd Party Authenticator",
+            "Hardware Token"
+          ],
+          "sources": [
+            {
+              "pages": [
+                2
+              ],
+              "contains": [
+                "Microsoft Authenticator",
+                "3rd Party Authenticator",
+                "Hardware Token"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T03",
+          "kind": "fact",
+          "question": "What two computer security prerequisites does the UNSW guide give for connecting to GlobalProtect?",
+          "answer": "Use a supported antivirus client and install the latest security patches.",
+          "contains": [
+            "supported Antivirus client",
+            "latest security patches"
+          ],
+          "sources": [
+            {
+              "pages": [
+                3
+              ],
+              "contains": [
+                "supported Antivirus client",
+                "latest security patches"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T05",
+          "kind": "missing",
+          "question": "How many simultaneous connections does the UNSW VPN permit for one account?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "vpn-deerfield-globalprotect.pdf",
+      "questions": [
+        {
+          "id": "IT-T04",
+          "kind": "fact",
+          "question": "After connecting to the Deerfield VPN, what desktop icon opens mapped drives and how do you disconnect the VPN?",
+          "answer": "Double-click Map My Drives. Click the Globe icon and choose Disconnect.",
+          "contains": [
+            "Map My Drives",
+            "Globe icon",
+            "disconnect"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "Map My Drives",
+                "Globe icon",
+                "disconnect"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T06",
+          "kind": "missing",
+          "question": "How many VPN tickets did Deerfield IT resolve last calendar month?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "password-reset-flcc.pdf",
+      "questions": [
+        {
+          "id": "IT-T07",
+          "kind": "fact",
+          "question": "How many working MFA methods does FLCC require for self-service password reset, and which form should people use if they do not meet that requirement?",
+          "answer": "Two working MFA methods. Use the Account Activation and Password Recovery form.",
+          "contains": [
+            "two forms",
+            "Account Activation and Password Recovery form"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "two forms",
+                "Account Activation and Password Recovery form"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T08",
+          "kind": "fact",
+          "question": "What minimum password length does the FLCC self-service guide require, and what does it require for digits and special characters?",
+          "answer": "At least 14 characters, including at least one number and one special character.",
+          "contains": [
+            "14 characters",
+            "1 number",
+            "1 special character"
+          ],
+          "sources": [
+            {
+              "pages": [
+                6
+              ],
+              "contains": [
+                "14 characters",
+                "1 number",
+                "1 special character"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T11",
+          "kind": "missing",
+          "question": "How many password reset tickets did the FLCC helpdesk close in the previous calendar month?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "password-reset-surrey.pdf",
+      "questions": [
+        {
+          "id": "IT-T09",
+          "kind": "multi",
+          "question": "When adding a personal email as a Surrey reset method, what address do you enter and what do you do with the code sent there?",
+          "answer": "Enter a personal email address, then enter the verification code in the form.",
+          "contains": [
+            "personal email address",
+            "verification code",
+            "enter the code"
+          ],
+          "sources": [
+            {
+              "pages": [
+                3
+              ],
+              "contains": [
+                "personal email address"
+              ]
+            },
+            {
+              "pages": [
+                4
+              ],
+              "contains": [
+                "verification code",
+                "enter the code"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T12",
+          "kind": "missing",
+          "question": "How many days does Surrey keep a self-service password reset event in its audit logs?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "password-reset-winthrop.pdf",
+      "questions": [
+        {
+          "id": "IT-T10",
+          "kind": "fact",
+          "question": "Which link in the Winthrop Microsoft login window starts password recovery?",
+          "answer": "Click Forgot my password at the bottom of the login window.",
+          "contains": [
+            "Forgot my password",
+            "bottom of the login window"
+          ],
+          "sources": [
+            {
+              "pages": [
+                2
+              ],
+              "contains": [
+                "Forgot my password",
+                "bottom of the login window"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "print-houston-mobile.pdf",
+      "questions": [
+        {
+          "id": "IT-T13",
+          "kind": "fact",
+          "question": "Which network options does the Houston guide list for accessing PaperCut from a personal device?",
+          "answer": "UHGuest Wi-Fi, UHSecure Wi-Fi, or UH VPN.",
+          "contains": [
+            "UHGuest",
+            "UHSecure",
+            "UH VPN"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "UHGuest",
+                "UHSecure",
+                "UH VPN"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T14",
+          "kind": "fact",
+          "question": "How long does an unreleased print job stay in the University of Houston release queue?",
+          "answer": "Four hours before it is purged.",
+          "contains": [
+            "purged",
+            "4 hours"
+          ],
+          "sources": [
+            {
+              "pages": [
+                3
+              ],
+              "contains": [
+                "purged",
+                "4 hours"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T18",
+          "kind": "missing",
+          "question": "What is the exact serial number of the spare printer kept in the University of Houston print stockroom?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "print-university-of-london-papercut.pdf",
+      "questions": [
+        {
+          "id": "IT-T15",
+          "kind": "fact",
+          "question": "How does a Senate House Library member start registering a card for printing?",
+          "answer": "Log into the catalogue, enter name and membership number, and tick the option to create a printing and copying account.",
+          "contains": [
+            "catalogue",
+            "name and membership number",
+            "printing and copying account"
+          ],
+          "sources": [
+            {
+              "pages": [
+                3
+              ],
+              "contains": [
+                "catalogue",
+                "name and membership number",
+                "printing and copying account"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T16",
+          "kind": "fact",
+          "question": "What does the Senate House Library guide say to do when Secure AirPrint is missing from the Add dialog?",
+          "answer": "Close the Add dialog, disconnect and reconnect to the network, try again, and contact a library reception desk if it remains unavailable.",
+          "contains": [
+            "Close the Add dialog",
+            "Disconnect from the network",
+            "Reconnect to the network",
+            "library reception desk"
+          ],
+          "sources": [
+            {
+              "pages": [
+                11
+              ],
+              "contains": [
+                "Close the Add dialog",
+                "Disconnect from the network",
+                "Reconnect to the network",
+                "library reception desk"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T17",
+          "kind": "multi",
+          "question": "Where do I select an online print-credit top-up, and does Senate House Library provide a receipt for online payment?",
+          "answer": "Choose Add Credit. Receipts are not provided for online payment.",
+          "contains": [
+            "Add Credit",
+            "receipts are not provided"
+          ],
+          "sources": [
+            {
+              "pages": [
+                13
+              ],
+              "contains": [
+                "Add Credit"
+              ]
+            },
+            {
+              "pages": [
+                14
+              ],
+              "contains": [
+                "receipts are not provided"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "wifi-otago-macos-eduroam.pdf",
+      "questions": [
+        {
+          "id": "IT-T19",
+          "kind": "fact",
+          "question": "What SSID and encryption type does the Otago Mac guide list for its eduroam setup?",
+          "answer": "SSID eduroam and AES-CCMP encryption.",
+          "contains": [
+            "eduroam",
+            "AES-CCMP"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "eduroam",
+                "AES-CCMP"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T20",
+          "kind": "fact",
+          "question": "What browser test does the Otago Mac eduroam guide recommend, and how should you retry if that check fails?",
+          "answer": "Open the University of Otago website. Disable and re-enable Wi-Fi if the check fails.",
+          "contains": [
+            "www.otago.ac.nz",
+            "disabling then re-enabling"
+          ],
+          "sources": [
+            {
+              "pages": [
+                2
+              ],
+              "contains": [
+                "www.otago.ac.nz",
+                "disabling then re-enabling"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T24",
+          "kind": "missing",
+          "question": "What was the median eduroam throughput in Mbps at Otago last Tuesday?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "wifi-lakehead-eduroam.pdf",
+      "questions": [
+        {
+          "id": "IT-T21",
+          "kind": "fact",
+          "question": "Which authentication mode does Lakehead list in Windows Advanced settings for eduroam?",
+          "answer": "User Authentication.",
+          "contains": [
+            "User Authentication"
+          ],
+          "sources": [
+            {
+              "pages": [
+                7
+              ],
+              "contains": [
+                "User Authentication"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "wifi-nova-windows-eduroam.pdf",
+      "questions": [
+        {
+          "id": "IT-T22",
+          "kind": "fact",
+          "question": "Which operating system is named as the prerequisite for the NOVA IMS eduroam configuration?",
+          "answer": "Windows 11.",
+          "contains": [
+            "Windows 11"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "Windows 11"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T23",
+          "kind": "fact",
+          "question": "Which connection type does NOVA IMS tell Windows 11 users to choose before entering eduroam settings?",
+          "answer": "Manually connect to a wireless network.",
+          "contains": [
+            "Manually connect to a wireless network"
+          ],
+          "sources": [
+            {
+              "pages": [
+                6
+              ],
+              "contains": [
+                "Manually connect to a wireless network"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "software-scsu-windows-company-portal.pdf",
+      "questions": [
+        {
+          "id": "IT-T25",
+          "kind": "fact",
+          "question": "Where can SCSU Windows users browse or search for apps after opening Company Portal?",
+          "answer": "Choose Apps or use the search bar on the left-hand menu.",
+          "contains": [
+            "Apps",
+            "search bar",
+            "left-hand menu"
+          ],
+          "sources": [
+            {
+              "pages": [
+                2
+              ],
+              "contains": [
+                "Apps",
+                "search bar",
+                "left-hand menu"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T26",
+          "kind": "fact",
+          "question": "How does SCSU Company Portal confirm an installation finished, and where can the installed app be found?",
+          "answer": "An Installed notice appears, and the app is listed in the Start Menu.",
+          "contains": [
+            "Installed",
+            "Start Menu"
+          ],
+          "sources": [
+            {
+              "pages": [
+                3
+              ],
+              "contains": [
+                "Installed",
+                "Start Menu"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T30",
+          "kind": "missing",
+          "question": "How much did SCSU spend in total on desktop software licenses last financial year?",
+          "answer": null,
+          "contains": [],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "filename": "software-scsu-mac-self-service.pdf",
+      "questions": [
+        {
+          "id": "IT-T27",
+          "kind": "fact",
+          "question": "Where should SCSU Mac users open Self Service, and what account does the guide say to use if prompted?",
+          "answer": "Open it from the Dock or search in Finder, and use your SCSU email address and password if prompted.",
+          "contains": [
+            "dock",
+            "Finder",
+            "SCSU email address and password"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "dock",
+                "Finder",
+                "SCSU email address and password"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "filename": "software-tamucc-windows-software-center.pdf",
+      "questions": [
+        {
+          "id": "IT-T28",
+          "kind": "fact",
+          "question": "How should Texas A&M University-Corpus Christi users request software that is not automatically available in Software Center?",
+          "answer": "Submit an IT ticket at ITRequests@tamucc.edu.",
+          "contains": [
+            "submitting a ticket",
+            "ITRequests@tamucc.edu"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "submitting a ticket",
+                "ITRequests@tamucc.edu"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IT-T29",
+          "kind": "fact",
+          "question": "Which tab lists an application after installation is complete in the Texas A&M University-Corpus Christi Software Center guide?",
+          "answer": "Installed software.",
+          "contains": [
+            "Installed software"
+          ],
+          "sources": [
+            {
+              "pages": [
+                2
+              ],
+              "contains": [
+                "Installed software"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

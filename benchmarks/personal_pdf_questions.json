@@ -1,0 +1,639 @@
+{
+  "page_numbering": "One-based PDF file pages",
+  "documents": [
+    {
+      "filename": "MINI PROJECT ARPIT copy.pdf",
+      "questions": [
+        {
+          "question": "Which library is used in this project?",
+          "kind": "fact",
+          "answer": "The Libraries and Dependencies section lists NumPy, Pandas, OpenCV, scikit-learn, Matplotlib, Seaborn and Pillow.",
+          "contains": [
+            "numpy",
+            "pandas",
+            "opencv",
+            "scikit-learn",
+            "matplotlib",
+            "seaborn",
+            "pillow"
+          ],
+          "sources": [
+            {
+              "pages": [
+                23
+              ],
+              "contains": [
+                "numpy",
+                "pandas",
+                "opencv",
+                "scikit-learn",
+                "matplotlib",
+                "seaborn",
+                "pillow"
+              ]
+            }
+          ],
+          "id": "report-01"
+        },
+        {
+          "question": "Who is submitted by?",
+          "kind": "fact",
+          "answer": "Arpit.",
+          "contains": [
+            "arpit"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1,
+                2
+              ],
+              "contains": [
+                "arpit"
+              ]
+            }
+          ],
+          "id": "report-02"
+        },
+        {
+          "question": "Who guided the mini project?",
+          "kind": "fact",
+          "answer": "Dr. Sanjay Roka.",
+          "contains": [
+            "sanjay",
+            "roka"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1,
+                2,
+                3
+              ],
+              "contains": [
+                "sanjay",
+                "roka"
+              ]
+            }
+          ],
+          "id": "report-03"
+        },
+        {
+          "question": "When is the mini project report dated on the cover?",
+          "kind": "fact",
+          "answer": "December 2024.",
+          "contains": [
+            "december",
+            "2024"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "december",
+                "2024"
+              ]
+            }
+          ],
+          "id": "report-04"
+        },
+        {
+          "question": "How many MRI images are in the project dataset?",
+          "kind": "number",
+          "answer": "3,000 images.",
+          "contains": [
+            "3000"
+          ],
+          "sources": [
+            {
+              "pages": [
+                19,
+                24,
+                25,
+                26,
+                27
+              ],
+              "contains": [
+                "3000"
+              ]
+            }
+          ],
+          "id": "report-05"
+        },
+        {
+          "question": "How was the dataset split between images with and without a tumor?",
+          "kind": "number",
+          "answer": "1,500 tumor-positive and 1,500 tumor-negative images.",
+          "contains": [
+            "1500",
+            "1500"
+          ],
+          "sources": [
+            {
+              "pages": [
+                19,
+                24,
+                26,
+                27
+              ],
+              "contains": [
+                "1500",
+                "1500"
+              ]
+            }
+          ],
+          "id": "report-06"
+        },
+        {
+          "question": "What image size was used in dataset preprocessing?",
+          "kind": "number",
+          "answer": "64 × 64 pixels.",
+          "contains": [
+            "64x64"
+          ],
+          "sources": [
+            {
+              "pages": [
+                19,
+                24,
+                26,
+                27
+              ],
+              "contains": [
+                "64x64"
+              ]
+            }
+          ],
+          "id": "report-07"
+        },
+        {
+          "question": "Where did the team download the dataset?",
+          "kind": "fact",
+          "answer": "Kaggle.",
+          "contains": [
+            "kaggle"
+          ],
+          "sources": [
+            {
+              "pages": [
+                19,
+                24
+              ],
+              "contains": [
+                "kaggle"
+              ]
+            }
+          ],
+          "id": "report-08"
+        },
+        {
+          "question": "Which web framework is listed under Technologies Involved?",
+          "kind": "fact",
+          "answer": "Flask.",
+          "contains": [
+            "flask"
+          ],
+          "sources": [
+            {
+              "pages": [
+                20
+              ],
+              "contains": [
+                "flask"
+              ]
+            }
+          ],
+          "id": "report-09"
+        },
+        {
+          "question": "What operating systems does the software requirements section list?",
+          "kind": "fact",
+          "answer": "Linux (Ubuntu), Windows and macOS.",
+          "contains": [
+            "ubuntu",
+            "windows",
+            "macos"
+          ],
+          "sources": [
+            {
+              "pages": [
+                22
+              ],
+              "contains": [
+                "ubuntu",
+                "windows",
+                "macos"
+              ]
+            }
+          ],
+          "id": "report-10"
+        },
+        {
+          "question": "Which deep learning frameworks appear in the dedicated software requirements list?",
+          "kind": "fact",
+          "answer": "TensorFlow and Keras.",
+          "contains": [
+            "tensorflow",
+            "keras"
+          ],
+          "sources": [
+            {
+              "pages": [
+                22
+              ],
+              "contains": [
+                "tensorflow",
+                "keras"
+              ]
+            }
+          ],
+          "id": "report-11"
+        },
+        {
+          "question": "What is the minimum GPU model named in the hardware requirements?",
+          "kind": "fact",
+          "answer": "NVIDIA GTX 1050 or equivalent.",
+          "contains": [
+            "gtx 1050"
+          ],
+          "sources": [
+            {
+              "pages": [
+                21
+              ],
+              "contains": [
+                "gtx 1050"
+              ]
+            }
+          ],
+          "id": "report-12"
+        },
+        {
+          "question": "What minimum amount of RAM does the hardware section recommend?",
+          "kind": "number",
+          "answer": "4 GB.",
+          "contains": [
+            "4gb"
+          ],
+          "sources": [
+            {
+              "pages": [
+                21
+              ],
+              "contains": [
+                "4gb"
+              ]
+            }
+          ],
+          "id": "report-13"
+        },
+        {
+          "question": "What minimum hard-drive capacity is specified?",
+          "kind": "number",
+          "answer": "250 GB.",
+          "contains": [
+            "250gb"
+          ],
+          "sources": [
+            {
+              "pages": [
+                21
+              ],
+              "contains": [
+                "250gb"
+              ]
+            }
+          ],
+          "id": "report-14"
+        },
+        {
+          "question": "How many convolutional and fully connected layers are described for VGG16?",
+          "kind": "number",
+          "answer": "13 convolutional and 3 fully connected layers.",
+          "contains": [
+            "13 convolutional",
+            "3 fully connected"
+          ],
+          "sources": [
+            {
+              "pages": [
+                27
+              ],
+              "contains": [
+                "13 convolutional",
+                "3 fully connected"
+              ]
+            }
+          ],
+          "id": "report-15"
+        },
+        {
+          "question": "What accuracy and loss does the LSTM test-set result report?",
+          "kind": "number",
+          "answer": "95.99% accuracy and 0.15 loss.",
+          "contains": [
+            "95.99%",
+            "0.15"
+          ],
+          "sources": [
+            {
+              "pages": [
+                26,
+                30
+              ],
+              "contains": [
+                "95.99%",
+                "0.15"
+              ]
+            }
+          ],
+          "id": "report-16"
+        },
+        {
+          "question": "What accuracy and loss does the report give for Conv2D?",
+          "kind": "number",
+          "answer": "97.16% accuracy and 0.11 loss.",
+          "contains": [
+            "97.16%",
+            "0.11"
+          ],
+          "sources": [
+            {
+              "pages": [
+                25,
+                30
+              ],
+              "contains": [
+                "97.16%",
+                "0.11"
+              ]
+            }
+          ],
+          "id": "report-17"
+        },
+        {
+          "question": "What accuracy and loss does the report give for VGG16?",
+          "kind": "number",
+          "answer": "98.16% accuracy and 0.10 loss.",
+          "contains": [
+            "98.16%",
+            "0.10"
+          ],
+          "sources": [
+            {
+              "pages": [
+                27,
+                30
+              ],
+              "contains": [
+                "98.16%",
+                "0.10"
+              ]
+            }
+          ],
+          "id": "report-18"
+        },
+        {
+          "question": "Compare the reported accuracies of Conv2D, LSTM and VGG16.",
+          "kind": "multi",
+          "answer": "Conv2D 97.16%, LSTM 95.99%, VGG16 98.16%.",
+          "contains": [
+            "97.16%",
+            "95.99%",
+            "98.16%"
+          ],
+          "sources": [
+            {
+              "pages": [
+                25,
+                30
+              ],
+              "contains": [
+                "97.16%"
+              ]
+            },
+            {
+              "pages": [
+                26,
+                30
+              ],
+              "contains": [
+                "95.99%"
+              ]
+            },
+            {
+              "pages": [
+                27,
+                30
+              ],
+              "contains": [
+                "98.16%"
+              ]
+            }
+          ],
+          "id": "report-19"
+        },
+        {
+          "question": "Who submitted the report and which Python image-processing library is listed in Libraries and Dependencies?",
+          "kind": "multi",
+          "answer": "Arpit submitted it. Pillow is the named Python image-processing library.",
+          "contains": [
+            "arpit",
+            "pillow"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1,
+                2
+              ],
+              "contains": [
+                "arpit"
+              ]
+            },
+            {
+              "pages": [
+                23
+              ],
+              "contains": [
+                "pillow"
+              ]
+            }
+          ],
+          "id": "report-20"
+        },
+        {
+          "question": "What image file formats are listed for prediction input?",
+          "kind": "fact",
+          "answer": "JPEG or PNG.",
+          "contains": [
+            "jpeg",
+            "png"
+          ],
+          "sources": [
+            {
+              "pages": [
+                24
+              ],
+              "contains": [
+                "jpeg",
+                "png"
+              ]
+            }
+          ],
+          "id": "report-21"
+        },
+        {
+          "question": "What is the SHA-256 checksum of the downloaded Kaggle dataset archive?",
+          "kind": "missing",
+          "answer": null,
+          "contains": [],
+          "sources": [],
+          "id": "report-22"
+        },
+        {
+          "question": "What is the study's clinical trial registration number?",
+          "kind": "missing",
+          "answer": null,
+          "contains": [],
+          "sources": [],
+          "id": "report-23"
+        },
+        {
+          "question": "What is the deployed Ethereum contract address for the project?",
+          "kind": "missing",
+          "answer": null,
+          "contains": [],
+          "sources": [],
+          "id": "report-24"
+        }
+      ]
+    },
+    {
+      "filename": "Arpit_Resume.pdf",
+      "questions": [
+        {
+          "question": "What university did the résumé author attend?",
+          "kind": "fact",
+          "answer": "Graphic Era Deemed to be University.",
+          "contains": [
+            "graphic era deemed to be university"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "graphic era deemed to be university"
+              ]
+            }
+          ],
+          "id": "resume-01"
+        },
+        {
+          "question": "Databse",
+          "kind": "fact",
+          "answer": "MongoDB, SQL and PostgreSQL.",
+          "contains": [
+            "mongodb",
+            "sql",
+            "postgresql"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "mongodb",
+                "sql",
+                "postgresql"
+              ]
+            }
+          ],
+          "id": "resume-02"
+        },
+        {
+          "question": "How many projects are listed and what are their names?",
+          "kind": "fact",
+          "answer": "Two. Yug Amrat and Brain Tumor Detection Using Deep Learning (CNN).",
+          "contains": [
+            "2",
+            "yug amrat",
+            "brain tumor detection using deep learning"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "yug amrat",
+                "brain tumor detection using deep learning"
+              ]
+            }
+          ],
+          "id": "resume-03"
+        },
+        {
+          "question": "What percentage is shown for Intermediate?",
+          "kind": "number",
+          "answer": "73.4%.",
+          "contains": [
+            "73.4%"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "73.4%"
+              ]
+            }
+          ],
+          "id": "resume-04"
+        },
+        {
+          "question": "Which server framework and reverse proxy did the e-commerce project use?",
+          "kind": "multi",
+          "answer": "Express 5 REST API and Nginx.",
+          "contains": [
+            "express 5",
+            "nginx"
+          ],
+          "sources": [
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "express 5"
+              ]
+            },
+            {
+              "pages": [
+                1
+              ],
+              "contains": [
+                "nginx"
+              ]
+            }
+          ],
+          "id": "resume-05"
+        },
+        {
+          "question": "What is the résumé author's AWS Solutions Architect certification ID?",
+          "kind": "missing",
+          "answer": null,
+          "contains": [],
+          "sources": [],
+          "id": "resume-06"
+        }
+      ]
+    }
+  ]
+}

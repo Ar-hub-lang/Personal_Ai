@@ -1,0 +1,120 @@
+The addition operator is overloaded for strings to concatenate (combine) them.
+The comma separated numbers are coming in as a single string, and the for is splitting the string into characters.
+A random list of lists with varying lengths...
+The other possibility is to rely on the dict's __str__ implementation to yield valid javascript code.
+The whole processing pipeline is implemented in OpenCV, however I do not know the function names in python wrappers.
+The re.sub function takes a regular expresion and replace all the matches in the string with the second parameter.
+You can use regular python lists (which are dynamic) as vectors.
+The headers argument should be a mapping of extra HTTP headers to send with the request.
+A traceback object isn't necessary unless you want to preserve the state for the future.
+The I s in the formatting string mean "unsigned integer, 32 bits".
+You can then run $VENV/python and your package will be in the sys.path and available for import.
+You can't create arbitrary lists in the Django templating system.
+The hash() function works great when you hash classes or instances.
+The __import__ function can be a bit hard to understand.
+The models.py file in the tests subdirectory contains my test-only models.
+The temporary file will always be properly closed (when its with block ends).
+The key is to make the mask (for the paste) the image itself.
+You can send an entire file in one command.
+You can find a full list of commands at List of Database Commands.
+The iterable argument to map don't have to be a numeric range.
+The.find() method will give you the index of the first occurrence of the string.
+An initial ~user is handled by stripping the last directory component from the created user path derived above.
+The timeout parameter is also checked, which is a signed timestamp stored within the cookie.
+The logging.config module reads config files with ConfigParser, which has support for multiline values.
+The file is then automatically closed at the end of the block.
+You can pass a file location in 'dir' constructor parameter.
+The [1] is misleading, the API expects a null-terminated string at the end of the struct.
+A better way is to just iterate over pairs of strings.
+The with statement fixes the leak of file handles.
+You can adjust the size of the symbols used in a scatter plot by choosing the s parameter.
+The best and most reliable way would be to serve the file via HTTP and set the Content-Type: header appropriately.
+The bin_to_float() function shown below drives the process.
+You can also have chunks of the file run by independent worker threads/processes.
+You can use sum(iterable) to add up all the items in a tuple or list.
+The Python shell is not the place to edit your files.
+The.copy method on the dictionary should suffice.
+The readlines() method of a file object returns a list of the lines of the file including the newline characters.
+The multiprocessing module doesn't AFAIK offer a functionality to enforce the use of a specific amount of cores.
+The product function accepts an optional repeat argument.
+You can use isinstance() to see if the argument is an instance of some class.
+The update code for the position and event checking is done once (and only once) before the main loop begins.
+The output can then be processed directly in Python with the plistlib module.
+The order you see when you print a dictionary is "random" and not to be trusted.
+The standard Unix way to merge files is cat.
+You can also adjust the settings of your documentation editing the auto-generated conf.py file.
+You can control the resolution of the histogram using the bins parameter.
+The parameter chosenCave receives its value when the checkCave function is invoked.
+Use the inspect module to test the type of an object (but remember to be true to Python's duck typing and so on).
+Python resolves module names by searching the directories in sys.path.
+You can't say "the first five keys" of a dictionary and mean something well-defined.
+The key was really in defining the joins properly.
+The partition method will split a string into head, separator, tail, based on the first occurence of separator.
+The flags argument is the fifth one - you're passing the value of re.I as the count argument (an easy mistake to make).
+You can't ls with a specific directory as an argument, (like ls Users ), only your current directory.
+You can't. __version__ is just name for an object the module creates while being executed.
+Use "[ ]" to inline your for loop.
+The docstring is always an attribute of an object (module, class or function), not tied to a specific variable.
+The location property of filesrc takes a file path, not an URI.
+You can't write to the file and "insert".
+You can then call the unregister method and finally break out of the loop when all FDs are closed.
+Python's string classes simply implement __mod__ to do string formatting.
+The path you get from Firebug is an XPath expression.
+The __str__ function is used in classes.
+An echo with the semantics you mentioned is also possible, using the inspect module.
+In Python, one would normally raise an exception to indicate a problem in the constructor.
+The colorsys module seems to have functions to make the conversion from RGB.
+The extended slice notation is much more concise, though.
+The commands module has been removed from Python3.
+The extension data must be a string and is encoded using ASN.1 automatically.
+Python let's you iterate over lines in a file like you would items in a list.
+The language has also pretty good online documentation and a active mailing list.
+The problem is you have separated the string, making the % operator only work on the last part.
+The point of PyPI is a module package index for quick reference and access to Python modules and packages.
+An UTF-16 encoded file wont decode as UTF-8, so we try with UTF-8 first.
+You can create new lists in Python with a List Comprehension.
+You can read about tuples in the Python tutorial.
+A simple reminder of using caution with module naming conventions.
+Python's print will always append a newline character, which is the extra byte you see.
+The python module of the week page for struct also has some very useful information.
+You can use the [] operator more than once -- if a is a list, then a[0] is its first element.
+You can store all paths in a list, use yield generator, etc.
+You can use StringIO to provide a file-like interface to a string.
+The leading b makes your string binary.
+The.*?[A-Z] consumes characters up to, and including, the first uppercase letter.
+You can filter them out in your loop if you want to (e.g. if not name.startswith('func'): continue ).
+You can supply your own default value to get() which is returned if the key is not found.
+The string.format method can convert integers into their binary string representations.
+The complete list used by Python is given in the Python Language Reference section 3, "Data model".
+The url will be at index 0 of the list returned and the query at index 1.
+You can change variables at the module level, but only if you import the module, not the variable.
+Use find_packages or list z_script in the py_modules keyword.
+Use subprocess.Popen to run the sequence of easy_install scripts.
+The loop terminates when there are no more values to take.
+In Python 3, you get a TypeError when comparing values of different types like str vs. int or anything vs.
+The result being assertRaises is not called at all and the exception is not caught.
+The second time d is defined will create a new dictionary which will not include the 'O' key.
+The statement after the non-terminating loop will never get executed.
+The finally block contains code which should be run after any try, except or else block, even if an exception occured.
+The first problem with MonkeyRunner for me came in the form of the type function being broken when the space key is used.
+The corresponding public key to decrypt the data was held by the client in a text file.
+You can then safely delete the keys in the dictionary during iteration.
+The unique function is also broken for the Python 3.x series, since dict.keys returns an iterator for Python 3.x.
+Python's "for" is really a "for each" and is used with iterables (not loop conditions).
+The inner loop for map runs at C speed.
+Python strings are already iterable, no need to create you own iterator.
+The more natural data structure for my_tuple is a dictionary.
+You can also do a thing called "unpacking," which is what your for loop does.
+The for clause only contains 2 items, so your final dict is only going to have 2 items.
+You can use dict.get() if all you want to do is avoid the KeyError and return a default value.
+You can represent a set using a dictionary.
+The cause of the import error is easily found, in the backtrace of the ImportError exception.
+The traceback is intentionally not saved when the Greenlet dies.
+The exception TypeError: 'NoneType' object is not subscriptable happens because the value of lista is actually None.
+Python is not an exception - its most popular/"traditional" implementation is called CPython and is written in C.
+The with statement handles opening and closing the file, including if an exception is raised in the inner block.
+The list is not frozen - your iterator will not "break" in the sense of raising an exception.
+The trick is not to use %exception but to define %typemap(argout).
+The get method will raise an exception when object does not exists.
+The first argument is the name of the new exception class.
+You can raise a CloseSpider exception to close down a spider.

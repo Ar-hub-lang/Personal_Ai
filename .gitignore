@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+/memory/assistant.sqlite3*
+/memory/documents.sqlite3*
+
+# Local model runtime, downloaded models, and checkpoints
+/.ollama-runtime/
+/.whisper-runtime/
+/models/
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.ckpt
