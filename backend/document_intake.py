@@ -81,7 +81,9 @@ def text_documents(data: bytes, suffix: str) -> list[tuple[str, bool]]:
             for line in text.splitlines()]
 
 
-def index_document(filename: str, data: bytes, *, aliases: tuple[str, ...] = ()) -> dict:
+def index_document(
+    filename: str, data: bytes, *, aliases: tuple[str, ...] = (), source_url: str | None = None,
+) -> dict:
     suffix = Path(filename).suffix.casefold()
     if len(data) > documents.MAX_PDF_BYTES:
         raise ValueError("Choose a document of 10 MB or less.")
@@ -103,7 +105,7 @@ def index_document(filename: str, data: bytes, *, aliases: tuple[str, ...] = ())
         (lines for _, lines in grouped if lines), 1,
     )]
     return documents.index_text_pages(filename, pages, section_aware=os.environ.get("RAG_SECTION_CHUNKS") == "1",
-                                     aliases=aliases, sections=sections)
+                                     aliases=aliases, sections=sections, source_url=source_url)
 
 
 def main() -> None:

@@ -1,4 +1,5 @@
 import http.client
+import json
 import os
 import signal
 import socket
@@ -24,6 +25,23 @@ def port_in_use(port: int) -> bool:
         return False
 
 
+def service_ready(port: int, path: str, *, require_version: bool = False) -> bool:
+    connection = http.client.HTTPConnection(HOST, port, timeout=0.5)
+    try:
+        connection.request("GET", path)
+        response = connection.getresponse()
+        if response.status != 200:
+            return False
+        if require_version:
+            info = json.loads(response.read(8192))
+            return isinstance(info, dict) and isinstance(info.get("version"), str) and bool(info["version"])
+        return True
+    except (OSError, http.client.HTTPException, ValueError):
+        return False
+    finally:
+        connection.close()
+
+
 def wait_until_ready(
     name: str,
     port: int,
@@ -34,15 +52,8 @@ def wait_until_ready(
     deadline = time.monotonic() + 45
     while not should_stop():
         check_processes(services)
-        connection = http.client.HTTPConnection(HOST, port, timeout=0.5)
-        try:
-            connection.request("GET", path)
-            if connection.getresponse().status == 200:
-                return
-        except (OSError, http.client.HTTPException):
-            pass
-        finally:
-            connection.close()
+        if service_ready(port, path):
+            return
 
         if time.monotonic() >= deadline:
             raise RuntimeError(f"{name} did not become ready on port {port}.")
@@ -66,6 +77,15 @@ def signal_group(process: subprocess.Popen, signum: int) -> bool:
 
 def stop_services(services: dict[str, subprocess.Popen]) -> None:
     processes = list(reversed(services.values()))
+    if sys.platform == "win32":
+        for process in processes:
+            # The console sends Ctrl+C to FastAPI as well as the launcher.
+            try:
+                process.wait(timeout=3)
+            except subprocess.TimeoutExpired:
+                process.terminate()
+                process.wait()
+        return
     for process in processes:
         signal_group(process, signal.SIGTERM)
 
@@ -98,50 +118,69 @@ def main() -> int:
     signal.signal(signal.SIGTERM, request_stop)
     services = {}
     try:
-        if not OLLAMA.is_file():
-            raise RuntimeError("Ollama is missing. Follow the setup steps in README.md.")
+        windows = sys.platform == "win32"
+        if port_in_use(API_PORT):
+            raise RuntimeError(f"Port {API_PORT} is in use. Stop the existing FastAPI server and try again.")
+        if windows:
+            if not service_ready(OLLAMA_PORT, "/api/version", require_version=True):
+                raise RuntimeError(f"Start the Ollama Windows app and check that it is ready on port {OLLAMA_PORT}.")
+        else:
+            if not OLLAMA.is_file():
+                raise RuntimeError("Ollama is missing. Follow the setup steps in README.md.")
+            if port_in_use(OLLAMA_PORT):
+                raise RuntimeError(f"Port {OLLAMA_PORT} is in use. Stop the existing Ollama server and try again.")
 
-        for name, port in (("Ollama", OLLAMA_PORT), ("FastAPI", API_PORT)):
-            if port_in_use(port):
-                raise RuntimeError(f"Port {port} is in use. Stop the existing {name} server and try again.")
-
-        models = PROJECT_ROOT / "models"
-        models.mkdir(exist_ok=True)
-        ollama_env = os.environ | {
-            "OLLAMA_HOST": f"{HOST}:{OLLAMA_PORT}",
-            "OLLAMA_MODELS": str(models),
-            "OLLAMA_NO_CLOUD": "1",
-            "OLLAMA_NUM_PARALLEL": "1",
-        }
-        services["Ollama"] = subprocess.Popen(
-            [str(OLLAMA), "serve"], cwd=PROJECT_ROOT, env=ollama_env, start_new_session=True
-        )
-        wait_until_ready("Ollama", OLLAMA_PORT, "/api/version", services, should_stop)
+            models = PROJECT_ROOT / "models"
+            models.mkdir(exist_ok=True)
+            ollama_env = os.environ | {
+                "OLLAMA_HOST": f"{HOST}:{OLLAMA_PORT}",
+                "OLLAMA_MODELS": str(models),
+                "OLLAMA_NO_CLOUD": "1",
+                "OLLAMA_NUM_PARALLEL": "1",
+            }
+            services["Ollama"] = subprocess.Popen(
+                [str(OLLAMA), "serve"], cwd=PROJECT_ROOT, env=ollama_env, start_new_session=True
+            )
+            wait_until_ready("Ollama", OLLAMA_PORT, "/api/version", services, should_stop)
         if stopping:
             return 0
 
+        api_env = os.environ.copy()
+        api_env.setdefault("PERSONAL_AI_COLLECTION", "1")
+        if api_env["PERSONAL_AI_COLLECTION"] == "1":
+            api_env.setdefault("IT_SUPPORT_PRODUCT", "1")
+            index = PROJECT_ROOT / "collections" / "it-support" / "index" / "documents.sqlite3"
+            api_env["PERSONAL_AI_DOCUMENT_DB"] = api_env.get("PERSONAL_AI_DOCUMENT_DB") or str(index)
+            Path(api_env["PERSONAL_AI_DOCUMENT_DB"]).parent.mkdir(parents=True, exist_ok=True)
+            api_env.setdefault("RAG_PARTWISE_EVIDENCE", "1")
+
+        api_args = [
+            sys.executable, "-m", "uvicorn", "backend.main:app",
+            "--host", HOST, "--port", str(API_PORT),
+        ]
+        api_args.extend(("--workers", "1") if windows else ("--reload",))
         services["FastAPI"] = subprocess.Popen(
-            [
-                sys.executable, "-m", "uvicorn", "backend.main:app",
-                "--host", HOST, "--port", str(API_PORT), "--reload",
-            ],
-            cwd=PROJECT_ROOT,
-            start_new_session=True,
+            api_args, cwd=PROJECT_ROOT, env=api_env, start_new_session=not windows,
         )
         wait_until_ready("FastAPI", API_PORT, "/health", services, should_stop)
         if not stopping:
-            print(f"Personal AI is ready at http://{HOST}:{API_PORT}/", flush=True)
-            print("Press Ctrl+C to stop both servers.", flush=True)
+            product = api_env["PERSONAL_AI_COLLECTION"] == "1" and api_env.get("IT_SUPPORT_PRODUCT") == "1"
+            name = "IT Support" if product else "Personal AI"
+            print(f"{name} is ready at http://{HOST}:{API_PORT}/", flush=True)
+            if windows:
+                print("Press Ctrl+C to stop FastAPI. Manage Ollama from the Windows tray.", flush=True)
+            else:
+                print("Press Ctrl+C to stop both servers.", flush=True)
         while not stopping:
             check_processes(services)
             time.sleep(0.25)
         return 0
     except (OSError, RuntimeError) as error:
-        print(f"Personal AI: {error}", file=sys.stderr)
+        print(f"Local launcher: {error}", file=sys.stderr)
         return 1
     finally:
         if services:
-            print("Stopping Personal AI servers…", flush=True)
+            print("Stopping FastAPI…" if windows else "Stopping local servers…", flush=True)
             stop_services(services)
 
 

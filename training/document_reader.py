@@ -1,5 +1,6 @@
 """A shared TinyGPT scorer for document evidence and an abstention option."""
 
+import json
 import re
 import unicodedata
 from pathlib import Path
@@ -108,9 +109,27 @@ class DocumentReader(nn.Module):
         return self(*(tensor.to(device) for tensor in batch)).cpu().tolist()
 
 
+def reader_configuration(model: DocumentReader) -> dict:
+    transformer = model.tiny_gpt
+    layer = transformer.blocks[0]
+    return {
+        "version": 1, "architecture": "DocumentReader",
+        "vocab_size": transformer.token_embedding.num_embeddings,
+        "context_length": transformer.context_length,
+        "width": transformer.token_embedding.embedding_dim,
+        "heads": layer.self_attn.num_heads, "layers": len(transformer.blocks),
+        "dropout": layer.dropout.p, "feature_count": model.overlap.in_features,
+    }
+
+
 def load_reader(path: Path = CHECKPOINT) -> tuple[DocumentReader, dict]:
     saved = torch.load(path, map_location="cpu", weights_only=True)
     model = DocumentReader()
+    sidecar = path.with_suffix(".json")
+    if sidecar.is_file():
+        config = json.loads(sidecar.read_text(encoding="utf-8"))
+        if config != reader_configuration(model):
+            raise ValueError("The archived reader configuration does not match this model architecture.")
     model.load_state_dict(saved["model_state"])
     model.eval()
     return model, saved

@@ -105,6 +105,36 @@ def numbered_evidence(passages: list[Passage]) -> dict[int, Passage]:
     return dict(enumerate(dict.fromkeys(spans), 1))
 
 
+def direct_guide_fact(passages: list[Passage], question: str) -> list[Passage]:
+    """Return a uniquely sourced duration or link instruction with strong topic overlap."""
+    topic = set(question_terms(question)) - {"long", "link", "click", "page", "website"}
+    duration = re.match(r"how long\b", question, re.I)
+    link = re.match(r"which link\b", question, re.I)
+    if not (duration or link) or len({file for file, _, _ in passages}) != 1:
+        return []
+    unit = re.compile(r"\b\d+(?:\.\d+)?\s*(?:seconds?|minutes?|hours?|days?|weeks?)\b", re.I)
+    action = re.compile(r"\b(?:click|select|choose|tap|follow)\b.{1,170}\blink\b", re.I)
+    matches = []
+    for filename, page, text in numbered_evidence(passages).values():
+        for sentence in re.split(r"(?<=[.!?])\s+(?=[A-Z“])", text):
+            shared = topic.intersection(question_terms(sentence))
+            if len(shared) < 3:
+                continue
+            if duration and not re.search(r"\b(?:remain|stay|kept|retain|expir|purg|delet|remov|valid)\w*", sentence, re.I):
+                continue
+            signal = (unit if duration else action).search(sentence)
+            if signal:
+                matches.append((filename, page, sentence, signal[0].casefold(), len(shared)))
+    if not matches:
+        return []
+    best_score = max(match[-1] for match in matches)
+    strongest = [match for match in matches if match[-1] == best_score]
+    # Keep ambiguous durations and links on the usual evidence-selection path.
+    if len({(file, page, value) for file, page, _, value, _ in strongest}) != 1:
+        return []
+    return [strongest[0][:3]]
+
+
 def quote_pattern(quote: str) -> re.Pattern:
     """Allow spacing changes around punctuation while matching all source tokens."""
     tokens = re.findall(r"\w+|[^\w\s]", quote)
@@ -218,11 +248,22 @@ async def hybrid_ranking(
     ]
 
 
-async def retrieve(question: str, *, max_full_text_bytes: int, subquestions: tuple[str, ...] = ()) -> list[Passage]:
-    rows = tuple(await run_in_threadpool(indexed_passages))
-    scope = await run_in_threadpool(collection_scope, question) if collection_enabled() else None
+async def retrieve(
+    question: str, *, max_full_text_bytes: int, subquestions: tuple[str, ...] = (),
+    pdf_filename: str | None = None,
+) -> list[Passage]:
+    expand_pages = pdf_filename is not None
+    if pdf_filename is not None:
+        scope = {pdf_filename}
+        rows = tuple(await run_in_threadpool(indexed_passages, filename=pdf_filename))
+    else:
+        rows = tuple(await run_in_threadpool(indexed_passages))
+        filenames = {row[0] for row in rows}
+        expand_pages = len(filenames) == 1 and next(iter(filenames)).casefold().endswith(".pdf")
+        scope = await run_in_threadpool(collection_scope, question) if collection_enabled() else None
+        if scope:
+            rows = tuple(row for row in rows if row[0] in scope)
     if scope:
-        rows = tuple(row for row in rows if row[0] in scope)
         trace_event("document_scope", filenames=sorted(scope))
     if not rows:
         trace_event("retrieval", query=question, mode="empty", rows=[])
@@ -248,6 +289,20 @@ async def retrieve(question: str, *, max_full_text_bytes: int, subquestions: tup
                 selected[row] = result
         if len(selected) == limit:
             break
+    if expand_pages and max_full_text_bytes > 0:
+        # Keep the selected page order and restore adjacent source text when the
+        # full page fits. This recovers lists and sentences split across chunks.
+        for page in pages:
+            same_page = [row for row in selected if row[:2] == page[:2]]
+            if not same_page or same_page == [page]:
+                continue
+            first = same_page[0]
+            expanded = {
+                page if row == first else row: (result | {"passage": page}) if row == first else result
+                for row, result in selected.items() if row == first or row[:2] != page[:2]
+            }
+            if len(format_passages(list(expanded)).encode("utf-8")) <= max_full_text_bytes:
+                selected = expanded
     if tracing():
         trace_event("retrieval", query=question, mode="hybrid", rows=list(selected.values()))
     return list(selected)

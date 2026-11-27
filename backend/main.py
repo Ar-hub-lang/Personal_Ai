@@ -1,33 +1,42 @@
+import asyncio
 import base64
 import json
+import logging
 import os
 import re
 import sqlite3
 import subprocess
+from contextlib import suppress
+from contextvars import ContextVar
 from datetime import date
 from pathlib import Path
 from typing import Annotated, Literal
+from uuid import UUID, uuid4, uuid5
 
 import httpx
-from fastapi import FastAPI, HTTPException, Query, Request
+from fastapi import FastAPI, HTTPException, Query, Request, Response
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, StrictInt, StringConstraints
 
+from backend.diagnostics import router as diagnostics_router
 from backend.document_language import normalize_question
+from backend.evidence_precision import focus_excerpts, metric_supported, requested_metric, verified_brief
 from backend.document_intake import index_document
+from backend.website_intake import read_website, validate_url
 from backend.local_settings import OLLAMA_URL
 from backend.documents import (
     LOCAL_SETUP_QUESTION, MAX_PDF_BYTES, active_document, answer_document_title, answer_library_list,
     answer_resume_question, answer_section, answer_structured_question, collection_documents, collection_enabled,
-    index_pdf, remove_collection_document, rollout_excerpts, search_excerpts, source_metadata,
+    has_indexed_document, index_pdf, remove_collection_document, rollout_excerpts, search_excerpts, source_metadata,
 )
 from backend.rag_search import (
-    Passage, comparison_queries, format_evidence_entry, format_passages, literal_evidence, numbered_evidence,
+    Passage, comparison_queries, direct_guide_fact, format_evidence_entry, format_passages, literal_evidence, numbered_evidence,
     retrieve, supports_years, verified_quotes,
 )
 from backend.rag_trace import request_trace, trace_event
+from memory import conversations
 from memory.store import (
     MAX_FACT_LENGTH,
     current_address,
@@ -45,8 +54,21 @@ from memory.store import (
 from speech.local import MAX_AUDIO_BYTES, synthesize, transcribe
 from speech.spelling import correct_spelling
 
+def support_product() -> bool:
+    return os.environ.get("IT_SUPPORT_PRODUCT") == "1" and collection_enabled()
+
+
+logger = logging.getLogger(__name__)
 OLLAMA_CHAT_URL = f"{OLLAMA_URL}/api/chat"
-CHAT_MODEL = "qwen3:1.7b"
+ModelName = Literal["qwen3:4b", "qwen3:1.7b"]
+BACKUP_MODEL = "qwen3:1.7b"
+CHAT_MODEL = os.environ.get("IT_SUPPORT_MODEL", "qwen3:4b" if support_product() else BACKUP_MODEL)
+if CHAT_MODEL not in {"qwen3:4b", BACKUP_MODEL}:
+    raise ValueError("IT_SUPPORT_MODEL must be qwen3:4b or qwen3:1.7b.")
+requested_model: ContextVar[ModelName | None] = ContextVar("requested_model", default=None)
+answer_events: ContextVar[asyncio.Queue[dict | None] | None] = ContextVar("answer_events", default=None)
+CONVERSATION_COOKIE = "it_support_chat"
+IT_VOICE_TERMS = "IT support: GlobalProtect, eduroam, PaperCut, VPN, MFA, Wi-Fi, DNS."
 CHAT_CONTEXT_TOKENS = 4096
 DOCUMENT_CONTEXT_TOKENS = 8192
 REPLY_TOKENS = 512
@@ -121,19 +143,28 @@ VOICE_NAME_LIST = re.compile(r"list voice names(?: for (family|friends|contacts)
 VoiceCategory = Literal["auto", "family", "friends", "contacts"]
 
 app = FastAPI()
+app.include_router(diagnostics_router)
 frontend = Path(__file__).resolve().parents[1] / "frontend"
 app.mount("/assets", StaticFiles(directory=frontend), name="assets")
 
 
 class ChatRequest(BaseModel):
+    model: ModelName | None = None
     prompt: Annotated[
         str, StringConstraints(strip_whitespace=True, min_length=1, max_length=4000)
     ]
 
 
 class DocumentQuestion(ChatRequest):
+    pdf_filename: Annotated[str, StringConstraints(min_length=1, max_length=255)] | None = None
     previous_question: Annotated[str, StringConstraints(max_length=4000)] | None = None
     reader: Literal["qwen", "tinygpt"] = "qwen"
+
+
+class KnowledgeNote(BaseModel):
+    title: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=120)]
+    text: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100_000)] | None = None
+    url: Annotated[str, StringConstraints(strip_whitespace=True, max_length=2048)] | None = None
 
 
 class DocumentEvidence(BaseModel):
@@ -144,6 +175,14 @@ class DocumentEvidence(BaseModel):
 class DocumentEvidenceIds(BaseModel):
     answer: str | None
     evidence_ids: list[StrictInt]
+
+
+EVIDENCE_IDS_SCHEMA = DocumentEvidenceIds.model_json_schema()
+# For Qwen3 4B, choosing IDs before generating a nullable answer reduced premature abstentions.
+EVIDENCE_IDS_FIRST_SCHEMA = EVIDENCE_IDS_SCHEMA | {
+    "properties": {field: EVIDENCE_IDS_SCHEMA["properties"][field] for field in ("evidence_ids", "answer")},
+    "required": ["evidence_ids", "answer"],
+}
 
 
 class StandaloneQuestion(BaseModel):
@@ -180,9 +219,101 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/models")
+async def model_status():
+    try:
+        async with httpx.AsyncClient(timeout=3, trust_env=False) as client:
+            response = await client.get(f"{OLLAMA_URL}/api/tags")
+            response.raise_for_status()
+            installed = {item["name"] for item in response.json()["models"]}
+    except (httpx.HTTPError, ValueError, KeyError, TypeError):
+        installed = set()
+    return {"default": CHAT_MODEL, "backup": BACKUP_MODEL,
+            "models": [model for model in ("qwen3:4b", BACKUP_MODEL) if model in installed]}
+
+
+def conversation_id(request: Request) -> str:
+    value = request.cookies.get(CONVERSATION_COOKIE)
+    try:
+        return str(UUID(value)) if value else str(uuid4())
+    except ValueError:
+        return str(uuid4())
+
+
+def set_conversation(response: Response, session: str, incoming: Request | None = None) -> None:
+    response.headers["Cache-Control"] = "no-store"
+    if incoming is None or incoming.cookies.get(CONVERSATION_COOKIE) != session:
+        response.set_cookie(CONVERSATION_COOKIE, session, max_age=90 * 86400, httponly=True, samesite="lax")
+
+
+def require_support() -> None:
+    if not support_product():
+        raise HTTPException(404, "Open the IT Support product to use conversations.")
+
+
+def document_conversation(session: str, pdf_filename: str | None) -> str:
+    return str(uuid5(UUID(session), pdf_filename)) if pdf_filename is not None else session
+
+
+async def conversation_reply(question: DocumentQuestion, session: str) -> dict:
+    if question.pdf_filename is not None:
+        session = document_conversation(session, question.pdf_filename)
+    turns = await run_in_threadpool(conversations.read_turns, session)
+    if question.pdf_filename is not None:
+        previous = next((turn["prompt"] for turn in reversed(turns) if turn["sources"]), None)
+        result = await ask_document(question.model_copy(update={"previous_question": previous}))
+    elif conversations.SUMMARY.search(question.prompt):
+        result = {"reply": conversations.summarize(turns), "sources": []}
+    elif (remembered := conversations.recall(question.prompt, turns)) is not None:
+        result = {"reply": remembered, "sources": []}
+    else:
+        previous = next((turn["prompt"] for turn in reversed(turns) if turn["sources"]), None)
+        if previous and not question.previous_question:
+            question = question.model_copy(update={"previous_question": previous})
+        result = await ask_document(question)
+    await run_in_threadpool(conversations.save_turn, session, question.prompt, result)
+    return result
+
+
+@app.get("/conversations/current")
+async def current_conversation(
+    request: Request, response: Response,
+    pdf_filename: Annotated[str | None, Query(min_length=1, max_length=255)] = None,
+):
+    require_support()
+    session = conversation_id(request)
+    set_conversation(response, session, request)
+    return {"turns": await run_in_threadpool(conversations.read_turns, document_conversation(session, pdf_filename))}
+
+
+@app.get("/conversations/current/summary")
+async def current_summary(request: Request, response: Response):
+    require_support()
+    response.headers["Cache-Control"] = "no-store"
+    turns = await run_in_threadpool(conversations.read_turns, conversation_id(request))
+    return {"summary": conversations.summarize(turns), "turn_count": len(turns)}
+
+
+@app.post("/conversations/new")
+async def new_conversation(response: Response):
+    require_support()
+    set_conversation(response, str(uuid4()))
+    return {"turns": []}
+
+
 @app.post("/chat")
-async def chat(request: ChatRequest) -> dict[str, str]:
-    return {"reply": await generate_reply(request.prompt)}
+async def chat(request: DocumentQuestion, incoming: Request, response: Response):
+    if support_product():
+        session = conversation_id(incoming)
+        set_conversation(response, session, incoming)
+        return await conversation_reply(request, session)
+    if request.pdf_filename is not None:
+        return await ask_document(request)
+    token = requested_model.set(request.model)
+    try:
+        return {"reply": await generate_reply(request.prompt)}
+    finally:
+        requested_model.reset(token)
 
 
 @app.get("/documents")
@@ -190,12 +321,14 @@ async def document_status():
     if collection_enabled():
         guides = await run_in_threadpool(collection_documents)
         summary = {"filename": "IT Support collection", "pages": sum(guide["pages"] for guide in guides)} if guides else None
-        return {"collection": True, "documents": guides, "document": summary}
+        return {"collection": True, "support_product": support_product(), "documents": guides, "document": summary}
     return {"document": await run_in_threadpool(active_document)}
 
 
 @app.post("/documents")
 async def upload_document(request: Request, filename: Annotated[str, Query(min_length=1, max_length=255)]):
+    if support_product() and request.headers.get("X-Knowledge-Approval") != "yes":
+        raise HTTPException(403, "Approve the guide before adding it to IT Support.")
     data = bytearray()
     async for chunk in request.stream():
         if len(data) + len(chunk) > MAX_PDF_BYTES:
@@ -211,6 +344,30 @@ async def upload_document(request: Request, filename: Annotated[str, Query(min_l
         raise HTTPException(422, str(exc)) from exc
 
 
+@app.post("/documents/notes")
+async def add_knowledge_note(note: KnowledgeNote, request: Request):
+    if not support_product():
+        raise HTTPException(404, "Open the IT Support product to add approved notes.")
+    if request.headers.get("X-Knowledge-Approval") != "yes":
+        raise HTTPException(403, "Approve the note before adding it to IT Support.")
+    if any(char in note.title for char in "/\\") or not note.title.isprintable():
+        raise HTTPException(422, "Choose a title without slashes or control characters.")
+    source_url, text = note.url, note.text
+    prefix = "Website" if source_url else "Note"
+    try:
+        if source_url:
+            validate_url(source_url)
+        if text is None:
+            if not source_url:
+                raise ValueError("Enter a note or a website URL.")
+            source_url, text = await run_in_threadpool(read_website, source_url)
+        await run_in_threadpool(index_document, f"{prefix} - {note.title}.md",
+                                text.encode(), source_url=source_url)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    return await document_status()
+
+
 @app.delete("/documents")
 async def delete_document(filename: Annotated[str, Query(min_length=1, max_length=255)]):
     if not collection_enabled() or not await run_in_threadpool(remove_collection_document, filename):
@@ -220,30 +377,84 @@ async def delete_document(filename: Annotated[str, Query(min_length=1, max_lengt
 
 @app.post("/documents/ask")
 async def ask_document(request: DocumentQuestion):
-    with request_trace():
-        trace_event("question", prompt=request.prompt, reader=request.reader, previous=request.previous_question)
-        result = await answer_document(request)
-        trace_event("result", **result)
-        return result
+    if support_product() and request.reader != "qwen":
+        raise HTTPException(422, "Choose a Qwen model for IT Support.")
+    token = requested_model.set(request.model)
+    try:
+        with request_trace():
+            trace_event("question", prompt=request.prompt, reader=request.reader, previous=request.previous_question)
+            result = await answer_document(request)
+            trace_event("result", **result)
+            return result
+    finally:
+        requested_model.reset(token)
+
+
+@app.post("/documents/ask/stream")
+async def stream_document(request: DocumentQuestion, incoming: Request):
+    session = conversation_id(incoming) if support_product() else None
+
+    async def events():
+        queue: asyncio.Queue[dict | None] = asyncio.Queue()
+
+        async def answer():
+            token = answer_events.set(queue)
+            try:
+                result = (await conversation_reply(request, session) if session else await ask_document(request))
+                for token_text in re.findall(r"\s+|\S+\s*", result["reply"]):
+                    queue.put_nowait({"delta": token_text})
+                queue.put_nowait({"result": result})
+            except HTTPException as exc:
+                queue.put_nowait({"error": exc.detail})
+            finally:
+                answer_events.reset(token)
+                queue.put_nowait(None)
+
+        yield json.dumps({"status": "Searching support guides…"}) + "\n"
+        task = asyncio.create_task(answer())
+        try:
+            while (event := await queue.get()) is not None:
+                yield json.dumps(event, ensure_ascii=False) + "\n"
+        finally:
+            if not task.done():
+                task.cancel()
+            with suppress(asyncio.CancelledError):
+                await task
+
+    response = StreamingResponse(events(), media_type="application/x-ndjson",
+                                 headers={"Cache-Control": "no-store", "X-Content-Type-Options": "nosniff"})
+    if session:
+        set_conversation(response, session, incoming)
+    return response
 
 
 async def answer_document(request: DocumentQuestion):
     question_text = normalize_question(request.prompt)
     collection = collection_enabled()
-    if not collection:
-        for name, lookup in (
-            ("resume", answer_resume_question), ("structured", answer_structured_question),
-            ("title", answer_document_title), ("library_list", answer_library_list), ("section", answer_section),
-        ):
-            shortcut = await run_in_threadpool(lookup, question_text)
+    pdf_filename = request.pdf_filename
+    if pdf_filename is not None:
+        if not collection or request.reader != "qwen" or not pdf_filename.casefold().endswith(".pdf"):
+            raise HTTPException(422, "Choose an indexed PDF and a Qwen model.")
+        if not await run_in_threadpool(has_indexed_document, pdf_filename):
+            raise HTTPException(404, "The selected PDF is no longer indexed.")
+    if not collection or pdf_filename is not None:
+        lookups = [("resume", answer_resume_question), ("structured", answer_structured_question)]
+        if not collection:
+            lookups.extend([
+                ("title", answer_document_title), ("library_list", answer_library_list), ("section", answer_section),
+            ])
+        lookup_scope = {"filename": pdf_filename} if pdf_filename is not None else {}
+        for name, lookup in lookups:
+            shortcut = await run_in_threadpool(lookup, question_text, **lookup_scope)
             if shortcut is not None:
                 trace_event("shortcut", name=name)
                 return shortcut
+    if not collection:
         timing = rollout_excerpts(question_text, await run_in_threadpool(search_excerpts, question_text))
         if timing:
             trace_event("shortcut", name="rollout", evidence=timing)
             return document_reply(timing)
-    location = "the IT Support guides" if collection else "the uploaded PDF"
+    location = "the selected PDF" if pdf_filename else "the IT Support guides" if collection else "the uploaded PDF"
     unavailable = {"reply": f"I couldn’t find an answer in {location}.", "sources": []}
     prior = request.previous_question if re.search(
         r"\b(?:its?|they|their|them|those|that|what about|how about)\b",
@@ -301,9 +512,17 @@ async def answer_document(request: DocumentQuestion):
     available = DOCUMENT_CONTEXT_TOKENS - REPLY_TOKENS - 256
     available -= len((DOCUMENT_INSTRUCTIONS + prefix + suffix).encode("utf-8"))
     subqueries = parts if len(parts) > 1 else comparison_queries(question_text)
-    passages = await retrieve(query, max_full_text_bytes=available, subquestions=tuple(subqueries))
+    scope = {"pdf_filename": pdf_filename} if pdf_filename is not None else {}
+    passages = await retrieve(query, max_full_text_bytes=available, subquestions=tuple(subqueries), **scope)
     if not passages:
         return unavailable
+    if events := answer_events.get():
+        events.put_nowait({"status": "Checking evidence…"})
+    if collection and len(parts) == 1 and not prior:
+        direct = direct_guide_fact(passages, question_text)
+        if direct:
+            trace_event("selected", evidence=direct)
+            return document_reply(direct)
     if os.environ.get("RAG_EVIDENCE_IDS", "1" if collection else "0") == "1":
         if os.environ.get("RAG_PARTWISE_EVIDENCE") == "1":
             evidence_parts = re.split(
@@ -356,32 +575,50 @@ async def select_evidence_ids(passages: list[Passage], question: str, suffix: st
     evidence = numbered_evidence(passages)
     if not evidence:
         return []
-    schema = DocumentEvidenceIds.model_json_schema()
     collection = collection_enabled()
+    model = requested_model.get() or CHAT_MODEL
+    schema = EVIDENCE_IDS_FIRST_SCHEMA if collection and model == "qwen3:4b" else EVIDENCE_IDS_SCHEMA
     entries = "\n".join(format_evidence_entry(key, row, collection=collection) for key, row in evidence.items())
     instructions = EVIDENCE_ID_INSTRUCTIONS
     if collection:
         instructions += " Keep policies and steps within the named organization. If the guides conflict and the organization is unclear, abstain."
     prompt = f"PDF evidence:\n{entries}{suffix}"
-    trace_event("prompt", system=instructions, user=prompt, schema=schema,
-                context_limit=DOCUMENT_CONTEXT_TOKENS, output_limit=REPLY_TOKENS, temperature=0)
-    reply = await ask_ollama(prompt, instructions, response_format=schema)
-    try:
-        choice = DocumentEvidenceIds.model_validate_json(reply)
-    except ValueError:
-        trace_event("decision", reason="invalid_json", raw=reply)
+    metric = requested_metric(question) if collection else None
+    for attempt in range(2 if metric else 1):
+        request_instructions = instructions
+        if attempt:
+            request_instructions += (
+                " Return only the requested numeric result. The selected evidence must explicitly "
+                "associate that number with the requested metric and subject. Use the previous "
+                "question to resolve follow-ups. Abstain if the score is absent."
+            )
+        trace_event("prompt", system=request_instructions, user=prompt, schema=schema,
+                    context_limit=DOCUMENT_CONTEXT_TOKENS, output_limit=REPLY_TOKENS, temperature=0)
+        reply = await ask_ollama(prompt, request_instructions, response_format=schema)
+        try:
+            choice = DocumentEvidenceIds.model_validate_json(reply)
+        except ValueError:
+            trace_event("decision", reason="invalid_json", raw=reply)
+            return []
+        trace_event("generation", **choice.model_dump())
+        if not choice.answer or choice.answer.strip().casefold() in {"", "null"}:
+            trace_event("decision", reason="model_abstained")
+            return []
+        if not choice.evidence_ids or any(key not in evidence for key in choice.evidence_ids):
+            trace_event("decision", reason="invalid_evidence_ids")
+            return []
+        selected = [evidence[key] for key in sorted(set(choice.evidence_ids))]
+        if not metric or metric_supported(metric, question, choice.answer, selected):
+            break
+        trace_event("decision", reason="unsupported_metric", metric=metric)
+    else:
         return []
-    trace_event("generation", **choice.model_dump())
-    if not choice.answer or choice.answer.strip().casefold() in {"", "null"}:
-        trace_event("decision", reason="model_abstained")
-        return []
-    if not choice.evidence_ids or any(key not in evidence for key in choice.evidence_ids):
-        trace_event("decision", reason="invalid_evidence_ids")
-        return []
-    selected = [evidence[key] for key in sorted(set(choice.evidence_ids))]
     if not supports_years(choice.answer, question, selected):
         trace_event("decision", reason="unsupported_date", evidence=selected)
         return []
+    if collection:
+        focused = focus_excerpts(question, choice.answer, selected)
+        selected = verified_brief(question, choice.answer, selected) or focused
     trace_event("selected", evidence=selected)
     return selected
 
@@ -401,6 +638,8 @@ async def answer_evidence_parts(
         )
         if answer:
             selected.extend(answer)
+            if events := answer_events.get():
+                events.put_nowait({"part": document_reply(answer)})
         else:
             missing.append(f"“{part.rstrip('?.!')}”")
     if not selected:
@@ -421,9 +660,12 @@ def document_reply(excerpts: list[tuple[str, int, str]]) -> dict:
 
 
 @app.post("/voice")
-async def voice(request: Request, category: VoiceCategory = "auto") -> dict[str, str]:
+async def voice(request: Request, response: Response, category: VoiceCategory = "auto") -> dict[str, str]:
     transcript = await transcribe_recording(request, category)
-    return {"transcript": transcript, **await spoken_reply(transcript)}
+    session = conversation_id(request) if support_product() else None
+    if session:
+        set_conversation(response, session, request)
+    return {"transcript": transcript, **await spoken_reply(DocumentQuestion(prompt=transcript[:4000]), session)}
 
 
 @app.post("/voice/transcribe")
@@ -432,8 +674,11 @@ async def voice_transcript(request: Request, category: VoiceCategory = "auto") -
 
 
 @app.post("/voice/reply")
-async def voice_reply(request: ChatRequest) -> dict[str, str]:
-    return await spoken_reply(request.prompt)
+async def voice_reply(request: DocumentQuestion, incoming: Request, response: Response):
+    session = conversation_id(incoming) if support_product() else None
+    if session:
+        set_conversation(response, session, incoming)
+    return await spoken_reply(request, session)
 
 
 async def transcribe_recording(request: Request, category: VoiceCategory) -> str:
@@ -444,9 +689,11 @@ async def transcribe_recording(request: Request, category: VoiceCategory) -> str
         recording.extend(chunk)
 
     try:
-        name = await run_in_threadpool(saved_name)
-        approved = await run_in_threadpool(voice_names, category)
-        hints = [f"My name is {name}."] if name else []
+        name = None if support_product() else await run_in_threadpool(saved_name)
+        approved = [] if support_product() else await run_in_threadpool(voice_names, category)
+        hints = [IT_VOICE_TERMS] if support_product() else []
+        if name:
+            hints.append(f"My name is {name}.")
         if approved:
             hint = f"Person name: {approved[0]}."
             for person in approved[1:]:
@@ -461,26 +708,42 @@ async def transcribe_recording(request: Request, category: VoiceCategory) -> str
         raise HTTPException(422, str(exc)) from exc
     except FileNotFoundError as exc:
         raise HTTPException(503, "Set up Whisper using the project README and retry.") from exc
+    except subprocess.TimeoutExpired as exc:
+        raise HTTPException(504, "Speech recognition took too long. Try a shorter recording.") from exc
     except (OSError, subprocess.SubprocessError) as exc:
-        raise HTTPException(502, "Speech recognition failed. Try a shorter recording.") from exc
+        raise HTTPException(502, "Whisper could not transcribe the recording. Check the local voice setup.") from exc
 
     if not transcript or not any(character.isalnum() for character in transcript):
         raise HTTPException(422, "No speech was detected. Try speaking closer to the mic.")
 
     try:
-        return await run_in_threadpool(correct_spelling, transcript)
+        return await run_in_threadpool(correct_spelling, transcript, it_support=support_product())
     except (OSError, ValueError) as exc:
         raise HTTPException(503, "Check speech/spelling_corrections.json and try again.") from exc
 
 
-async def spoken_reply(prompt: str) -> dict[str, str]:
-    reply = await generate_reply(prompt)
+async def spoken_reply(request: DocumentQuestion, session: str | None = None):
+    if session:
+        result = await conversation_reply(request, session)
+    elif request.pdf_filename is not None:
+        result = await ask_document(request)
+    else:
+        token = requested_model.set(request.model)
+        try:
+            result = {"reply": await generate_reply(request.prompt)}
+        finally:
+            requested_model.reset(token)
+    reply = result["reply"]
     try:
         audio = await run_in_threadpool(synthesize, reply)
     except (OSError, subprocess.SubprocessError) as exc:
+        logger.warning("Could not synthesize reply audio: %s (exit status %s)",
+                       type(exc).__name__, getattr(exc, "returncode", None))
+        if support_product():
+            return {**result, "audio": None, "audio_error": "macOS could not create the spoken reply."}
         raise HTTPException(502, "macOS could not create the spoken reply.") from exc
 
-    return {"reply": reply, "audio": base64.b64encode(audio).decode("ascii")}
+    return {**result, "audio": base64.b64encode(audio).decode("ascii")}
 
 
 async def generate_reply(prompt: str) -> str:
@@ -617,8 +880,10 @@ async def generate_reply(prompt: str) -> str:
 
 
 async def ask_ollama(prompt: str, instructions: str, *, response_format: dict | None = None) -> str:
+    selected = requested_model.get()
+    model = selected or CHAT_MODEL
     payload = {
-        "model": CHAT_MODEL,
+        "model": model,
         "messages": [
             {"role": "system", "content": instructions},
             {"role": "user", "content": prompt},
@@ -638,12 +903,18 @@ async def ask_ollama(prompt: str, instructions: str, *, response_format: dict | 
                 OLLAMA_CHAT_URL,
                 json=payload,
             )
+            if response.status_code == 404 and selected is None and model != BACKUP_MODEL:
+                model = BACKUP_MODEL
+                fallback_payload = payload | {"model": model}
+                if response_format is EVIDENCE_IDS_FIRST_SCHEMA:
+                    fallback_payload["format"] = EVIDENCE_IDS_SCHEMA
+                response = await client.post(OLLAMA_CHAT_URL, json=fallback_payload)
         if response.status_code == 404:
-            raise HTTPException(503, f"Pull {CHAT_MODEL} into Ollama and retry.")
+            raise HTTPException(503, f"Pull {model} into Ollama and retry.")
         response.raise_for_status()
         data = response.json()
         if response_format is not None:
-            trace_event("ollama", model=CHAT_MODEL, prompt_tokens=data.get("prompt_eval_count"),
+            trace_event("ollama", model=model, prompt_tokens=data.get("prompt_eval_count"),
                         output_tokens=data.get("eval_count"), done_reason=data.get("done_reason"))
         reply = data["message"]["content"]
     except httpx.ConnectError as exc:

@@ -1,27 +1,43 @@
-# Personal AI Assistant
+# IT Support
 
-The FastAPI backend serves a local chat model through Ollama and provides a health endpoint.
+A local IT helpdesk assistant. It searches approved guides and cites the evidence
+for its answers. The included pilot collection covers VPN, Wi-Fi, password
+resets, printers, and software installation.
 
-## Setup
+## Start and stop on macOS
 
-From the project root, use Python 3.12 and create a virtual environment if you do not already have one.
+Run these commands from the project folder. The launcher starts both Ollama and
+FastAPI. It uses the IT Support collection by default.
+
+```bash
+./.venv/bin/python run_local.py
+```
+
+Open [IT Support](http://127.0.0.1:8000/). Press **Ctrl+C** in the launcher
+terminal to stop both servers. From another terminal, find the launcher PID and
+replace `PID` with that number.
+
+```bash
+pgrep -fl '(^|[[:space:]/])run_local[.]py([[:space:]]|$)'
+kill -TERM PID
+```
+
+Use `curl --fail http://127.0.0.1:8000/health` to check FastAPI. Use
+`curl --fail http://127.0.0.1:8000/models` to see the configured and installed
+models. Use the **Model** menu to select an installed model for typed and spoken
+questions. When the configured default is 4B and it is missing, automatic model
+selection uses 1.7B. Benchmarks and explicit model choices use the selected
+model directly.
+
+## Install on macOS
+
+Use Python 3.12. If the existing virtual environment works, start with the
+dependency command.
 
 ```bash
 python3.12 -m venv .venv
-```
-#$ For restart(
-pgrep -fl 'run_local\.py'
-kill -TERM <PID>
-)
-Install the recorded dependencies into the project environment.
-
-```bash
 ./.venv/bin/python -m pip install -r requirements.txt
 ```
-
-## Run the local model on macOS
-
-The project uses [Qwen3 1.7B](https://ollama.com/library/qwen3:1.7b), a 1.4 GB download. Run all commands from the project root.
 
 If `.ollama-runtime/ollama` is missing, download the [Ollama macOS CLI](https://github.com/ollama/ollama/releases/tag/v0.40.4) and extract it into the project.
 
@@ -34,7 +50,7 @@ curl -fL https://github.com/ollama/ollama/releases/download/v0.40.4/ollama-darwi
   tar -xzf .ollama-runtime/ollama-darwin.tgz -C .ollama-runtime
 ```
 
-Start Ollama in the first terminal. This keeps the model files in the project's ignored `models/` directory and enables local-only mode.
+For the first model download, start Ollama in one terminal. This keeps the model files in the project's ignored `models/` directory and enables local-only mode.
 
 ```bash
 mkdir -p models
@@ -42,221 +58,163 @@ OLLAMA_HOST=127.0.0.1:11434 OLLAMA_MODELS="$PWD/models" \
   OLLAMA_NO_CLOUD=1 OLLAMA_NUM_PARALLEL=1 ./.ollama-runtime/ollama serve
 ```
 
-In a second terminal, download the model once.
+With Ollama listening on port 11434, download the comparison model, the backup,
+and the embedding model from a second terminal.
 
 ```bash
-OLLAMA_HOST=127.0.0.1:11434 ./.ollama-runtime/ollama pull qwen3:1.7b
-```
-
-After the initial download, press **Ctrl+C** in the terminal running Ollama before using the combined launcher below.
-
-## Chat in the terminal
-
-With Ollama running, open a second terminal in the project root and start an interactive chat.
-
-```bash
-./.ollama-runtime/ollama run qwen3:1.7b
-```
-
-When you see `>>>`, type a prompt as plain text and press Enter. You can keep typing prompts in the same session.
-
-## Start both servers
-
-From the project root, run Ollama and FastAPI in one terminal.
-
-```bash
-./.venv/bin/python run_local.py
-```
-
-Open [Personal AI](http://127.0.0.1:8000/) when the launcher reports that it is ready. Press **Ctrl+C** in the same terminal to stop both servers. If you already started either server separately, stop it before running the launcher.
-
-- **Chat** lets you type a prompt and read the reply.
-- **Voice** lets you record up to 20 seconds. Review and edit the transcript, then click **Send transcript** to get a spoken reply. If playback does not start automatically, press **Play**.
-
-Voice mode transcribes locally with Whisper Small multilingual when its weights are installed. It uses Whisper Base multilingual otherwise. macOS text-to-speech reads the reply. Set up Whisper below if its CLI or weights are missing.
-
-In another terminal, check the backend and send it a prompt.
-
-```bash
-curl --fail http://127.0.0.1:8000/health
-curl --fail-with-body http://127.0.0.1:8000/chat \
-  -H 'Content-Type: application/json' \
-  -d '{"prompt":"In one sentence, what is FastAPI used for?"}'
-```
-
-The health check returns `{"status":"ok"}`. The chat endpoint returns a JSON object with a `reply` field. Each request sends one prompt to the model.
-
-### Stop both servers
-
-From another terminal, find the process running the Personal AI launcher.
-
-```bash
-pgrep -fl '(^|[[:space:]/])run_local[.]py([[:space:]]|$)'
-```
-
-Replace `PID` with the process ID of the Python launcher. Sending `TERM`
-lets it shut down the FastAPI and Ollama processes it started.
-
-```bash
-kill -TERM PID
-```
-
-## Ask a PDF
-
-In **Chat**, click **Upload PDF** and choose a PDF with selectable text (up to
-10 MB and 100 pages). Once indexing finishes, leave **Ask this PDF** checked
-and type your question. Replies cite the filename and PDF page numbers. You
-can ask for a section by heading or count a numbered feature list. Uncheck
-**Ask this PDF** for regular chat.
-
-One PDF can be active at a time. **Replace PDF** changes the active document
-after a successful upload. The app stores extracted passages locally in
-`memory/documents.sqlite3` and sends relevant passages to your local Ollama.
-Scanned pages need OCR before they can be searched.
-
-Short PDFs that fit in the model's context are sent to Ollama in full. Longer
-PDFs use local keyword search and, when available, semantic search. To enable
-semantic search on a new setup, run the following once while Ollama is running.
-
-```bash
+./.ollama-runtime/ollama pull qwen3:4b
+./.ollama-runtime/ollama pull qwen3:1.7b
 ./.ollama-runtime/ollama pull nomic-embed-text:v1.5
 ```
 
-The first question on a longer PDF can take longer while the app embeds its
-passages. Follow-up questions can use the last answered PDF question in the
-same browser session.
-
-With local Ollama running, run the PDF answer and citation benchmark from the
-project root.
+Stop the temporary Ollama server before starting the combined launcher. IT
+Support starts with Qwen3 4B. This command uses Qwen3 1.7B for the entire session.
 
 ```bash
-./.venv/bin/python -m benchmarks.pdf_qa
+IT_SUPPORT_MODEL=qwen3:1.7b ./.venv/bin/python run_local.py
 ```
 
-The benchmark uploads three synthetic PDFs to a temporary database, asks each
-question once, and reports evidence, citation and missing-answer failures. It
-leaves your active PDF in place.
+## Install and run on Windows
 
-### Run the IT Support collection
+Install Python 3.12 and open [Ollama for Windows](https://docs.ollama.com/windows).
+Ollama runs in the background and serves its local API. In PowerShell, run these
+commands from the project folder.
 
-The IT Support index is separate from the personal PDF index. From the
-project folder, run the collection on unused local ports.
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+ollama pull qwen3:4b
+ollama pull qwen3:1.7b
+ollama pull nomic-embed-text:v1.5
+.\.venv\Scripts\python.exe run_local.py
+```
+
+Open [IT Support](http://127.0.0.1:8000/). **Ctrl+C** stops FastAPI. Manage
+Ollama from the Windows system tray. If `ollama` is unavailable immediately
+after installation, open a new PowerShell window.
+
+For the first test, use typed chat and a PDF with selectable text. Scanned PDF
+OCR and voice still use macOS tooling.
+
+## Week 1 · Core infrastructure
+
+Use the same index, prompt, and retrieval settings for both models. Keep the
+holdout split for the final comparison once you finish tuning. The model
+benchmark records correct answers with citations, retrieval hits, unsupported
+answers on missing facts, and median response time.
 
 ```bash
-PERSONAL_AI_COLLECTION=1 \
-PERSONAL_AI_DOCUMENT_DB="$PWD/collections/it-support/index/documents.sqlite3" \
-PERSONAL_AI_OLLAMA_PORT=11439 PERSONAL_AI_API_PORT=8001 \
 RAG_EVIDENCE_IDS=1 RAG_PARTWISE_EVIDENCE=1 RAG_SECTION_CHUNKS=0 \
-./.venv/bin/python run_local.py
+./.venv/bin/python -m benchmarks.it_collection_eval --model qwen3:1.7b \
+  --split tuning --noisy --index collections/it-support/index/documents.sqlite3 \
+  --report collections/it-support/evaluation/qwen-1.7b-tuning-report.json
 ```
 
-Open `http://127.0.0.1:8001` and select **Ask IT Support guides**. **Add guide**
-accepts PDF, DOCX, TXT, and Markdown. Adding the same filename updates that
-guide. PDFs cite their original page numbers. DOCX, TXT, and Markdown cite
-sections because they have no fixed page numbers in the index. PDF pages with
-empty or visibly corrupt text are read through macOS Vision using Swift.
+Repeat with `--model qwen3:4b` and a separate report filename. For the held-out
+run use `--split holdout` and omit `--noisy`. Follow `Personal_AI_Project_Tracker.pdf` for the
+next week after reviewing the scores. Chat streams verified answer text and
+displays citations with the final reply. Use **Stop** to cancel a reply.
+The archived TinyGPT reader has a JSON configuration beside its checkpoint.
+The reader validates that configuration when restoring the checkpoint.
 
-To rebuild or update the index from the guide folder, use the existing
-collection path and the source aliases in `sources.json`.
+### Model comparison on the M1 MacBook Air
+
+Each model run answered the same 40 cases across the 15-guide collection. The tuning split included the existing spelling variations.
+
+| Model | Tuning correct | Holdout correct | Retrieval hits | Unsupported missing-fact answers | Answerable cases with no cited evidence | Tuning median | Holdout median |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Qwen3 1.7B | 21/30 | 8/10 | 31/31 | 0/9 | 0 | 2.16 s | 3.33 s |
+| Qwen3 4B with original format | 11/30 | 4/10 | 31/31 | 0/9 | 20 | 3.99 s | 2.86 s |
+| Qwen3 4B with updated format | 26/30 | 9/10 | 31/31 | 0/9 | 0 | 4.59 s | 3.30 s |
+
+The updated 4B response schema puts the evidence IDs before the nullable answer. With the original order, 4B returned an empty answer on 20 of 31 answerable cases. Qwen3 4B is the IT Support default. The **Model** menu also offers Qwen3 1.7B.
+
+### Week 1 smoke checks
+
+1. Open the local page and check that the guide count and model menu load.
+2. Ask a question about a named guide, such as “How do I install Company Portal
+   at St. Cloud State?” Check the source under the answer.
+3. Ask for a fact the guides do not contain. Check that the answer says it
+   couldn’t find evidence.
+4. In Voice, record a guide question, review the transcript, and send it. Verify
+   the text, its sources, and playback.
+
+## Week 2 · Memory and knowledge
+
+- **Add guide** accepts PDF, Word, TXT, and Markdown. Confirm approval when
+  prompted. The same filename replaces the previous indexed version. Scanned
+  PDF pages use macOS Vision OCR when the embedded text is missing or corrupt.
+- Open **Add a note or website** in the knowledge library. Enter a title and
+  an approved public HTTPS URL to import the page. You can also paste an
+  excerpt or add a local note. URL imports need an internet connection.
+  The app indexes the approved text locally and cites the source URL.
+- Use **Remove** to delete a guide or note from the searchable index. Original
+  files in the guide folder stay available for manual rebuilding.
+- Chat and Voice save turns in the browser's current SQLite-backed conversation.
+  Reload the page to see the transcript, and ask what you said earlier to recall
+  a conversation fact. **Summary** extracts key user statements from the conversation.
+  **New chat** starts a separate conversation. Approved guides and notes persist
+  in the collection database.
+
+To load the bundled guides into an empty index or refresh them from disk, run
+the intake command below. It uses the aliases in the source manifest.
 
 ```bash
+mkdir -p collections/it-support/index
 PERSONAL_AI_COLLECTION=1 \
 PERSONAL_AI_DOCUMENT_DB="$PWD/collections/it-support/index/documents.sqlite3" \
 ./.venv/bin/python -m backend.document_intake collections/it-support/documents \
   --sources collections/it-support/sources.json
 ```
 
-To measure collection-wide retrieval with common typos, keep the same local
-Ollama server running and use the tuning set.
+### Week 2 smoke checks
+
+1. Approve a test note with a distinctive troubleshooting fact. Ask for the
+   fact and check that the answer cites the note.
+2. Save the title again with an updated fact. Check after a restart that the
+   new answer is available. Remove the note and check that its fact is absent.
+3. Approve a public HTTPS guide, then ask a question about its content and
+   verify the citation.
+4. Share a fact in Chat, reload the page, then ask what you shared. Open
+   **Summary** to check the stored statements and **New chat** to start a separate conversation.
+
+## Week 3 · System diagnostics
+
+Open **Diagnostics**, choose a check, and click **Run check**. Results come
+directly from the macOS or Windows computer hosting the app.
+The panel covers tracker items 20–33.
+
+- Hardware and OS, CPU usage, RAM, and disk space.
+- IPv4 and IPv6 default routes, a DNS lookup for example.com, TCP listener
+  owners, top processes, and counts of recent system log events. Windows reads
+  error and critical events from the System and Application logs.
+- Git branch and conflict state, the active Python environment, Node.js and npm
+  versions, read-only SQLite connectivity, and the local Docker engine.
+
+The TCP check defaults to the app and Ollama ports. Enter a port to see whether
+a process is already listening on it. The log check returns totals only.
+Docker reports unavailable when the local engine is stopped or inaccessible.
+Windows collects its system metrics through built-in Windows PowerShell. Git and
+Node.js require their tools on PATH. Start Docker Desktop to check its engine.
 
 ```bash
-PERSONAL_AI_OLLAMA_PORT=11439 RAG_EVIDENCE_IDS=1 RAG_PARTWISE_EVIDENCE=1 \
-./.venv/bin/python -m benchmarks.it_collection_eval --noisy \
-  --index collections/it-support/index/documents.sqlite3 \
-  --report /tmp/it-support-collection-report.json
+curl --fail http://127.0.0.1:8000/diagnostics
+curl --fail-with-body http://127.0.0.1:8000/diagnostics/run \
+  -H 'Content-Type: application/json' -d '{"check":"ports","port":8000}'
 ```
 
-The report checks the expected filename as well as the page. Edit
-`backend/Correct_Spelling.json` to add known prompt typos. Restart the app
-after changing the dictionary.
+### Windows smoke test
 
-### Diagnose PDF accuracy
+In IT Support, select **Diagnostics → Hardware and OS → Run check**. Then run
+**TCP port usage** and confirm the live app appears on port 8000. The native
+pytest cases verify the Windows measurements and use a temporary local listener
+to check port ownership and release.
 
-Launch the app with terminal traces for PDF questions.
-
-```bash
-RAG_DEBUG=1 ./.venv/bin/python run_local.py
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_windows_diagnostics.py -v
 ```
 
-Traces include PDF excerpts, FTS and embedding scores, the context that reached
-Ollama, the messages sent to it, and quote verification decisions. Enable
-traces during local debugging because they can show private document text.
-
-Run the 30-question evaluation with Ollama running and the mini project report
-as the active PDF, or include a separate `--pdf` path for each source file.
-The evaluator uses temporary SQLite copies.
-
-```bash
-./.venv/bin/python -m benchmarks.rag_eval --reader qwen \
-  --pdf "$HOME/Downloads/Arpit_Resume.pdf" --report /tmp/personal-ai-rag-report.json
-```
-
-Use `--reader tinygpt` for the same questions with the local evidence reader.
-Use `--traces` with `--report` for per-question diagnostics. The report scores
-evidence retrieval, answer and citation correctness, and unsupported answers
-on the missing-fact questions. Structured lookups are scored for answer
-correctness and excluded from retrieval rates when they bypass retrieval.
-
-With Qwen, add `--retrieval-only --keyword-only` to test the SQLite retriever
-without Ollama. Add `--section-chunks` to re-chunk the temporary index using
-500–1,000-character targets and overlap at sentence or list boundaries.
-Set `RAG_SECTION_CHUNKS=1` when starting the app to try that chunking on future
-uploads. Set `RAG_QUERY_REWRITE=1` to test standalone Qwen queries for follow-ups
-with an available previous question.
-
-Use the **PDF model** menu to try **TinyGPT (preview)** after training its
-shared evidence reader. The reader selects excerpts from indexed text and
-shows their original PDF pages. Qwen is the default PDF model.
-TinyGPT's question matching handles common typos, related terms such as
-`fee` and `cost`, and flexible résumé questions such as “Where did I study?”
-It matches table values to their row and column labels and checks whether
-dates describe the event asked about. It cites the evidence for each
-supported part of a multi-part question and identifies any missing parts.
-
-## Use local memory
-
-In the browser's Chat or Voice mode, type or say **“Remember that I prefer 25-minute study sessions.”** The assistant confirms the save. You can then ask **“What do you remember about me?”** to see your latest saved facts, even after restarting FastAPI.
-
-SQLite creates `memory/assistant.sqlite3` automatically. Use **“Remember that…”** to save a fact. The app uses your eight most recent facts as context for relevant replies.
-
-To replace a saved address in Chat or Voice, say or type **“Update my address to 14 Rose Lane.”** This replaces earlier address statements saved as “My address is…”, “My current address is…”, “My home address is…”, or “I live at…”. Ask **“What is my current address?”** to read the saved address directly from SQLite.
-
-To replace another saved fact, ask **“What do you remember about me?”** and copy the exact old fact. Then type this in Chat.
-
-```text
-Update memory: I prefer 25-minute study sessions. -> I prefer 40-minute study sessions.
-```
-
-The app replaces that fact in SQLite and keeps your other memories.
-
-To remove a fact, copy it exactly from the memory list and type `Forget memory: I prefer 25-minute study sessions.` in Chat.
-
-Use **“Update my name to Arpit”** to replace earlier saved name statements. Ask **“What is my name?”** to verify the saved spelling.
-
-For names that Whisper misspells, **type** “Remember that my name is Arpit” in Chat. Voice mode uses the latest saved name as a spelling hint. Check the transcript after speaking to see what Whisper heard.
-
-For other names you use often, type one of these commands in Chat with the exact spelling. Replace the examples and placeholders with the names you want to save.
-
-```text
-Remember voice name: Anubhav Tomer
-Remember voice name for friends: Anubhav Tomer
-Remember voice name for family: <full name>
-Remember voice name for contacts: <full name>
-```
-
-Voice uses recent names across groups alongside your own saved name. Ask **“List voice names”** to check your entries. Name hints can improve transcription. Check the spelling before sending, especially when you intend to save a fact.
-
-## Test speech recognition on macOS
+## Optional voice setup
 
 [Whisper multilingual models](https://github.com/openai/whisper/blob/main/model-card.md) run locally through whisper.cpp. The runtime and weights go in Git-ignored directories. To set them up on another Mac, use CMake and the Xcode Command Line Tools to build the CLI and download the Base fallback.
 
@@ -296,195 +254,14 @@ To test a recorded WAV file directly, use `-l en` for English or set it to the l
 
 Add `--prompt 'Custom command name: KodeKove.'` to give Whisper a vocabulary hint for that recording. Hints take effect immediately and leave the model weights unchanged.
 
-### Correct recurring voice spellings
-
-Voice mode checks [speech/spelling_corrections.json](speech/spelling_corrections.json) before displaying a transcript or sending it to Qwen. Each key is the exact word or phrase Whisper gets wrong, and its value is the spelling you want. The file includes `"arpitu": "Arpit"` and common technical terms and typos.
-
-If a word keeps coming out wrong, copy the misheard spelling from the transcript, add it to the JSON with the desired spelling, and record again. Saved edits take effect on the next voice request.
-
-The expanded English typo entries are adapted from the [Codespell v2.4.1 dictionary](https://github.com/codespell-project/codespell/blob/v2.4.1/codespell_lib/data/dictionary.txt), which derives from English Wikipedia and is licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). The entries were filtered to single-suggestion misspellings, prioritized using the [Google 10,000 English list](https://github.com/first20hours/google-10000-english), and converted to JSON.
-
-The same JSON file includes Indian given names and place spellings from Uttar Pradesh, Uttarakhand, and Haryana. It corrects variants such as `Uttargadesh` to `Uttar Pradesh`, `Haripoor` to `Haripur`, and `Beheet` to `Behat`. Place spellings were adapted from the [May 2026 Local Government Directory export](https://github.com/vanga/india-local-government-directory/tree/main/data) and a [2024 India Post directory snapshot](https://github.com/dropdevrahul/pincodes-india/blob/master/pincode.csv) under the [Government Open Data License – India](https://www.data.gov.in/government-open-data-license-india).
-
-The additional Indian name entries combine the project's existing given names with names from [Faker's Indian English provider](https://github.com/joke2k/faker/blob/master/faker/providers/person/en_IN/__init__.py). The full-name combinations were generated for spelling coverage. For a recurring misheard name, add the exact full phrase and preferred spelling to the dictionary.
-
-<details>
-<summary>Faker MIT license notice</summary>
-
-```text
-Copyright (c) 2012 Daniele Faraglia
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
-
-</details>
-
-## Week 4 model prototype
-
-`training/tokenizer.py` encodes UTF-8 text as byte tokens. `training/model.py` defines a small GPT-style Transformer with causal attention and a 128-token context. The context counts bytes, so a character can take more than one token.
+## Automated tests
 
 ```bash
-./.venv/bin/python -m training.check_model
-./.venv/bin/python -m training.check_model --device mps
+./.venv/bin/python -m pytest -q
 ```
 
-The smoke test checks text round trips, next-token output shape, causal masking, and backpropagation with randomly initialized weights. Dataset preparation, training, and evaluation are Week 5.
-
-## Train the Week 5 prototype
-
-Put one example per line in `training/train.txt` and different examples in
-`training/validation.txt`. Run from the project root.
-
-```bash
-./.venv/bin/python -m training.train --device mps --epochs 20
-```
-
-The script prints the untrained validation loss and the loss after each epoch.
-Lower validation loss means better next-token prediction on the held-out text.
-The best trained epoch is saved to `models/tiny-gpt.pt`. Use `--output` to keep
-checkpoints from separate runs. For a quick test, use `--epochs 2`.
-
-Evaluate the saved checkpoint on CPU and optionally try a text completion.
-
-```bash
-./.venv/bin/python -m training.evaluate
-./.venv/bin/python -m training.evaluate --prompt "A Python function" --max-tokens 30
-```
-
-### Kaggle Python experiment
-
-[kaggle_python_sample.csv](training/kaggle_python_sample.csv) contains short prose extracts from [Python Questions from Stack Overflow on Kaggle](https://www.kaggle.com/datasets/stackoverflow/pythonquestions). The CSV credits the original answers and authors by URL. The excerpts were filtered by topic, score, and length, with HTML and code blocks removed. Stack Overflow contributions are licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
-
-`training/kaggle_train.txt` combines the sample with the original training sentences. Use `training/validation.txt` to compare the original and Kaggle runs.
-
-```bash
-./.venv/bin/python -m training.train --device mps --epochs 20 \
-  --train training/kaggle_train.txt --output models/tiny-gpt-kaggle.pt
-./.venv/bin/python -m training.evaluate --checkpoint models/tiny-gpt-kaggle.pt \
-  --prompt "A Python function"
-```
-
-For a separate Kaggle test, `training/kaggle_test.txt` contains 120 excerpts
-from question threads excluded from training. [The test CSV](training/kaggle_test_sample.csv)
-contains the same excerpts with links to the original answers and authors.
-
-```bash
-./.venv/bin/python -m training.evaluate --checkpoint models/tiny-gpt-kaggle.pt \
-  --validation training/kaggle_test.txt --prompt "A Python function"
-```
-
-### Focused Python Q&A experiment
-
-The Q&A files contain 18 beginner Python topics, with six training questions,
-one validation question, and one test question per topic. The test questions
-use unseen wording for topics covered in training.
-
-```bash
-./.venv/bin/python -m training.train --device mps --epochs 200 \
-  --train training/qa_train.txt --validation training/qa_validation.txt \
-  --output models/tiny-gpt-qa.pt
-./.venv/bin/python -m training.evaluate --checkpoint models/tiny-gpt-qa.pt \
-  --validation training/qa_test.txt --qa
-```
-
-The evaluator shows the generated and expected answers, followed by an exact
-match count. Review different wording for factual correctness before judging it.
-
-### TinyGPT document evidence dataset
-
-The `training/document_qa/` dataset contains 80 training, 22 validation and 22
-test examples from eight public PDFs. The splits use separate PDFs. The Energy
-Saver and Yosemite benchmark questions stay held out for model comparison.
-
-Each example includes a question and four candidate excerpts with evidence IDs
-and PDF page numbers. The target is the matching choice `A` to `D` or
-`NO_ANSWER` when those excerpts lack the answer. Some examples remove only the
-supporting passage to simulate a retrieval miss. Other examples ask for a missing detail.
-
-Run the local dataset check from the project root.
-
-```bash
-./.venv/bin/python -m training.document_qa_data
-```
-
-`sources.json` contains the source URLs, PDF checksums and annotated excerpts.
-Use `--write` to regenerate the JSONL files from it. Pass `--pdf-dir <folder>`
-to verify the evidence against local copies named by source ID, such as
-`insight.pdf`. The longest formatted example is 525 byte tokens, including
-the target and boundary tokens. The document model uses a 640-byte-token
-context so the question, candidates and target fit together. The original text
-model configuration uses a 128-byte-token context.
-
-Check the document context with the existing dataset before training.
-
-```bash
-./.venv/bin/python -m training.check_model --document-qa --device cpu
-```
-
-Train the document evidence selector from a fresh TinyGPT initialization.
-
-```bash
-./.venv/bin/python -m training.train_document_qa --device cpu --epochs 24
-```
-
-The trainer scores choices `A` through `D` and `NO_ANSWER` after reading the
-complete prompt. It saves the best validation checkpoint to
-`models/tiny-gpt-document-qa.pt` and reports exact evidence and abstention
-scores on the separate test PDFs. Evaluate the saved checkpoint again with
-`./.venv/bin/python -m training.train_document_qa --evaluate-only`.
-
-The shared evidence reader trains TinyGPT on each question–excerpt pair along
-with word-overlap features. It selects a cited excerpt or abstains. The next
-command uses the public [SQuAD 2.0 training file](https://rajpurkar.github.io/SQuAD-explorer/)
-under CC BY-SA 4.0 to augment the labeled PDF examples. Keep a local copy of
-`train-v2.0.json` in `models/training-data/squad-v2-train.json`, or give its path
-with `--squad`.
-
-```bash
-./.venv/bin/python -m training.train_document_reader --device cpu
-./.venv/bin/python -m training.train_document_reader --evaluate-only
-```
-
-The trained reader checkpoint is `models/tiny-gpt-document-reader.pt`.
-The validation and test scores measure selection from supplied candidates.
-Run the end-to-end synthetic PDF benchmark with
-`./.venv/bin/python -m benchmarks.pdf_qa --reader tinygpt`.
-
-To fine-tune on typos and alternate phrasing, pass `--question-variants` and
-`--initialize-from models/tiny-gpt-document-reader.pt`. Use a separate
-`--checkpoint` path to compare the candidate with the current reader before
-replacing it. Add `--question-variants` to `--evaluate-only` to score the
-misspelled and rephrased test questions alongside the original ones.
-
-Typed PDF questions use [`backend/Correct_Spelling.json`](backend/Correct_Spelling.json).
-Add a lowercase typo and its corrected word, such as `"databse": "database"`,
-then restart the app to load the file. The correction applies to the question.
-The cited answer keeps the PDF's original wording.
-
-Add `--resume-skills` to train or evaluate on fictional résumés. These questions
-cover misspelled skills, lookup by category, and cases where the requested
-information is missing.
-Add `--evidence-examples` for fictional equipment records with confusable dates,
-roles, and table values.
-
-## Run the tests
-
-```bash
-./.venv/bin/python -m pytest
-```
+The local IT Support mode isolates its knowledge index from the earlier
+personal assistant's database. Start that older mode with
+`PERSONAL_AI_COLLECTION=0 ./.venv/bin/python run_local.py` when you need it.
+The experimental training source remains in the repository. Retired weights and
+the old project reports have a recoverable archive next to the project.

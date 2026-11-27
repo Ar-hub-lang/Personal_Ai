@@ -4,46 +4,88 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Personal AI</title>
-  <link rel="stylesheet" href="/assets/styles.css">
-  <script src="/assets/app.js" defer></script>
+  <link rel="stylesheet" href="/assets/styles.css?v=diagnostics">
+  <script src="/assets/app.js?v=diagnostics" defer></script>
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <span class="brand"><span class="brand-mark" aria-hidden="true">✦</span> Personal AI</span>
+      <span class="brand"><span class="brand-mark" aria-hidden="true">IT</span> <span id="brand-name">Personal AI</span></span>
       <span id="connection" class="connection" role="status">Checking connection…</span>
     </div>
   </header>
 
   <main>
+    <div class="toolbar">
     <nav class="modes" aria-label="Assistant mode">
       <button id="chat-mode" type="button" aria-pressed="true" aria-controls="chat">Chat</button>
       <button id="voice-mode" type="button" aria-pressed="false" aria-controls="voice">Voice</button>
+      <button id="diagnostics-mode" type="button" aria-pressed="false" aria-controls="diagnostics" hidden>Diagnostics</button>
     </nav>
 
-    <section id="chat" class="panel" aria-labelledby="chat-title">
+    <div class="support-settings">
+      <label for="model">Model</label>
+      <select id="model" aria-describedby="model-status">
+        <option value="">Automatic</option>
+        <option value="qwen3:4b">Qwen3 4B</option>
+        <option value="qwen3:1.7b">Qwen3 1.7B</option>
+      </select>
+      <span id="model-status" role="status"></span>
+    </div>
+    <div id="pdf-scope-control" class="support-settings pdf-scope" hidden>
+      <label for="pdf-scope">Ask from</label>
+      <select id="pdf-scope" aria-describedby="pdf-scope-status" disabled>
+        <option value="">All guides</option>
+      </select>
+      <span id="pdf-scope-status" role="status"></span>
+    </div>
+    </div>
+
+    <div class="workspace">
+    <aside class="library" aria-labelledby="library-title">
+      <div class="library-heading">
+        <h2 id="library-title">Knowledge library</h2>
+        <p id="pdf-status" role="status"></p>
+      </div>
       <div class="document-bar">
         <input id="pdf-file" type="file" accept=".pdf,application/pdf" hidden>
         <button id="upload-pdf" class="primary" type="button" disabled>Upload PDF</button>
-        <label><input id="ask-pdf" type="checkbox" disabled> <span id="ask-document-label">Ask this PDF</span></label>
-        <label id="pdf-reader-choice" hidden>PDF model
-          <select id="pdf-reader">
-            <option value="qwen">Qwen</option>
-            <option value="tinygpt">TinyGPT (preview)</option>
-          </select>
-        </label>
-        <span id="pdf-status" role="status"></span>
+        <label id="ask-document-choice"><input id="ask-pdf" type="checkbox" disabled> <span id="ask-document-label">Ask this PDF</span></label>
       </div>
+      <details id="knowledge" class="knowledge" hidden>
+        <summary>Add a note or website</summary>
+        <form id="knowledge-form">
+          <label>Title <input id="knowledge-title" maxlength="120" required></label>
+          <label>Website URL <input id="knowledge-url" type="url" maxlength="2048" placeholder="https://"></label>
+          <label>Note or excerpt <textarea id="knowledge-text" rows="3" maxlength="100000" placeholder="Paste text, or leave blank to import the URL."></textarea></label>
+          <button class="primary" type="submit">Approve and save</button>
+        </form>
+        <p id="knowledge-status" class="status" role="status"></p>
+      </details>
+      <ul id="knowledge-list" aria-label="Indexed guides" hidden></ul>
+    </aside>
+
+    <div class="discussion">
+    <section id="chat" class="panel" aria-labelledby="chat-title">
+      <div class="chat-toolbar">
+        <h2>Conversation</h2>
+        <div class="chat-actions">
+          <button id="summary-button" class="secondary" type="button" aria-expanded="false" aria-controls="chat-summary" hidden>Summary</button>
+          <button id="new-conversation" class="secondary" type="button" hidden>New chat</button>
+        </div>
+      </div>
+      <div id="chat-summary" class="chat-summary" hidden></div>
       <div id="messages" class="messages" role="log" aria-label="Chat messages">
         <div id="welcome" class="welcome">
           <h1 id="chat-title">How can I help?</h1>
-          <p>Type a question or switch to Voice to talk.</p>
+          <p id="welcome-text">Type a question or switch to Voice to talk.</p>
         </div>
       </div>
       <form id="chat-form" class="composer">
         <label class="visually-hidden" for="prompt">Message</label>
         <textarea id="prompt" placeholder="Write a message…" rows="2" maxlength="4000" required></textarea>
-        <button id="send" class="primary" type="submit">Send</button>
+        <button id="stop-answer" class="secondary" type="button" hidden>Stop</button>
+        <button id="send" class="primary" type="submit" disabled>Send</button>
       </form>
       <p id="chat-status" class="status" role="status"></p>
     </section>
@@ -70,10 +112,36 @@
         <div class="utterance">
           <h2>Reply</h2>
           <p id="voice-reply"></p>
+          <div id="voice-sources"></div>
           <audio id="playback" controls preload="none" aria-label="Spoken reply"></audio>
         </div>
       </div>
     </section>
+
+    <section id="diagnostics" class="panel diagnostic-panel" aria-labelledby="diagnostics-title" hidden>
+      <h1 id="diagnostics-title">System diagnostics</h1>
+      <p>Run a read-only check on the computer hosting IT Support. The DNS check looks up example.com.</p>
+      <form id="diagnostic-form" class="diagnostic-form">
+        <label for="diagnostic-check">Check
+          <select id="diagnostic-check" required disabled></select>
+        </label>
+        <label id="diagnostic-port-field" for="diagnostic-port" hidden>TCP port (optional)
+          <input id="diagnostic-port" type="number" min="1" max="65535" step="1" inputmode="numeric" placeholder="App and Ollama ports">
+        </label>
+        <button id="run-diagnostic" class="primary" type="submit" disabled>Run check</button>
+      </form>
+      <p id="diagnostic-status" class="status" role="status"></p>
+      <div id="diagnostic-result" class="diagnostic-result" hidden>
+        <div class="diagnostic-heading">
+          <h2 id="diagnostic-result-title"></h2>
+          <span id="diagnostic-finding-state"></span>
+        </div>
+        <p id="diagnostic-summary"></p>
+        <dl id="diagnostic-details"></dl>
+      </div>
+    </section>
+    </div>
+    </div>
   </main>
 </body>
 </html>

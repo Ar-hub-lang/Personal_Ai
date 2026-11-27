@@ -14,10 +14,13 @@ from pypdf.errors import PyPdfError
 from backend.document_language import normalize_question
 from backend.rag_trace import trace_event, tracing
 
-DATABASE_PATH = Path(
-    os.environ.get("PERSONAL_AI_DOCUMENT_DB")
-    or Path(__file__).resolve().parents[1] / "memory" / "documents.sqlite3"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_INDEX = (
+    PROJECT_ROOT / "collections/it-support/index/documents.sqlite3"
+    if os.environ.get("PERSONAL_AI_COLLECTION") == "1"
+    else PROJECT_ROOT / "memory/documents.sqlite3"
 )
+DATABASE_PATH = Path(os.environ.get("PERSONAL_AI_DOCUMENT_DB") or DEFAULT_INDEX)
 MAX_PDF_BYTES = 10 * 1024 * 1024
 CHUNK_OVERLAP_WORDS = 20
 SECTION_CHUNK_MIN_CHARS = 500
@@ -73,6 +76,11 @@ COLLEGE_QUESTION = re.compile(
     r"|(?:what|which) (?:college|university) (?:did i attend|do i attend|is listed|did i go to|did i graduate from)"
     r"|where did (?:i|the (?:applicant|candidate)) (?:study|go to college|graduate from|(?:do|complete) (?:my |the )?(?:bca|degree))"
     r"|what (?:was|is) (?:my|the) (?:college|university) called"
+)
+PROJECT_STACK_LINE = re.compile(
+    r"^(?:tech(?:nology|nologies)?(?: stack)?\s*:.*"
+    r"|[A-Za-z][\w.+#/-]*(?:\s*,\s*[A-Za-z][\w.+#/-]*)+(?:\s*\|.*)?)$",
+    re.I,
 )
 PROJECT_HEADING = re.compile(r"(?mi)^(?:(?:selected|personal|academic) )?projects:?$")
 UPPERCASE_HEADING = re.compile(r"(?m)^[A-Z][A-Z0-9 &/()-]{2,60}:?$")
@@ -131,6 +139,11 @@ def open_index():
                 """CREATE TABLE IF NOT EXISTS document_records (
                     filename TEXT PRIMARY KEY, updated_at TEXT NOT NULL, aliases TEXT NOT NULL,
                     sections TEXT NOT NULL
+                )"""
+            )
+            connection.execute(
+                """CREATE TABLE IF NOT EXISTS document_web_sources (
+                    filename TEXT PRIMARY KEY, url TEXT NOT NULL
                 )"""
             )
         yield connection
@@ -208,6 +221,7 @@ def page_chunks(text: str, *, section_aware: bool):
 def index_text_pages(
     filename: str, pages: list[tuple[int, str]], *, section_aware: bool,
     aliases: tuple[str, ...] = (), sections: dict[int, str] | None = None,
+    source_url: str | None = None,
 ) -> dict[str, str | int]:
     if sum(len(text) for _, text in pages) > 400_000:
         raise ValueError("This document contains too much text for the local index.")
@@ -226,6 +240,10 @@ def index_text_pages(
                 )""",
                 (filename, json.dumps(aliases) if aliases or not previous else previous[0], json.dumps(sections or {})),
             )
+            if source_url is not None:
+                connection.execute("INSERT OR REPLACE INTO document_web_sources VALUES (?, ?)", (filename, source_url))
+            else:
+                connection.execute("DELETE FROM document_web_sources WHERE filename = ?", (filename,))
         else:
             connection.execute("DELETE FROM passages")
         connection.executemany("INSERT INTO passages VALUES (?, ?, ?)", passages)
@@ -235,17 +253,22 @@ def index_text_pages(
 def collection_documents() -> list[dict]:
     with open_index() as connection:
         rows = connection.execute(
-            """SELECT p.filename, COUNT(DISTINCT p.page), d.updated_at
+            """SELECT p.filename, COUNT(DISTINCT p.page), d.updated_at, w.url
                FROM passages p LEFT JOIN document_records d ON p.filename = d.filename
-               GROUP BY p.filename, d.updated_at ORDER BY p.filename COLLATE NOCASE"""
+               LEFT JOIN document_web_sources w ON p.filename = w.filename
+               GROUP BY p.filename, d.updated_at, w.url ORDER BY p.filename COLLATE NOCASE"""
         ).fetchall()
-    return [{"filename": filename, "pages": pages, "updated_at": updated_at} for filename, pages, updated_at in rows]
+    return [
+        {"filename": filename, "pages": pages, "updated_at": updated_at} | ({"url": url} if url else {})
+        for filename, pages, updated_at, url in rows
+    ]
 
 
 def remove_collection_document(filename: str) -> bool:
     with open_index() as connection:
         removed = connection.execute("DELETE FROM passages WHERE filename = ?", (filename,)).rowcount
         connection.execute("DELETE FROM document_records WHERE filename = ?", (filename,))
+        connection.execute("DELETE FROM document_web_sources WHERE filename = ?", (filename,))
     return removed > 0
 
 
@@ -266,8 +289,14 @@ def source_metadata(filename: str, page: int) -> dict:
     source = {"filename": filename, "page": page}
     if collection_enabled() and not filename.lower().endswith(".pdf"):
         with open_index() as connection:
-            record = connection.execute("SELECT sections FROM document_records WHERE filename = ?", (filename,)).fetchone()
+            record = connection.execute(
+                """SELECT d.sections, w.url FROM document_records d
+                   LEFT JOIN document_web_sources w ON d.filename = w.filename WHERE d.filename = ?""",
+                (filename,),
+            ).fetchone()
         source["section"] = json.loads(record[0]).get(str(page), f"Section {page}") if record else f"Section {page}"
+        if record and record[1]:
+            source["url"] = record[1]
     return source
 
 
@@ -456,7 +485,7 @@ def answer_resume_skills(pages: list[tuple[int, str]], filename: str, field: str
     }
 
 
-def answer_resume_question(question: str) -> dict | None:
+def answer_resume_question(question: str, *, filename: str | None = None) -> dict | None:
     normalized = " ".join(normalize_question(question).casefold().split()).rstrip(" ?.!")
     asks_name = RESUME_NAME_QUESTION.fullmatch(normalized)
     asks_college = COLLEGE_QUESTION.fullmatch(normalized)
@@ -473,7 +502,7 @@ def answer_resume_question(question: str) -> dict | None:
     if not (asks_name or asks_college or asks_skills or skill_field):
         return None
 
-    rows = indexed_passages()
+    rows = indexed_passages(filename=filename)
     if not rows:
         return None
     filename = rows[0][0]
@@ -537,11 +566,13 @@ def project_titles(lines: list[str]) -> list[str]:
     for index in range(first_bullet + 1, len(lines) - 1):
         if (looks_like_title(lines[index]) and BULLET.match(lines[index + 1])
                 and not BULLET.fullmatch(lines[index - 1])):
-            titles.append(lines[index])
+            previous = lines[index - 1]
+            title = previous if PROJECT_STACK_LINE.fullmatch(lines[index]) and looks_like_title(previous) else lines[index]
+            titles.append(title)
     return titles
 
 
-def answer_structured_question(question: str) -> dict | None:
+def answer_structured_question(question: str, *, filename: str | None = None) -> dict | None:
     normalized = " ".join(question.casefold().split()).rstrip(" ?.!")
     local_setup = LOCAL_SETUP_QUESTION.search(normalized)
     education_year = re.search(r"\b(?:year|when)\b", normalized) and re.search(
@@ -558,7 +589,7 @@ def answer_structured_question(question: str) -> dict | None:
     if not (local_setup or education_year or project_count or project_names):
         return None
 
-    rows = indexed_passages()
+    rows = indexed_passages(filename=filename)
     for page, text in page_texts(rows):
         setup = LOCAL_SETUP_HEADING.search(text) if local_setup else None
         if setup and text[setup.end():].strip() and not re.search(
@@ -635,11 +666,18 @@ def search_passages(question: str, *, filenames: set[str] | None = None) -> list
     return [(filename, page, text) for filename, page, text, _ in ranked]
 
 
-def indexed_passages() -> list[tuple[str, int, str]]:
+def has_indexed_document(filename: str) -> bool:
     with open_index() as connection:
-        return connection.execute(
-            "SELECT filename, page, text FROM passages ORDER BY rowid"
-        ).fetchall()
+        return connection.execute("SELECT 1 FROM passages WHERE filename = ? LIMIT 1", (filename,)).fetchone() is not None
+
+
+def indexed_passages(*, filename: str | None = None) -> list[tuple[str, int, str]]:
+    with open_index() as connection:
+        if filename is not None:
+            return connection.execute(
+                "SELECT filename, page, text FROM passages WHERE filename = ? ORDER BY rowid", (filename,),
+            ).fetchall()
+        return connection.execute("SELECT filename, page, text FROM passages ORDER BY rowid").fetchall()
 
 
 def search_excerpts(question: str) -> list[tuple[str, int, str]]:

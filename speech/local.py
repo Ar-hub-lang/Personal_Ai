@@ -1,4 +1,7 @@
+import os
+import re
 import subprocess
+import sys
 import wave
 from io import BytesIO
 from pathlib import Path
@@ -43,8 +46,16 @@ def transcribe(audio: bytes, prompt: str = "") -> str:
         if prompt:
             command.extend(["--prompt", prompt])
 
+        env = os.environ.copy()
+        if sys.platform == "darwin":
+            # A CMake-built whisper-cli may still reference the original checkout.
+            library_paths = [str(WHISPER_CLI.parent)]
+            if env.get("DYLD_LIBRARY_PATH"):
+                library_paths.append(env["DYLD_LIBRARY_PATH"])
+            env["DYLD_LIBRARY_PATH"] = os.pathsep.join(library_paths)
         subprocess.run(
             command,
+            env=env,
             capture_output=True,
             check=True,
             timeout=30,
@@ -59,7 +70,7 @@ def synthesize(reply: str) -> bytes:
         audio_path = base / "reply.aiff"
         wav_path = base / "reply.wav"
         # Treat model output as text rather than macOS speech commands.
-        text_path.write_text(reply.replace("[[", "["), encoding="utf-8")
+        text_path.write_text(re.sub(r"\[{2,}", "[", reply), encoding="utf-8")
         subprocess.run(
             ["/usr/bin/say", "-f", str(text_path), "-o", str(audio_path)],
             capture_output=True,
@@ -72,4 +83,11 @@ def synthesize(reply: str) -> bytes:
             check=True,
             timeout=15,
         )
-        return wav_path.read_bytes()
+        audio = wav_path.read_bytes()
+        try:
+            with wave.open(BytesIO(audio), "rb") as recording:
+                if not recording.getnframes():
+                    raise OSError("macOS returned an empty spoken reply.")
+        except (wave.Error, EOFError) as exc:
+            raise OSError("macOS returned an invalid spoken reply.") from exc
+        return audio

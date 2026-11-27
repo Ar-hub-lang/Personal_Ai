@@ -4,9 +4,19 @@ from functools import lru_cache
 from pathlib import Path
 
 DICTIONARY_PATH = Path(__file__).with_name("spelling_corrections.json")
+IT_SPELLINGS = json.dumps({
+    "d-field global protect": "Deerfield GlobalProtect",
+    "d-field globalprotect": "Deerfield GlobalProtect",
+    "global protect": "GlobalProtect",
+    "globalprotect": "GlobalProtect",
+    "edu roam": "eduroam",
+    "eduroam": "eduroam",
+    "paper cut print": "PaperCut print",
+    "papercut": "PaperCut",
+})
 
 
-@lru_cache(maxsize=1)
+@lru_cache(maxsize=2)
 def load_corrections(contents: str) -> tuple[dict[str, str], re.Pattern[str]]:
     entries = json.loads(contents)
     if not isinstance(entries, dict) or any(
@@ -27,8 +37,9 @@ def load_corrections(contents: str) -> tuple[dict[str, str], re.Pattern[str]]:
     return spellings, pattern
 
 
-def correct_spelling(transcript: str) -> str:
-    spellings, pattern = load_corrections(DICTIONARY_PATH.read_text(encoding="utf-8"))
+def correct_spelling(transcript: str, *, it_support: bool = False) -> str:
+    contents = IT_SPELLINGS if it_support else DICTIONARY_PATH.read_text(encoding="utf-8")
+    spellings, pattern = load_corrections(contents)
 
     def replacement(match: re.Match[str]) -> str:
         original = match[0]
